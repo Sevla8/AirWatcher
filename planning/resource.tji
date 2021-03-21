@@ -1,0 +1,34 @@
+resource prof "Omar Hasan" {
+	email "omar.hasan@insa-lyon.fr"
+}
+
+resource stdu "Students" {
+	managers prof
+
+	resource stdu1 "Adrien Jaillet" {
+		email "adrien.jaillet@insa-lyon.fr"
+		leaves annual 2021-04-12 - 2021-04-23
+	}
+
+	resource stdu2 "William Jean" {
+		email "william.jean@insa-lyon.fr"
+		leaves annual 2021-04-12 - 2021-04-23
+	}
+
+	resource stdu3 "Matheus de Barros Silva" {
+		email "matheus-de-barros-silva@insa-lyon.fr"
+		leaves annual 2021-04-12 - 2021-04-23
+	}
+
+	resource stdu4 "Jade Prévôt" {
+		email "jade.prevot@insa-lyon.fr"
+		leaves annual 2021-04-12 - 2021-04-23
+	}
+
+	resource stdu5 "Brandon da Silva Alves" {
+		email "brandon.da-silva-alves@insa-lyon.fr"
+		leaves annual 2021-04-12 - 2021-04-23
+	}
+
+	flags team
+}

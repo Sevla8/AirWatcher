@@ -1,0 +1,26 @@
+project airwatcher "AirWatcher" 2021-03-17 - 2021-06-07 {
+	timezone "Europe/Paris"
+	timeformat "%Y-%m-%d"
+	numberformat "-" "" "," "." 1
+	currencyformat "(" ")" "," "." 0
+	currency "EUR"
+	#now 2002-03-05-13:00
+	#markdate 2002-08-07-03:00
+	scenario plan "Plan" {
+		scenario delayed "Delayed"
+	}
+}
+
+copyright "INSA Lyon - 3IF Promo 2020-2021 - Group B3204-B3205"
+
+flags team
+
+include "macro.tji"
+
+include "account.tji"
+
+include "resource.tji"
+
+include "task.tji"
+
+include "view.tji"

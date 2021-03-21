@@ -1,0 +1,193 @@
+navigator navbar {
+	hidereport @none
+}
+
+macro TaskTip [
+	tooltip istask() -8<-
+		'''Start: ''' <-query attribute='start'->
+		'''End: ''' <-query attribute='end'->
+		----
+		'''Resources:'''
+
+		<-query attribute='resources'->
+		----
+		'''Precursors: '''
+
+		<-query attribute='precursors'->
+		----
+		'''Followers: '''
+
+		<-query attribute='followers'->
+		->8-
+]
+
+textreport frame "" {
+	header -8<-
+		== AirWatcher Project ==
+		<[navigator id="navbar"]>
+	->8-
+	footer "----"
+
+	textreport index "Overview" {
+		formats html
+		center '<[report id="overview"]>'
+	}
+
+	textreport "Status" {
+		formats html
+		center -8<-
+			<[report id="status.dashboard"]>
+			----
+			<[report id="status.completed"]>
+			----
+			<[report id="status.ongoing"]>
+			----
+			<[report id="status.future"]>
+		->8-
+	}
+
+	textreport development "Development" {
+		formats html
+		center '<[report id="development"]>'
+	}
+
+	textreport "Deliveries" {
+		formats html
+		center '<[report id="deliveries"]>'
+	}
+
+	textreport "ContactList" {
+		formats html
+		title "Contact List"
+		center '<[report id="contactList"]>'
+	}
+
+	textreport "ResourceGraph" {
+		formats html
+		title "Resource Graph"
+		center '<[report id="resourceGraph"]>'
+	}
+}
+
+taskreport overview "" {
+	header -8<-
+		=== Project Overview ===
+
+		The project is structured into 4 phases.
+
+		# [../specifications/srs.pdf Specification]
+		# Conception
+		# <-reportlink id='frame.development'->
+		# Testing
+
+		=== Original Project Plan ===
+	->8-
+	columns bsi { title 'WBS' },
+					name, start, end, effort,
+					chart { ${TaskTip} }
+	timeformat "%a %Y-%m-%d"
+	loadunit days
+	hideresource @all
+	balance cost rev
+	caption 'All effort values are in man days.'
+
+	footer -8<-
+		=== Staffing ===
+
+		All project phases are properly staffed. See [[ResourceGraph]] for
+		detailed resource allocations.
+
+		=== Current Status ===
+
+		The project started off with a delay of 4 days. This slightly affected
+		the original schedule. See [[Deliveries]] for the impact on the
+		delivery dates.
+	->8-
+}
+
+macro AlertColor [
+	cellcolor plan.alert = 0 "#00D000" # green
+	cellcolor plan.alert = 1 "#D0D000" # yellow
+	cellcolor plan.alert = 2 "#D00000" # red
+]
+
+taskreport status "" {
+	columns bsi { width 50 title 'WBS' }, name { width 150 },
+					start { width 100 }, end { width 100 },
+					effort { width 100 },
+					alert { tooltip plan.journal
+													!= '' "<-query attribute='journal'->" width 150 },
+					status { width 150 }
+	scenarios delayed
+
+	taskreport dashboard "" {
+		headline "Project Dashboard (<-query attribute='now'->)"
+		columns name { title "Task" ${AlertColor} width 200},
+						resources { width 200 ${AlertColor}
+												listtype bullets
+												listitem "<-query attribute='name'->"
+												start ${projectstart} end ${projectend} },
+						alerttrend { title "Trend" ${AlertColor} width 50 },
+						journal { width 350 ${AlertColor} }
+		journalmode status_up
+		journalattributes headline, author, date, summary, details
+		hidetask ~hasalert(0)
+		sorttasks alert.down, delayed.end.up
+		period %{${now} - 1w} +1w
+	}
+
+	taskreport completed "" {
+		headline "Already completed tasks"
+		hidetask ~(delayed.end <= ${now})
+	}
+
+	taskreport ongoing "" {
+		headline "Ongoing tasks"
+		hidetask ~((delayed.start <= ${now}) & (delayed.end > ${now}))
+	}
+
+	taskreport future "" {
+		headline "Future tasks"
+		hidetask ~(delayed.start > ${now})
+	}
+}
+
+taskreport development "" {
+	scenarios delayed
+	headline "Development - Resource Allocation Report"
+	columns bsi { title 'WBS' }, name, start, end, effort { title "Work" },
+					duration, chart { ${TaskTip} scale day width 500 }
+	timeformat "%Y-%m-%d"
+	hideresource ~(isleaf() & isleaf_())
+	sortresources name.up
+}
+
+taskreport deliveries "" {
+	headline "Project Deliverables"
+	columns bsi { title 'WBS' }, name, start, end, note { width 150 }, complete,
+					chart { ${TaskTip} }
+	taskroot airwatcher.deliveries
+	hideresource @all
+	scenarios plan, delayed
+}
+
+resourcereport contactList "" {
+	scenarios delayed
+	headline "Contact list and duty plan"
+	columns name,
+					email { celltext 1 "[mailto:<-email-> <-email->]" },
+					managers { title "Manager" },
+					chart { scale day }
+	hideresource ~isleaf()
+	sortresources name.up
+	hidetask @all
+}
+
+resourcereport resourceGraph "" {
+	scenarios delayed
+	headline "Resource Allocation Graph"
+	columns no, name, effort, rate, weekly { ${TaskTip} }
+	loadunit shortauto
+	hidetask ~(isleaf() & isleaf_())
+	sorttasks plan.start.up
+}

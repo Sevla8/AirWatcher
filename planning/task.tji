@@ -1,0 +1,118 @@
+task airwatcher "AirWatcher" {
+	responsible prof
+
+	task spec "Specification" {
+		responsible stdu1
+		${allocate_students}
+		start ${start_project}
+		end ${end_lab1}
+	}
+
+	task concep "Conception" {
+		responsible stdu2
+		${allocate_students}
+		start ${end_lab1}
+		end ${end_lab2}
+		depends !spec
+	}
+
+	task soft "Software Development" {
+		responsible stdu3
+		${allocate_students}
+		start ${end_lab2}
+		end ${end_lab4}
+		depends !spec, !concep
+	}
+
+	task test "Software testing" {
+		responsible stdu4
+		depends !spec, !concep
+
+		task user "User Test" {
+			task alpha "Alpha Test" {
+			}
+
+			task beta "Beta Test" {
+			}
+
+			task accept "Acceptance Test" {
+			}
+		}
+
+		task version "Version Test" {
+			task version "Requirement Test" {
+			}
+
+			task perf "Performance Test" {
+			}
+		}
+
+		task dev "Development Test" {
+			task unit "Unit Test" {
+				${allocate_students}
+				effort 1d
+			}
+		}
+	}
+
+	task manual "Manual" {
+		responsible stdu5
+		#effort 1w
+		depends !deliveries.init
+		allocate stdu3
+		purge chargeset
+		chargeset doc
+		journalentry 2021-05-28 "User manual completed" {
+			author prof
+			summary "The doc writers did a really great job to finish on time."
+		}
+	}
+
+	task deliveries "Milestones" {
+		purge chargeset
+		chargeset rev
+		${allocate_students}
+
+		task init "Initialisation Document" {
+			responsible stdu1
+			start ${start_lab1}
+			effort 3d
+		}
+
+		task srs "Requirements Specification Document" {
+			responsible stdu2
+			start ${start_lab1}
+			effort 3d
+		}
+
+		task design "Design Document" {
+			responsible stdu3
+			start ${start_lab2}
+			effort 3d
+			depends !!deliveries.srs
+		}
+
+		task soft "Software Application" {
+			responsible stdu4
+
+			task fct1 "Functionality #1" {
+				start ${start_lab3}
+				effort 3d
+				depends !!!deliveries.design
+			}
+
+			task fct2 "Functionality #2" {
+				start ${start_lab4}
+				effort 3d
+				depends !!!deliveries.design
+			}
+		}
+
+		task demo "Presentation & Demo" {
+			responsible stdu5
+			start ${start_lab5}
+			effort 3d
+			depends !!deliveries.soft
+		}
+	}
+}

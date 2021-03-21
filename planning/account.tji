@@ -1,0 +1,11 @@
+account cost "Project Cost" {
+	account spec "Specifications"
+	account concep "Conception"
+	account dev "Development"
+	account doc "Documentation"
+	account test "Test"
+}
+
+account rev "Payments"
+
+balance cost rev
