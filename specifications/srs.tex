@@ -406,13 +406,13 @@ The application will load data from csv files locally.
 % transfer rates, and synchronization mechanisms.$>$
 
 \chapter{System Features}
-% \begin{figure}
-% 	\begin{center}
-% 		\includegraphics[scale=0.6]{uc.png}
-% 	\end{center}
-% 	\caption{Use Case diagram}
-% 	\label{fig:uc}
-% \end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.55]{uc.pdf}
+	\end{center}
+	\caption{Use Case Diagram}
+	\label{fig:uc}
+\end{figure}
 % $<$This template illustrates organizing the functional requirements for the
 % product by system features, the major services provided by the product. You may
 % prefer to organize this section by use case, mode of operation, user class,
@@ -427,7 +427,7 @@ The application will load data from csv files locally.
 
 \subsubsection*{Description and Priority} ~~~
 This feature allows a user to authenticate himself.
-It has a low level priority.
+It has a low priority level.
 
 % $<$Provide a short description of the feature and indicate whether it is of
 % High, Medium, or Low priority. You could also include specific priority
@@ -486,45 +486,22 @@ It has a low level priority.
 
 % REQ-1:	REQ-2:
 
-\subsection{UC-3: Create Account}
+\subsection{UC-2: Calculate Mean of Air Quality at a specified circular area}
 
 \subsubsection*{Description and Priority} ~~~
-TBD
+This feature permits to show the mean of air quality at a specified circular
+area. It has a high priority level.
 
-\subsubsection*{Stimulus/Response Sequences} ~~~
-TBD
-\subsubsection*{Functional Requirements REQ-3} ~~~
-\begin{table}[H]
-	\begin{center}
-		\begin{tabular}{|m{4cm}|m{10cm}|}
-		\hline
-		\textbf{Fonctionnality 3} & Create account \\
-		\hline
-		\textbf{Description} & Allow a user to create an account \\
-		\hline
-		\textbf{Inputs} & login, password \\
-		\hline
-		\textbf{Precondition} & No account with this login and password already exists \\
-		\hline
-		\textbf{Postcondition} & Account created \\
-		\hline
-		\textbf{Output} & login, password \\
-		\hline
-		\end{tabular}
-	\end{center}
-	\caption{UC-3 Functional Requirements}
-	\label{table:REQ-3}
-\end{table}
+\subsubsection*{Stimulus/Response Sequences}
+\begin{enumerate}
+	\item The system shows the different options of the menu;
+	\item The user choose the option 4;
+	\item The system ask for a circular area;
+	\item The user enters a specific area;
+	\item The system shows the mean of air quality at this position.
+\end{enumerate}
 
-\subsection{UC-4: Calculate Mean of Air Quality}
-
-\subsubsection*{Description and Priority} ~~~
-TBD
-
-\subsubsection*{Stimulus/Response Sequences} ~~~
-TBD
-
-\subsubsection*{Functional Requirements REQ-4} ~~~
+\subsubsection*{Functional Requirements REQ-2} ~~~
 \begin{table}[H]
 	\begin{center}
 		\begin{tabular}{|m{4cm}|m{10cm}|}
@@ -543,19 +520,23 @@ TBD
 		\hline
 		\end{tabular}
 	\end{center}
-	\caption{UC-4 Functional Requirements}
-	\label{table:REQ-4}
+	\caption{UC-2 Functional Requirements}
+	\label{table:REQ-2}
 \end{table}
 
-\subsection{UC-5: Log Out}
+\subsection{UC-3: Log Out}
 
 \subsubsection*{Description and Priority} ~~~
-TBD
+This feature permits to logout the user. It has a low priority level.
 
-\subsubsection*{Stimulus/Response Sequences} ~~~
-TBD
+\subsubsection*{Stimulus/Response Sequences}
+\begin{enumerate}
+	\item The system shows the different options of the menu;
+	\item The user choose the option 9;
+	\item The system logout the user.
+\end{enumerate}
 
-\subsubsection*{Functional Requirements REQ-5} ~~~
+\subsubsection*{Functional Requirements REQ-3} ~~~
 \begin{table}[H]
 	\begin{center}
 		\begin{tabular}{|m{4cm}|m{10cm}|}
@@ -574,11 +555,132 @@ TBD
 		\hline
 		\end{tabular}
 	\end{center}
+	\caption{UC-3 Functional Requirements}
+	\label{table:REQ-3}
+\end{table}
+
+\subsection{UC-4: Compare and rank all sensors with a specific one.}
+
+\subsubsection*{Description and Priority} ~~~
+This feature permits to rank sensors compared to a selected one. It has a high
+level of priority.
+
+\subsubsection*{Stimulus/Response Sequences}
+\begin{enumerate}
+	\item The system asks for a SensorId;
+	\item The user refers a SensorId;
+	\item The system compare all sensors to this one;
+	\item The system ranks all sensors. The sensor which is the closest to the
+	refered is on top of the list. The farthest is the last one of the list;
+	\item The system print the list to the user.
+\end{enumerate}
+
+\subsubsection*{Functional Requirements REQ-4} ~~~
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|m{4cm}|m{10cm}|}
+		\hline
+		\textbf{Use Case} & Compare and rank all sensors with a specific one. \\
+		\hline
+		\textbf{Description} & Allow a user to compare and rank every sensor with a specific one. This feature permitt to identify areas with a similar air quality.  \\
+		\hline
+		\textbf{Inputs} &  SensorID\\
+		\hline
+		\textbf{Precondition} & User logged in. The selected sensor must not be malfunctioning \\
+		\hline
+		\textbf{Postcondition} &  \\
+		\hline
+		\textbf{Output} & A rank of sensors compared to the selected one. \\
+		\hline
+		\end{tabular}
+	\end{center}
+	\caption{UC-4 Functional Requirements}
+	\label{table:REQ-4}
+\end{table}
+
+\subsection{UC-5: Analyse air quality at specific position and specified time.}
+
+\subsubsection*{Description and Priority} ~~~
+This feature permitt to get the air quality at specific position and specified time. It has a high level of priority.
+
+\subsubsection*{Stimulus/Response Sequences}
+\begin{enumerate}
+	\item The system asks for a Longitude;
+	\item The user refers a longitude;
+	\item The system asks for a latitude;
+	\item The user refers a latitude;
+	\item The system asks for a begin timestamp;
+	\item The user refers a begin timestamp;
+	\item The system asks for a end timestamp;
+	\item The user refers a end timestamp;
+	\item The system calcul the air quality at the specified position and the specified time;
+	\item The system print the value.
+\end{enumerate}
+
+\subsubsection*{Functional Requirements REQ-5} ~~~
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|m{4cm}|m{10cm}|}
+		\hline
+		\textbf{Use Case} & Analyse air quality at specific position and specified time. \\
+		\hline
+		\textbf{Description} & Allow a user to analyse air quality at specific position and specified time. The application must return a value even if there is no sensor at the specified location. \\
+		\hline
+		\textbf{Inputs} &  longitude, latitude, date\\
+		\hline
+		\textbf{Precondition} &  \\
+		\hline
+		\textbf{Postcondition} &  \\
+		\hline
+		\textbf{Output} & The air quality at the specified location and date. \\
+		\hline
+		\end{tabular}
+	\end{center}
 	\caption{UC-5 Functional Requirements}
 	\label{table:REQ-5}
 \end{table}
 
-\subsection{UC-6: Analyse data of specific sensor}
+
+\subsection{UC-6: Analyse AirCleaner efficiency}
+
+\subsubsection*{Description and Priority}
+This feature allows the user to get stats about the air Cleaner efficiency such as the radius of AirCleaner impact.
+It has a high level of priority.
+
+\subsubsection*{Stimulus/Response Sequences} ~~~
+\begin{enumerate}
+	\item The system asks for a CleanerId;
+	\item The user refers a CleanerId;
+	\item The system calculates the size of area impacted by the airCleaner. It use cleaner's property to get begin timestamp and end timestamp.
+	\item The system print the radius of the AirCleaner Impact;
+\end{enumerate}
+
+\subsubsection*{Functional Requirements REQ-6} ~~~
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|m{4cm}|m{10cm}|}
+		\hline
+		\textbf{Use Case} & Analyse AirCleaner efficiency. \\
+		\hline
+		\textbf{Description} & Allow a user to analyse AirCleaner efficiency. The application analyse data at the begining and at the end of AirCleaner operation. \\
+		\hline
+		\textbf{Inputs} & CleanerId\\
+		\hline
+		\textbf{Precondition} & \\
+		\hline
+		\textbf{Postcondition} &  \\
+		\hline
+		\textbf{Output} & The radius of AirCleaner impact. \\
+		\hline
+		\end{tabular}
+	\end{center}
+	\caption{UC-6 Functional Requirements}
+	\label{table:REQ-6}
+\end{table}
+
+\section{Government Agency Features}
+
+\subsection{UC-7: Analyse data of specific sensor}
 
 \subsubsection*{Description and Priority} ~~~
 TBD
@@ -586,7 +688,7 @@ TBD
 \subsubsection*{Stimulus/Response Sequences} ~~~
 TBD
 
-\subsubsection*{Functional Requirements REQ-6} ~~~
+\subsubsection*{Functional Requirements REQ-7} ~~~
 \begin{table}[H]
 	\begin{center}
 		\begin{tabular}{|m{4cm}|m{10cm}|}
@@ -605,42 +707,11 @@ TBD
 		\hline
 		\end{tabular}
 	\end{center}
-	\caption{UC-6 Functional Requirements}
-	\label{table:REQ-6}
-\end{table}
-
-\subsection{UC-7: Compare and rank all sensors with a specific one.}
-
-\subsubsection*{Description and Priority} ~~~
-TBD
-
-\subsubsection*{Stimulus/Response Sequences} ~~~
-TBD
-
-\subsubsection*{Functional Requirements REQ-7} ~~~
-\begin{table}[H]
-	\begin{center}
-		\begin{tabular}{|m{4cm}|m{10cm}|}
-		\hline
-		\textbf{Use Case} & Compare and rank all sensors with a specific one. \\
-		\hline
-		\textbf{Description} & Allow a user to compare and rank every sensor with a specific one. This feature permit to identify areas with a similar air quality.  \\
-		\hline
-		\textbf{Inputs} &  SensorID\\
-		\hline
-		\textbf{Precondition} & User logged in. The selected sensor must not be malfunctioning \\
-		\hline
-		\textbf{Postcondition} &  \\
-		\hline
-		\textbf{Output} & A rank of sensors compared to the selected one. \\
-		\hline
-		\end{tabular}
-	\end{center}
 	\caption{UC-7 Functional Requirements}
 	\label{table:REQ-7}
 \end{table}
 
-\subsection{UC-8: Analyse air quality at specific position and specified time.}
+\subsection{UC-8: Exclude malfunctioning sensors.}
 
 \subsubsection*{Description and Priority} ~~~
 TBD
@@ -653,17 +724,17 @@ TBD
 	\begin{center}
 		\begin{tabular}{|m{4cm}|m{10cm}|}
 		\hline
-		\textbf{Use Case} & Analyse air quality at specific position and specified time. \\
+		\textbf{Use Case} & Exclude malfunctioning sensors. \\
 		\hline
-		\textbf{Description} & Allow a user to analyse air quality at specific position and specified time. The application must return a value even if there is no sensor at the specified location. \\
+		\textbf{Description} & The governmental agency can exclude a malfunctioning sensor. Then they wouldn't be considered anymore for stats. \\
 		\hline
-		\textbf{Inputs} &  longitude, latitude, date\\
+		\textbf{Inputs} & SensorID\\
 		\hline
-		\textbf{Precondition} & User logged in. \\
+		\textbf{Precondition} & Sensor is not soon considered as malfunctioning \\
 		\hline
-		\textbf{Postcondition} &  \\
+		\textbf{Postcondition} &  Sensor is considered as malfunctioning\\
 		\hline
-		\textbf{Output} & The air quality at the specified location and date. \\
+		\textbf{Output} & \\
 		\hline
 		\end{tabular}
 	\end{center}
@@ -671,8 +742,12 @@ TBD
 	\label{table:REQ-8}
 \end{table}
 
+% \section{Air Cleaner Provider Features}
 
-\subsection{UC-9: Analyse AirCleaner efficiency.}
+\section{Private Individual Features}
+\section{Administrator Features}
+
+\subsection{UC-9: Create Account}
 
 \subsubsection*{Description and Priority} ~~~
 TBD
@@ -685,17 +760,17 @@ TBD
 	\begin{center}
 		\begin{tabular}{|m{4cm}|m{10cm}|}
 		\hline
-		\textbf{Use Case} & Analyse AirCleaner efficiency. \\
+		\textbf{Fonctionnality 3} & Create account \\
 		\hline
-		\textbf{Description} & Allow a user to analyse AirCleaner efficiency. The application analyse data at the begining and at the end of AirCleaner operation. \\
+		\textbf{Description} & Allow an admin user to create an account \\
 		\hline
-		\textbf{Inputs} & CleanerId\\
+		\textbf{Inputs} & login, password, role \\
 		\hline
-		\textbf{Precondition} & User logged in. \\
+		\textbf{Precondition} & No account with this login and password already exists \\
 		\hline
-		\textbf{Postcondition} &  \\
+		\textbf{Postcondition} & Account created \\
 		\hline
-		\textbf{Output} & The radius of AirCleaner impact. \\
+		\textbf{Output} & login, password, role \\
 		\hline
 		\end{tabular}
 	\end{center}
@@ -703,12 +778,7 @@ TBD
 	\label{table:REQ-9}
 \end{table}
 
-\section{Government Agency Features}
-\section{Air Cleaner Provider Features}
-\section{Private Individual Features}
-\section{Administrator Features}
-
-\subsection{UC-2: Add new sensor}
+\subsection{UC-10: Add new sensor}
 
 \subsubsection*{Description and Priority} ~~~
 TBD
@@ -716,7 +786,7 @@ TBD
 \subsubsection*{Stimulus/Response Sequences} ~~~
 TBD
 
-\subsubsection*{Functional Requirements REQ-2} ~~~
+\subsubsection*{Functional Requirements REQ-10} ~~~
 \begin{table}[H]
 	\begin{center}
 		\begin{tabular}{|m{4cm}|m{10cm}|}
@@ -735,13 +805,17 @@ TBD
 		\hline
 		\end{tabular}
 	\end{center}
-	\caption{UC-2 Functional Requirements}
-	\label{table:REQ-2}
+	\caption{UC-10 Functional Requirements}
+	\label{table:REQ-10}
 \end{table}
 
 \chapter{Other Nonfunctional Requirements}
 
 \section{Performance Requirements}
+The government agency would like the algorithms (analyzing a sensor, calculating mean, comparison
+of sensors, etc) of AirWatcher to be efficient. They must be performant. The application must be
+able to measure their parformance, through the duration of execution of an algorithm measured in
+milliseconds.
 % $<$If there are performance requirements for the product under various
 % circumstances, state them here and explain their rationale, to help the
 % developers understand the intent and make suitable design choices. Specify the
@@ -775,6 +849,9 @@ corrupt their sensor, to remedy it and thus guard against this type of behavior.
 % security or privacy certifications that must be satisfied.$>$
 
 \section{Software Quality Attributes} ~~~
+\subsection{Adaptability}
+\subsection{Availability}
+\subsection{Correctness}
 % $<$Specify any additional quality characteristics for the product that will be
 % important to either the customers or the developers. Some to consider are:
 % adaptability, availability, correctness, flexibility, interoperability,
