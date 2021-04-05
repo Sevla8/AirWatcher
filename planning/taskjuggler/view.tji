@@ -75,9 +75,9 @@ taskreport overview "" {
 
 		The project is structured into 4 phases.
 
-		# [../specifications/srs.pdf Specification]
+		# [../../specifications/srs.pdf Specification]
 		# Conception
-		# <-reportlink id='frame.development'->
+		# Development
 		# Testing
 
 		=== Original Project Plan ===

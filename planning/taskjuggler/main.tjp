@@ -4,8 +4,6 @@ project airwatcher "AirWatcher" 2021-03-17 - 2021-06-07 {
 	numberformat "-" "" "," "." 1
 	currencyformat "(" ")" "," "." 0
 	currency "EUR"
-	#now 2002-03-05-13:00
-	#markdate 2002-08-07-03:00
 	scenario plan "Plan" {
 		scenario delayed "Delayed"
 	}

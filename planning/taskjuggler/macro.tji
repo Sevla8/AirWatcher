@@ -1,0 +1,7 @@
+macro allocate_students [
+	allocate stdu1
+	allocate stdu2
+	allocate stdu3
+	allocate stdu4
+	allocate stdu5
+]

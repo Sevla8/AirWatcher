@@ -4,52 +4,76 @@ task airwatcher "AirWatcher" {
 	task spec "Specification" {
 		responsible stdu1
 		${allocate_students}
-		start ${start_project}
-		end ${end_lab1}
+		depends !deliveries.start
+		effort 2w
+		delayed:effort 3w
+		journalentry 2021-04-05 "SRS not fully completed" {
+			author stdu1
+			alert yellow
+			details -8<-
+				We need some conception analysis to fully complete it.
+			->8-
+		}
 	}
 
 	task concep "Conception" {
 		responsible stdu2
 		${allocate_students}
-		start ${end_lab1}
-		end ${end_lab2}
 		depends !spec
+		effort 2w
 	}
 
 	task soft "Software Development" {
 		responsible stdu3
 		${allocate_students}
-		start ${end_lab2}
-		end ${end_lab4}
-		depends !spec, !concep
+		depends !concep
+
+		task gui "Graphical User Interface" {
+			effort 1w
+		}
+
+		task fct1 "Functionality #1" {
+			effort 1w
+			depends !gui
+		}
+
+		task fct2 "Functionality #2" {
+			effort 1w
+			depends !gui
+		}
 	}
 
 	task test "Software testing" {
 		responsible stdu4
-		depends !spec, !concep
+		depends !soft
+		${allocate_students}
 
 		task user "User Test" {
 			task alpha "Alpha Test" {
+				effort 1d
 			}
 
 			task beta "Beta Test" {
+				effort 1d
 			}
 
 			task accept "Acceptance Test" {
+				effort 1d
 			}
 		}
 
 		task version "Version Test" {
 			task version "Requirement Test" {
+				effort 1d
 			}
 
 			task perf "Performance Test" {
+				effort 1d
 			}
 		}
 
 		task dev "Development Test" {
 			task unit "Unit Test" {
-				${allocate_students}
 				effort 1d
 			}
 		}
@@ -57,13 +81,13 @@ task airwatcher "AirWatcher" {
 
 	task manual "Manual" {
 		responsible stdu5
-		#effort 1w
-		depends !deliveries.init
+		effort 5h
+		depends !deliveries.start
 		allocate stdu3
 		purge chargeset
 		chargeset doc
-		journalentry 2021-05-28 "User manual completed" {
-			author prof
+		journalentry 2021-04-05 "User manual completed" {
+			author stdu5
 			summary "The doc writers did a really great job to finish on time."
 		}
 	}
@@ -71,48 +95,36 @@ task airwatcher "AirWatcher" {
 	task deliveries "Milestones" {
 		purge chargeset
 		chargeset rev
-		${allocate_students}
+
+		task start "Project start" {
+			start ${projectstart}
+		}
 
 		task init "Initialisation Document" {
-			responsible stdu1
-			start ${start_lab1}
-			effort 3d
+			start 2021-04-05
 		}
 
 		task srs "Requirements Specification Document" {
-			responsible stdu2
-			start ${start_lab1}
-			effort 3d
+			start 2021-04-05
 		}
 
 		task design "Design Document" {
-			responsible stdu3
-			start ${start_lab2}
-			effort 3d
-			depends !!deliveries.srs
+			start 2021-05-03
 		}
 
 		task soft "Software Application" {
-			responsible stdu4
 
 			task fct1 "Functionality #1" {
-				start ${start_lab3}
-				effort 3d
-				depends !!!deliveries.design
+				start 2021-05-10
 			}
 
 			task fct2 "Functionality #2" {
-				start ${start_lab4}
-				effort 3d
-				depends !!!deliveries.design
+				start 2021-05-31
 			}
 		}
 
 		task demo "Presentation & Demo" {
-			responsible stdu5
-			start ${start_lab5}
-			effort 3d
-			depends !!deliveries.soft
+			start 2021-06-07
 		}
 	}
 }
