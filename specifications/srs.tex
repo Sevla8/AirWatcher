@@ -1,14 +1,11 @@
 \documentclass{report}
 \usepackage{listings}
-\usepackage{underscore}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{lmodern}
 \usepackage{makeidx}
 \usepackage[toc, page]{appendix}
-\usepackage{graphicx}
 \usepackage{float}
-\usepackage{dirtree}
 \usepackage[ruled, vlined, french]{algorithm2e}
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{lscape}
@@ -23,6 +20,7 @@
 \usepackage{rotating}
 \usepackage[section]{placeins}
 \usepackage{chngcntr,array}
+\usepackage{graphicx}
 \usepackage[
 	breaklinks=true,
 	colorlinks=true,
@@ -64,8 +62,10 @@
 \end{flushright}
 
 \tableofcontents
+\listoffigures
+\listoftables
 
-\chapter*{Revision History}
+\chapter*{Version History}
 
 \begin{center}
 	\begin{tabular}{|m{1.5cm}|m{1.7cm}|m{4cm}|m{7.3cm}|}
@@ -351,7 +351,21 @@ The menu of private individuals consists of 9 options:
 	\item shutdown
 \end{enumerate}
 
-\framebox{here imgages of the GUI}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=.6]{gui-1.png}
+	\end{center}
+	\caption{GUI - Login / Signin Menu}
+	\label{fig:gui_1}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=.6]{gui-2.png}
+	\end{center}
+	\caption{GUI - Private Individual Menu}
+	\label{fig:gui_2}
+\end{figure}
 
 % $<$Describe the logical characteristics of each interface between the software
 % product and the users. This may include sample screen images, any GUI standards
@@ -428,23 +442,27 @@ It has a low level priority.
 % associated with use cases.$>$
 
 \subsubsection*{Functional Requirements REQ-1} ~~~
-\begin{center}
-	\begin{tabular}{|m{4cm}|m{10cm}|}
-	\hline
-	\textbf{Use Case} & Log in \\
-	\hline
-	\textbf{Description} & Allow a user to log in  \\
-	\hline
-	\textbf{Inputs} & login, password \\
-	\hline
-	\textbf{Precondition} & Nobody is log in  \\
-	\hline
-	\textbf{Postcondition} & User logged in \\
-	\hline
-	\textbf{Output} & User \\
-	\hline
-	\end{tabular}
-\end{center}
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|m{4cm}|m{10cm}|}
+		\hline
+		\textbf{Use Case} & Log in \\
+		\hline
+		\textbf{Description} & Allow a user to log in  \\
+		\hline
+		\textbf{Inputs} & login, password \\
+		\hline
+		\textbf{Precondition} & Nobody is log in  \\
+		\hline
+		\textbf{Postcondition} & User logged in \\
+		\hline
+		\textbf{Output} & User \\
+		\hline
+		\end{tabular}
+	\end{center}
+	\caption{UC-1 Functional Requirements}
+	\label{table:REQ-1}
+\end{table}
 
 % //Do a use case diagram / then list the different functionalities with the
 % dependencies on the other functionalities / the pre and post conditions / the input data / ...
@@ -471,23 +489,27 @@ TBD
 TBD
 
 \subsubsection*{Functional Requirements REQ-3} ~~~
-\begin{center}
-	\begin{tabular}{|m{4cm}|m{10cm}|}
-	\hline
-	\textbf{Fonctionnality 3} & Create account \\
-	\hline
-	\textbf{Description} & Allow a user to create an account \\
-	\hline
-	\textbf{Inputs} & login, password \\
-	\hline
-	\textbf{Precondition} & No account with this login and password already exists \\
-	\hline
-	\textbf{Postcondition} & Account created \\
-	\hline
-	\textbf{Output} & login, password \\
-	\hline
-	\end{tabular}
-\end{center}
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|m{4cm}|m{10cm}|}
+		\hline
+		\textbf{Fonctionnality 3} & Create account \\
+		\hline
+		\textbf{Description} & Allow a user to create an account \\
+		\hline
+		\textbf{Inputs} & login, password \\
+		\hline
+		\textbf{Precondition} & No account with this login and password already exists \\
+		\hline
+		\textbf{Postcondition} & Account created \\
+		\hline
+		\textbf{Output} & login, password \\
+		\hline
+		\end{tabular}
+	\end{center}
+	\caption{UC-3 Functional Requirements}
+	\label{table:REQ-3}
+\end{table}
 
 \subsection{UC-4: Calculate Mean of Air Quality}
 
@@ -498,23 +520,27 @@ TBD
 TBD
 
 \subsubsection*{Functional Requirements REQ-4} ~~~
-\begin{center}
-	\begin{tabular}{|m{4cm}|m{10cm}|}
-	\hline
-	\textbf{Fonctionnality F6} & Calculate mean of air quality \\
-	\hline
-	\textbf{Description} &  \\
-	\hline
-	\textbf{Inputs} &  \\
-	\hline
-	\textbf{Precondition} &  \\
-	\hline
-	\textbf{Postcondition} &  \\
-	\hline
-	\textbf{Output} &  \\
-	\hline
-	\end{tabular}
-\end{center}
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|m{4cm}|m{10cm}|}
+		\hline
+		\textbf{Use Case} & Calculate mean of air quality \\
+		\hline
+		\textbf{Description} &  \\
+		\hline
+		\textbf{Inputs} &  \\
+		\hline
+		\textbf{Precondition} &  \\
+		\hline
+		\textbf{Postcondition} &  \\
+		\hline
+		\textbf{Output} &  \\
+		\hline
+		\end{tabular}
+	\end{center}
+	\caption{UC-4 Functional Requirements}
+	\label{table:REQ-4}
+\end{table}
 
 \subsection{UC-5: Log Out}
 
@@ -525,23 +551,27 @@ TBD
 TBD
 
 \subsubsection*{Functional Requirements REQ-5} ~~~
-\begin{center}
-	\begin{tabular}{|m{4cm}|m{10cm}|}
-	\hline
-	\textbf{Fonctionnality F2} & Log out \\
-	\hline
-	\textbf{Description} & Allow a user to log out  \\
-	\hline
-	\textbf{Inputs} &  \\
-	\hline
-	\textbf{Precondition} & User logged in  \\
-	\hline
-	\textbf{Postcondition} &  \\
-	\hline
-	\textbf{Output} &  \\
-	\hline
-	\end{tabular}
-\end{center}
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|m{4cm}|m{10cm}|}
+		\hline
+		\textbf{Use Case} & Log out \\
+		\hline
+		\textbf{Description} & Allow a user to log out  \\
+		\hline
+		\textbf{Inputs} &  \\
+		\hline
+		\textbf{Precondition} & User logged in  \\
+		\hline
+		\textbf{Postcondition} &  \\
+		\hline
+		\textbf{Output} &  \\
+		\hline
+		\end{tabular}
+	\end{center}
+	\caption{UC-5 Functional Requirements}
+	\label{table:REQ-5}
+\end{table}
 
 \section{Government Agency Features}
 \section{Air Cleaner Provider Features}
@@ -557,23 +587,27 @@ TBD
 TBD
 
 \subsubsection*{Functional Requirements REQ-2} ~~~
-\begin{center}
-	\begin{tabular}{|m{4cm}|m{10cm}|}
-	\hline
-	\textbf{Fonctionnality F4} & Add new sensor \\
-	\hline
-	\textbf{Description} & Allow a user to  \\
-	\hline
-	\textbf{Inputs} & Sensor \\
-	\hline
-	\textbf{Precondition} & The sensor doesn't exist  \\
-	\hline
-	\textbf{Postcondition} & The sensor exists \\
-	\hline
-	\textbf{Output} & Sensor \\
-	\hline
-	\end{tabular}
-\end{center}
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|m{4cm}|m{10cm}|}
+		\hline
+		\textbf{Fonctionnality F4} & Add new sensor \\
+		\hline
+		\textbf{Description} & Allow a user to  \\
+		\hline
+		\textbf{Inputs} & Sensor \\
+		\hline
+		\textbf{Precondition} & The sensor doesn't exist  \\
+		\hline
+		\textbf{Postcondition} & The sensor exists \\
+		\hline
+		\textbf{Output} & Sensor \\
+		\hline
+		\end{tabular}
+	\end{center}
+	\caption{UC-2 Functional Requirements}
+	\label{table:REQ-2}
+\end{table}
 
 \chapter{Other Nonfunctional Requirements}
 
