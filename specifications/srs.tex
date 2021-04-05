@@ -12,6 +12,7 @@
 \usepackage[ruled, vlined, french]{algorithm2e}
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{lscape}
+\usepackage{csquotes}
 \usepackage{soul}
 \usepackage{textcomp}
 \usepackage{gensymb}
@@ -87,7 +88,7 @@
 
 \chapter{Introduction}
 
-\section{Purpose} ~~
+\section{Purpose} ~~~
 The purpose of the document is to collect and analyze all assorted ideas that
 have come up to define the system, its requirements with respect to consumers.
 Also, we shall predict and sort out how we hope this product will be used in
@@ -107,18 +108,26 @@ assist in software delivery lifecycle (SDLC) processes.
 % product that is covered by this SRS, particularly if this SRS describes only
 % part of the system or a single subsystem.$>$
 
-\section{Document Conventions} ~~
-$<$Describe any standards or typographical conventions that were followed when
-writing this SRS, such as fonts or highlighting that have special significance.
-For example, state whether priorities  for higher-level requirements are assumed
-to be inherited by detailed requirements, or whether every requirement statement
-is to have its own priority.$>$
+\section{Document Conventions} ~~~
+% $<$Describe any standards or typographical conventions that were followed when
+% writing this SRS, such as fonts or highlighting that have special significance.
+% For example, state whether priorities  for higher-level requirements are assumed
+% to be inherited by detailed requirements, or whether every requirement statement
+% is to have its own priority.$>$
 
-\section{Intended Audience and Reading Suggestions}
-This SRS is addressed to the governmental agency which need to monitor the air
-quality. It is also addressed to developers who will develop the app. The rest of this
-SRS contains the functional and non-functional requirements of the system, the analysis
-of security risks, a test plan for validation tests and a User manual.
+\section{Intended Audience and Reading Suggestions} ~~~
+This SRS is addressed to all stakeholders of the software: the governmental
+agency which need to monitor the air quality, the air cleaner providers which
+want to observe the impact of the cleaners on air quality and private individuals
+who participate in air quality data generation by installing fixed sensors at
+their homes. It is also addressed to developers who will develop the application
+and administrators responsible for software maintenance. The project manager
+can also follow the progress of the software specifications by reading this
+document.
+
+End users must focus their reading on \textit{System Features} while developpers
+and administrators should also pay attention to \textit{External Interface
+Requirements} and \textit{Other Nonfunctional Requirements}.
 
 % $<$Describe the different types of reader that the document is intended for,
 % such as developers, project managers, marketing staff, users, testers, and
@@ -127,51 +136,54 @@ of security risks, a test plan for validation tests and a User manual.
 % overview sections and proceeding through the sections that are most pertinent to
 % each reader type.$>$
 
-\section{Project Scope}
-The "AirWatcher" application is a {console} based application which helps its users monitor the quality of air as well as the quality of data
-provided by the sensors used for data collection. This application will be designed to improve air quality analysis by providing great algorithms
-for calculating indicators as well as verifying the reliability of data.
+\section{Project Scope} ~~~
+The \textit{AirWatcher} application is a console-based application that helps
+its users monitor the air quality as well as the quality of the data provided by
+the sensors used for data collection. This application is designed to improve
+air quality analysis by providing efficient algorithms for calculating indicators
+as well as checking the data reliability.
 
-More specificaly, the application provide, on demand metrics for a circular area specified by the user. Besides, the AirWatcher will continously analyse
-data in order to identify malfunctioning sensors as well as wether the defect is willingly made or naturally caused.
+More specificaly, the application provide, on demand metrics for a circular area
+specified by the user. Besides, the AirWatcher will continously analyse data in
+order to identify malfunctioning sensors as well as wether the defect is willingly
+made or naturally caused.
 
-Moreover, the application will also be responsible for managing the Governments's points system, which attributes a point to a private sensor owner each time
-their sensors's data are requested in a query for analysis. On the other hand, if the application identifies that the user is willingly distorting their
-sensors data, AirWatcher will mark the user as non-applicable for being rewarded points.
+Moreover, the application will also be responsible for managing the Governments's
+points system, which attributes a point to a private sensor owner each time their
+sensors's data are requested in a query for analysis. On the other hand, if the
+application identifies that the user is willingly distorting their sensors data,
+AirWatcher will mark the user as non-applicable for being awarded points.
 
-By doig so, the application will allow the government agency to really monitor the air quality in order to taking the right measures for maintaining
-or improving air quality and as a consequence, the quality of life.
+By doig so, the application will allow the government agency to really monitor
+the air quality in order to taking the right measures for maintaining or
+improving air quality and as a consequence, the quality of life.
 
 % $<$Provide a short description of the software being specified and its purpose,
 % including relevant benefits, objectives, and goals. Relate the software to
 % corporate goals or business strategies. If a separate vision and scope document
 % is available, refer to it rather than duplicating its contents here.$>$
 
-\section{References}
-$<$List any other documents or Web addresses to which this SRS refers. These may
-include user interface style guides, contracts, standards, system requirements
-specifications, use case documents, or a vision and scope document. Provide
-enough information so that the reader could access a copy of each reference,
-including title, author, version number, date, and source or location.$>$
+\section{References} ~~~
+% $<$List any other documents or Web addresses to which this SRS refers. These may
+% include user interface style guides, contracts, standards, system requirements
+% specifications, use case documents, or a vision and scope document. Provide
+% enough information so that the reader could access a copy of each reference,
+% including title, author, version number, date, and source or location.$>$
 
 \chapter{Overall Description}
 
-\section{Product Perspective}
-The system will consist of one software application. It will be able to
-analyze data generated by the sensors in order to verify that it works properly.
-The data are gathered by the agency andstored on a central server in a set of files in CSV format.
-The application will provide a console based user interface to its different users, which will be
-tailored according to the requirements and privileges of their role. Remote network access to the
-application is out of scope for the implementation of this application. The console based user
-interface will be available only on the server itself. The application will access the CSV files locally
-on the server.
-The application does not interact directly with the sensors or the air cleaners. The
-collection of data is out of scope for this application. The application only analyzes the data
-contained in the files on the central server. We can assume that the data will not be updated during
-the execution of the application. Moreover, the application will not modify the data files.
-As several users use the application asynchronously, we store data like logins, passwords, points, etc.
-in text or csv files.
+\section{Product Perspective} ~~~
+The application is part of a more global project. The project consists of a
+client server application. The end users, which are sensors, send their data to
+the server where AirWatcher is running. The data collection is out of scope of
+AirWatcher and is supposed to be fully operational. AirWatcher is a response to
+a governmental need. Indeed government agencies want to be able to monitor the air
+quality of specific areas so they could be able to take decisions (for example,
+install air cleaners in pollued zones) to improve the quality of life.
 
+The data collection application and AirWatcher do not have to interface together.
+The only constraint is that the data collection, which will imply dataset
+updates, and AirWatcher should not run at the same moment.
 
 % $<$Describe the context and origin of the product being specified in this SRS.
 % For example, state whether this product is a follow-on member of a product
@@ -182,17 +194,22 @@ in text or csv files.
 % components of the overall system, subsystem interconnections, and external
 % interfaces can be helpful.$>$
 
-\section{Product Functions}
-The AirWatcher application will allow analysis of the data generated by
-a sensor to make sure that it is functioning correctly. The application
-will aggregate the collected information to produce statistics such as the
-calculation of the mean of the quality of air in a specific area specified
-by the user. The mean of the quality of air can be calculated for a given
-moment as well as for a specified period of time. The application will also
-enable selecting one sensor and then scoring and ranking all other sensors
-in terms of similarity to the selected sensor. The Application must produce
-the value of air quality at a precise geographical position in the territory
-at a given moment. Finally, the application will provide a console based
+\section{Product Functions} ~~~
+The AirWatcher application will allow analysis of the data generated by a sensor
+to make sure that it is functioning correctly and otherwise identify and maintain
+malfunctioning sensors. The application will aggregate the collected information
+to produce statistics such as the calculation of the mean of the quality of air
+in a specific area specified by the user. The mean of the quality of air can be
+calculated for a given moment as well as for a specified period of time. The
+application will also enable selecting one sensor and then scoring and ranking
+all other sensors in terms of similarity to the selected sensor. The similarity
+will be based on the data generated by the sensors during a specified period of
+time. The purpose of this functionality is to identify areas with similar air
+quality. The Application must produce the value of air quality at a precise
+geographical position in the territory at a given moment. The agency and the
+providers could use AirWatcher to observe the impact of the cleaners on air
+quality, for example, the radius of the cleaned zone, the level of improvement
+in air quality, etc... Finally, the application will provide a console based
 user interface to its different users.
 
 % $<$Summarize the major functions the product must perform or must let the user
@@ -202,28 +219,39 @@ user interface to its different users.
 % related requirements and how they relate, such as a top level data flow diagram
 % or object class diagram, is often effective.$>$
 
-\section{User Classes and Characteristics}
-There are four types of users that interact with the system: the government agency,
-providers of "air cleaners", private individuals who participate in air quality
-data generation by installing fixed sensors at their homes and an administrator.
-Each of these three types of users has different use of the system so each of
-them has their own requirements.
+\section{User Classes and Characteristics} ~~~
+There are four types of users that interact with the system: the government
+agency, the providers of "air cleaners", the private individuals who participate
+in air quality data generation by installing fixed sensors at their homes and
+administrators. Each of these four types of users has different use of the
+system so each of them has their own requirements.
 
 The government agency is able to analyse the data generated by a sensor to
 make sure that it is functioning correctly. Then it will be able to identify
-and maintain malfunctioning sensors.
+and maintain malfunctioning sensors. There is only one government agency but we
+can suppose it will use the software relatively frequently. This user can use
+all the functionalities associated with statistics. This is the most important
+user of our application.
 
 The providers use AirWatcher to observe the impact of the cleaners on air
 quality, for example, the radius of the cleaned zone, the level of improvement
-in air quality, etc...
+in air quality, etc... There is less than 100 such kind of users. This user
+can also use all the functionalities associated with statistics with an
+relatively high frequency.
 
-The private individuals
+The private individuals participate in air quality data generation by installing
+fixed sensors at their homes. These types of users are very numerous but most of
+them does not use the software frequently. This user also have access to all the
+the functionalities associated with statistics.
 
-1) Les utilisateurs doivent se connecter -> creer un compte etc (on nous demande pas de tout développer)
-2) Les utilisateurs peuvent changer ses données, mdp etc
-3) A chaque fois qu'on lance l'app on va relancer les analyses -> y compris trouver ceux qui sont faux
-4) Ils doivent pouvoir faire des tests avec leurs données assez facilement
+Each user can manage its account. They all have a username and password.
 
+\framebox{here, tell about actor attributes}
+
+% 1) Les utilisateurs doivent se connecter -> creer un compte etc (on nous demande pas de tout développer)
+% 2) Les utilisateurs peuvent changer ses données, mdp etc
+% 3) A chaque fois qu'on lance l'app on va relancer les analyses -> y compris trouver ceux qui sont faux
+% 4) Ils doivent pouvoir faire des tests avec leurs données assez facilement
 
 % $<$Identify the various user classes that you anticipate will use this product.
 % User classes may be differentiated based on frequency of use, subset of product
@@ -233,20 +261,26 @@ The private individuals
 % most important user classes for this product from those who are less important
 % to satisfy.$>$
 
-\section{Operating Environment}
-The AirWatcher software will operate in any modern operating system.
+\section{Operating Environment} ~~~
+The AirWatcher application operates in any modern operating system without any
+particular restrictions. It uses a client-server architecture. The software runs
+on the server while end users send their data. The server needs a \textit{10.2.0+
+g++} version. It may work with an older version but it has not been tested.
 
 % $<$Describe the environment in which the software will operate, including the
 % hardware platform, operating system and versions, and any other software
 % components or applications with which it must peacefully coexist.$>$
 
-\section{Design and Implementation Constraints}
-The project must be developed in C++.
-All the data is represented in csv format and stored in files.
-The algorithms used to analyse the data must be efficient. Therefore, the
-performance of the algorithms must be measurable. The metric of performance
-will be the duration of execution of an algorithm measured in milliseconds.
-The application will not modify the data files.
+\section{Design and Implementation Constraints} ~~~
+The project must be developed in \textit{C++}. The application must not modify
+the data files. The algorithms used to analyse the data must be efficient.
+Therefore, the performance of the algorithms must be measurable. The metric of
+performance will be the duration of execution of an algorithm, measured in
+milliseconds.
+
+The application should be developed following the layered architecture pattern.
+The different layers are: the user interface layer, the authentication layer
+and the statistic functionalities layer.
 
 % $<$Describe any items or issues that will limit the options available to the
 % developers. These might include: corporate or regulatory policies; hardware
@@ -257,240 +291,301 @@ The application will not modify the data files.
 % customer’s organization will be responsible for maintaining the delivered
 % software).$>$
 
-\section{User Documentation}
-The application will provide a user manual which will provide a basic
-description of the user interface.
+\section{User Documentation} ~~~
+The application provides a user manual which consists of a basic description of
+the user interface. This user manual follows the \textit{Linux man-pages} format.
 
 % $<$List the user documentation components (such as user manuals, on-line help,
 % and tutorials) that will be delivered along with the software. Identify any
 % known user documentation delivery formats or standards.$>$
 
-\section{Assumptions and Dependencies}
+\section{Assumptions and Dependencies} ~~~
+We assume that the data the application needs (on sensors, providers, users,
+cleaners, etc...) is present and precisely located on the server. We alse assume
+that those files are correct plain text documents in csv format. The software is
+not responsible for the data collection. We therefore suppose that the data is
+collected beforehand. We also take for granted that the data will not be
+modified while the software is running.
 
-$<$List any assumed factors (as opposed to known facts) that could affect the
-requirements stated in the SRS. These could include third-party or commercial
-components that you plan to use, issues around the development or operating
-environment, or constraints. The project could be affected if these assumptions
-are incorrect, are not shared, or change. Also identify any dependencies the
-project has on external factors, such as software components that you intend to
-reuse from another project, unless they are already documented elsewhere (for
-example, in the vision and scope document or the project plan).$>$
+The software does not rely on any dependency.
 
+% $<$List any assumed factors (as opposed to known facts) that could affect the
+% requirements stated in the SRS. These could include third-party or commercial
+% components that you plan to use, issues around the development or operating
+% environment, or constraints. The project could be affected if these assumptions
+% are incorrect, are not shared, or change. Also identify any dependencies the
+% project has on external factors, such as software components that you intend to
+% reuse from another project, unless they are already documented elsewhere (for
+% example, in the vision and scope document or the project plan).$>$
 
 \chapter{External Interface Requirements}
 
-\section{User Interfaces}
-The user interface will be a command line interface. The user must specified
-his login, his password and an option in the command line.
-\\
-When the app has booted, the user have to login: He informs his login and his password.
-\\
-Then a Menu appears:
-\\ Global menu \\
-Menu: choose your action\\
-1: get statistics at a specific time\\
-2: get statistics in a time interval\\
-3: rank sensor in function of similarity\\
-4: get the value of air at a specified position\\
-5: get cleaners impact on the air quality\\
-6: Modify my account\\
-7: logout and shutdown\\
-\\ Private user's menu \\
-Menu: choose your action\\
-1: get statistics at a specific time\\
-2: get statistics in a time interval\\
-3: rank sensor in function of similarity\\
-4: get the value of air at a specified position\\
-5: get cleaners impact on the air quality\\
-6: Modify my account\\
-7: Get my personnal score\\
-8: logout and shutdown\\
+\section{User Interfaces} ~~~
+There is one command line user interface. Once the program is running, the user
+is prompted to inform his username and password. If the credentials are recognized
+by the application the access is granted and the menu appears. If not, the
+credentials are asked again.
 
+The menu of government agency and air cleaner provider consists of 8 options:
+\begin{enumerate}
+	\item get statistics at a specific time
+	\item get statistics in a time interval
+	\item rank sensors in function of similarity
+	\item get the value of air at a specified position
+	\item get cleaners impact on the air quality
+	\item modify my account
+	\item logout
+	\item shutdown
+\end{enumerate}
 
-$<$Describe the logical characteristics of each interface between the software
-product and the users. This may include sample screen images, any GUI standards
-or product family style guides that are to be followed, screen layout
-constraints, standard buttons and functions (e.g., help) that will appear on
-every screen, keyboard shortcuts, error message display standards, and so on.
-Define the software components for which a user interface is needed. Details of
-the user interface design should be documented in a separate user interface
-specification.$>$
+The menu of private individuals consists of 9 options:
+\begin{enumerate}
+	\item get statistics at a specific time
+	\item get statistics in a time interval
+	\item rank sensor in function of similarity
+	\item get the value of air at a specified position
+	\item get cleaners impact on the air quality
+	\item modify my account
+	\item Get my personnal score
+	\item logout
+	\item shutdown
+\end{enumerate}
 
-\section{Hardware Interfaces}
-$<$Describe the logical and physical characteristics of each interface between
-the software product and the hardware components of the system. This may include
-the supported device types, the nature of the data and control interactions
-between the software and the hardware, and communication protocols to be
-used.$>$
+\framebox{here imgages of the GUI}
 
-\section{Software Interfaces}
+% $<$Describe the logical characteristics of each interface between the software
+% product and the users. This may include sample screen images, any GUI standards
+% or product family style guides that are to be followed, screen layout
+% constraints, standard buttons and functions (e.g., help) that will appear on
+% every screen, keyboard shortcuts, error message display standards, and so on.
+% Define the software components for which a user interface is needed. Details of
+% the user interface design should be documented in a separate user interface
+% specification.$>$
+
+\section{Hardware Interfaces} ~~~
+% $<$Describe the logical and physical characteristics of each interface between
+% the software product and the hardware components of the system. This may include
+% the supported device types, the nature of the data and control interactions
+% between the software and the hardware, and communication protocols to be
+% used.$>$
+
+\section{Software Interfaces} ~~~
 The application will load data from csv files locally.
 
-$<$Describe the connections between this product and other specific software
-components (name and version), including databases, operating systems, tools,
-libraries, and integrated commercial components. Identify the data items or
-messages coming into the system and going out and describe the purpose of each.
-Describe the services needed and the nature of communications. Refer to
-documents that describe detailed application programming interface protocols.
-Identify data that will be shared across software components. If the data
-sharing mechanism must be implemented in a specific way (for example, use of a
-global data area in a multitasking operating system), specify this as an
-implementation constraint.$>$
+% $<$Describe the connections between this product and other specific software
+% components (name and version), including databases, operating systems, tools,
+% libraries, and integrated commercial components. Identify the data items or
+% messages coming into the system and going out and describe the purpose of each.
+% Describe the services needed and the nature of communications. Refer to
+% documents that describe detailed application programming interface protocols.
+% Identify data that will be shared across software components. If the data
+% sharing mechanism must be implemented in a specific way (for example, use of a
+% global data area in a multitasking operating system), specify this as an
+% implementation constraint.$>$
 
-\section{Communications Interfaces}
-$<$Describe the requirements associated with any communications functions
-required by this product, including e-mail, web browser, network server
-communications protocols, electronic forms, and so on. Define any pertinent
-message formatting. Identify any communication standards that will be used, such
-as FTP or HTTP. Specify any communication security or encryption issues, data
-transfer rates, and synchronization mechanisms.$>$
-
+\section{Communications Interfaces} ~~~
+% $<$Describe the requirements associated with any communications functions
+% required by this product, including e-mail, web browser, network server
+% communications protocols, electronic forms, and so on. Define any pertinent
+% message formatting. Identify any communication standards that will be used, such
+% as FTP or HTTP. Specify any communication security or encryption issues, data
+% transfer rates, and synchronization mechanisms.$>$
 
 \chapter{System Features}
-$<$This template illustrates organizing the functional requirements for the
-product by system features, the major services provided by the product. You may
-prefer to organize this section by use case, mode of operation, user class,
-object class, functional hierarchy, or combinations of these, whatever makes the
-most logical sense for your product.$>$
+\framebox{here, use case diagram}
+% $<$This template illustrates organizing the functional requirements for the
+% product by system features, the major services provided by the product. You may
+% prefer to organize this section by use case, mode of operation, user class,
+% object class, functional hierarchy, or combinations of these, whatever makes the
+% most logical sense for your product.$>$
 
-\section{System Feature 1}
-$<$Don’t really say “System Feature 1.” State the feature name in just a few
-words.$>$
+\section{User Features}
 
-\subsection{Description and Priority}
-$<$Provide a short description of the feature and indicate whether it is of
-High, Medium, or Low priority. You could also include specific priority
-component ratings, such as benefit, penalty, cost, and risk (each rated on a
-relative scale from a low of 1 to a high of 9).$>$
+\subsection{UC-1: Log In}
+% $<$Don’t really say “System Feature 1.” State the feature name in just a few
+% words.$>$
 
-\subsection{Stimulus/Response Sequences}
-$<$List the sequences of user actions and system responses that stimulate the
-behavior defined for this feature. These will correspond to the dialog elements
-associated with use cases.$>$
+\subsubsection*{Description and Priority} ~~~
+This feature allows a user to authenticate himself.
+It has a low level priority.
 
-\subsection{Functional Requirements}
-//Do a use case diagram / then list the different functionalities with the
-dependencies on the other functionalities / the pre and post conditions / the input data / ...
+% $<$Provide a short description of the feature and indicate whether it is of
+% High, Medium, or Low priority. You could also include specific priority
+% component ratings, such as benefit, penalty, cost, and risk (each rated on a
+% relative scale from a low of 1 to a high of 9).$>$
 
-$<$Itemize the detailed functional requirements associated with this feature.
-These are the software capabilities that must be present in order for the user
-to carry out the services provided by the feature, or to execute the use case.
-Include how the product should respond to anticipated error conditions or
-invalid inputs. Requirements should be concise, complete, unambiguous,
-verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary
-information is not yet available.$>$
+\subsubsection*{Stimulus/Response Sequences}
+\begin{enumerate}
+	\item The system asks for the login of the user;
+	\item The user refers its login;
+	\item The system asks for the password of the user;
+	\item The user refers its password;
+	\item The system login the user.
+\end{enumerate}
 
-$<$Each requirement should be uniquely identified with a sequence number or a
-meaningful tag of some kind.$>$
+% $<$List the sequences of user actions and system responses that stimulate the
+% behavior defined for this feature. These will correspond to the dialog elements
+% associated with use cases.$>$
 
-REQ-1:	REQ-2:
-
-\section{All users' fonctionnality}
-
+\subsubsection*{Functional Requirements REQ-1} ~~~
 \begin{center}
-	\begin{tabular}{|c|c|}
+	\begin{tabular}{|m{4cm}|m{10cm}|}
 	\hline
-	\begin{bf}Fonctionnality F1\end{bf} & \begin{bf}Log in\end{bf} \\
+	\textbf{Use Case} & Log in \\
 	\hline
-	\begin{bf}Description\end{bf} & \begin{bf}Allow a user to log in\end{bf}  \\
+	\textbf{Description} & Allow a user to log in  \\
 	\hline
-	\begin{bf}Inputs\end{bf} & \begin{bf}login, password\end{bf} \\
+	\textbf{Inputs} & login, password \\
 	\hline
-	\begin{bf}Precondition\end{bf} & \begin{bf}Nobody is log in\end{bf}  \\
+	\textbf{Precondition} & Nobody is log in  \\
 	\hline
-	\begin{bf}Postcondition\end{bf} & \begin{bf}User logged in\end{bf} \\
+	\textbf{Postcondition} & User logged in \\
 	\hline
-	\begin{bf}Output\end{bf} & \begin{bf}User\end{bf} \\
+	\textbf{Output} & User \\
 	\hline
 	\end{tabular}
 \end{center}
 
+% //Do a use case diagram / then list the different functionalities with the
+% dependencies on the other functionalities / the pre and post conditions / the input data / ...
+
+% $<$Itemize the detailed functional requirements associated with this feature.
+% These are the software capabilities that must be present in order for the user
+% to carry out the services provided by the feature, or to execute the use case.
+% Include how the product should respond to anticipated error conditions or
+% invalid inputs. Requirements should be concise, complete, unambiguous,
+% verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary
+% information is not yet available.$>$
+
+% $<$Each requirement should be uniquely identified with a sequence number or a
+% meaningful tag of some kind.$>$
+
+% REQ-1:	REQ-2:
+
+\subsection{UC-3: Create Account}
+
+\subsubsection*{Description and Priority} ~~~
+TBD
+
+\subsubsection*{Stimulus/Response Sequences} ~~~
+TBD
+
+\subsubsection*{Functional Requirements REQ-3} ~~~
 \begin{center}
-	\begin{tabular}{|c|c|}
+	\begin{tabular}{|m{4cm}|m{10cm}|}
 	\hline
-	\begin{bf}Fonctionnality F2\end{bf} & \begin{bf}Log out\end{bf} \\
+	\textbf{Fonctionnality 3} & Create account \\
 	\hline
-	\begin{bf}Description\end{bf} & \begin{bf}Allow a user to log out\end{bf}  \\
+	\textbf{Description} & Allow a user to create an account \\
 	\hline
-	\begin{bf}Inputs\end{bf} & \begin{bf}\end{bf} \\
+	\textbf{Inputs} & login, password \\
 	\hline
-	\begin{bf}Precondition\end{bf} & \begin{bf}User logged in\end{bf}  \\
+	\textbf{Precondition} & No account with this login and password already exists \\
 	\hline
-	\begin{bf}Postcondition\end{bf} & \begin{bf}\end{bf} \\
+	\textbf{Postcondition} & Account created \\
 	\hline
-	\begin{bf}Output\end{bf} & \begin{bf}\end{bf} \\
+	\textbf{Output} & login, password \\
 	\hline
 	\end{tabular}
 \end{center}
 
+\subsection{UC-4: Calculate Mean of Air Quality}
+
+\subsubsection*{Description and Priority} ~~~
+TBD
+
+\subsubsection*{Stimulus/Response Sequences} ~~~
+TBD
+
+\subsubsection*{Functional Requirements REQ-4} ~~~
 \begin{center}
-	\begin{tabular}{|c|c|}
+	\begin{tabular}{|m{4cm}|m{10cm}|}
 	\hline
-	\begin{bf}Fonctionnality 3\end{bf} & \begin{bf}Create account\end{bf} \\
+	\textbf{Fonctionnality F6} & Calculate mean of air quality \\
 	\hline
-	\begin{bf}Description\end{bf} & \begin{bf}Allow a user to create an account\end{bf}  \\
+	\textbf{Description} &  \\
 	\hline
-	\begin{bf}Inputs\end{bf} & \begin{bf}login, password\end{bf} \\
+	\textbf{Inputs} &  \\
 	\hline
-	\begin{bf}Precondition\end{bf} & \begin{bf}No account with this login and password already exists\end{bf}  \\
+	\textbf{Precondition} &  \\
 	\hline
-	\begin{bf}Postcondition\end{bf} & \begin{bf}Account created\end{bf} \\
+	\textbf{Postcondition} &  \\
 	\hline
-	\begin{bf}Output\end{bf} & \begin{bf}login, password\end{bf} \\
+	\textbf{Output} &  \\
 	\hline
 	\end{tabular}
 \end{center}
 
+\subsection{UC-5: Log Out}
+
+\subsubsection*{Description and Priority} ~~~
+TBD
+
+\subsubsection*{Stimulus/Response Sequences} ~~~
+TBD
+
+\subsubsection*{Functional Requirements REQ-5} ~~~
 \begin{center}
-	\begin{tabular}{|c|c|}
+	\begin{tabular}{|m{4cm}|m{10cm}|}
 	\hline
-	\begin{bf}Fonctionnality F4\end{bf} & \begin{bf}Add new sensor\end{bf} \\
+	\textbf{Fonctionnality F2} & Log out \\
 	\hline
-	\begin{bf}Description\end{bf} & \begin{bf}Allow a user to\end{bf}  \\
+	\textbf{Description} & Allow a user to log out  \\
 	\hline
-	\begin{bf}Inputs\end{bf} & \begin{bf}Sensor\end{bf} \\
+	\textbf{Inputs} &  \\
 	\hline
-	\begin{bf}Precondition\end{bf} & \begin{bf}The sensor doesn't exist\end{bf}  \\
+	\textbf{Precondition} & User logged in  \\
 	\hline
-	\begin{bf}Postcondition\end{bf} & \begin{bf}The sensor exists\end{bf} \\
+	\textbf{Postcondition} &  \\
 	\hline
-	\begin{bf}Output\end{bf} & \begin{bf}Sensor\end{bf} \\
+	\textbf{Output} &  \\
 	\hline
 	\end{tabular}
 \end{center}
 
+\section{Government Agency Features}
+\section{Air Cleaner Provider Features}
+\section{Private Individual Features}
+\section{Administrator Features}
+
+\subsection{UC-2: Add new sensor}
+
+\subsubsection*{Description and Priority} ~~~
+TBD
+
+\subsubsection*{Stimulus/Response Sequences} ~~~
+TBD
+
+\subsubsection*{Functional Requirements REQ-2} ~~~
 \begin{center}
-	\begin{tabular}{|c|c|}
+	\begin{tabular}{|m{4cm}|m{10cm}|}
 	\hline
-	\begin{bf}Fonctionnality F6\end{bf} & \begin{bf}Calculate mean of air quality\end{bf} \\
+	\textbf{Fonctionnality F4} & Add new sensor \\
 	\hline
-	\begin{bf}Description\end{bf} & \begin{bf}\end{bf}  \\
+	\textbf{Description} & Allow a user to  \\
 	\hline
-	\begin{bf}Inputs\end{bf} & \begin{bf}\end{bf} \\
+	\textbf{Inputs} & Sensor \\
 	\hline
-	\begin{bf}Precondition\end{bf} & \begin{bf}\end{bf}  \\
+	\textbf{Precondition} & The sensor doesn't exist  \\
 	\hline
-	\begin{bf}Postcondition\end{bf} & \begin{bf}\end{bf} \\
+	\textbf{Postcondition} & The sensor exists \\
 	\hline
-	\begin{bf}Output\end{bf} & \begin{bf}\end{bf} \\
+	\textbf{Output} & Sensor \\
 	\hline
 	\end{tabular}
 \end{center}
-
-\section{System Feature 2 (and so on)}
-
 
 \chapter{Other Nonfunctional Requirements}
 
 \section{Performance Requirements}
-$<$If there are performance requirements for the product under various
-circumstances, state them here and explain their rationale, to help the
-developers understand the intent and make suitable design choices. Specify the
-timing relationships for real time systems. Make such requirements as specific
-as possible. You may need to state performance requirements for individual
-functional requirements or features.$>$
+% $<$If there are performance requirements for the product under various
+% circumstances, state them here and explain their rationale, to help the
+% developers understand the intent and make suitable design choices. Specify the
+% timing relationships for real time systems. Make such requirements as specific
+% as possible. You may need to state performance requirements for individual
+% functional requirements or features.$>$
 
-\section{Safety Requirements}
+\section{Safety Requirements} ~~~
 There is the possibility that a private individual may act maliciously and corrupt their sensor in order
 to provide false data. Therefore, the AirWatcher application will allow the government agency to
 analyze the data provided by a private individual’s sensor and classify its behavior as reliable or
@@ -498,60 +593,59 @@ unreliable. If a private individual is detected to provide unreliable data, thei
 marked as false and will be excluded from all further queries on the application. This will prevent the
 user from gaining any further points.
 
-$<$Specify those requirements that are concerned with possible loss, damage, or
-harm that could result from the use of the product. Define any safeguards or
-actions that must be taken, as well as actions that must be prevented. Refer to
-any external policies or regulations that state safety issues that affect the
-product’s design or use. Define any safety certifications that must be
-satisfied.$>$
+% $<$Specify those requirements that are concerned with possible loss, damage, or
+% harm that could result from the use of the product. Define any safeguards or
+% actions that must be taken, as well as actions that must be prevented. Refer to
+% any external policies or regulations that state safety issues that affect the
+% product’s design or use. Define any safety certifications that must be
+% satisfied.$>$
 
-\section{Security Requirements}
+\section{Security Requirements} ~~~
 The application must allow the government to be able to thwart individuals who
 corrupt their sensor, to remedy it and thus guard against this type of behavior.
 
-$<$Specify any requirements regarding security or privacy issues surrounding use
-of the product or protection of the data used or created by the product. Define
-any user identity authentication requirements. Refer to any external policies or
-regulations containing security issues that affect the product. Define any
-security or privacy certifications that must be satisfied.$>$
+% $<$Specify any requirements regarding security or privacy issues surrounding use
+% of the product or protection of the data used or created by the product. Define
+% any user identity authentication requirements. Refer to any external policies or
+% regulations containing security issues that affect the product. Define any
+% security or privacy certifications that must be satisfied.$>$
 
-\section{Software Quality Attributes}
-$<$Specify any additional quality characteristics for the product that will be
-important to either the customers or the developers. Some to consider are:
-adaptability, availability, correctness, flexibility, interoperability,
-maintainability, portability, reliability, reusability, robustness, testability,
-and usability. Write these to be specific, quantitative, and verifiable when
-possible. At the least, clarify the relative preferences for various attributes,
-such as ease of use over ease of learning.$>$
+\section{Software Quality Attributes} ~~~
+% $<$Specify any additional quality characteristics for the product that will be
+% important to either the customers or the developers. Some to consider are:
+% adaptability, availability, correctness, flexibility, interoperability,
+% maintainability, portability, reliability, reusability, robustness, testability,
+% and usability. Write these to be specific, quantitative, and verifiable when
+% possible. At the least, clarify the relative preferences for various attributes,
+% such as ease of use over ease of learning.$>$
 
-\section{Business Rules}
+\section{Business Rules} ~~~
 
-$<$List any operating principles about the product, such as which individuals or
-roles can perform which functions under specific circumstances. These are not
-functional requirements in themselves, but they may imply certain functional
-requirements to enforce the rules.$>$
-
+% $<$List any operating principles about the product, such as which individuals or
+% roles can perform which functions under specific circumstances. These are not
+% functional requirements in themselves, but they may imply certain functional
+% requirements to enforce the rules.$>$
 
 \chapter{Other Requirements}
-$<$Define any other requirements not covered elsewhere in the SRS. This might
-include database requirements, internationalization requirements, legal
-requirements, reuse objectives for the project, and so on. Add any new sections
-that are pertinent to the project.$>$
+% $<$Define any other requirements not covered elsewhere in the SRS. This might
+% include database requirements, internationalization requirements, legal
+% requirements, reuse objectives for the project, and so on. Add any new sections
+% that are pertinent to the project.$>$
 
-\section{Appendix A: Glossary}
+\section{Appendix A: Glossary} ~~~
 %see https://en.wikibooks.org/wiki/LaTeX/Glossary
-$<$Define all the terms necessary to properly interpret the SRS, including
-acronyms and abbreviations. You may wish to build a separate glossary that spans
-multiple projects or the entire organization, and just include terms specific to
-a single project in each SRS.$>$
+% $<$Define all the terms necessary to properly interpret the SRS, including
+% acronyms and abbreviations. You may wish to build a separate glossary that spans
+% multiple projects or the entire organization, and just include terms specific to
+% a single project in each SRS.$>$
 
-\section{Appendix B: Analysis Models}
-$<$Optionally, include any pertinent analysis models, such as data flow
-diagrams, class diagrams, state-transition diagrams, or entity-relationship
-diagrams.$>$
+\section{Appendix B: Analysis Models} ~~~
+% $<$Optionally, include any pertinent analysis models, such as data flow
+% diagrams, class diagrams, state-transition diagrams, or entity-relationship
+% diagrams.$>$
 
-\section{Appendix C: To Be Determined List}
-$<$Collect a numbered list of the TBD (to be determined) references that remain
-in the SRS so they can be tracked to closure.$>$
+\section{Appendix C: To Be Determined List} ~~~
+% $<$Collect a numbered list of the TBD (to be determined) references that remain
+% in the SRS so they can be tracked to closure.$>$
 
 \end{document}
