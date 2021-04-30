@@ -1,5 +1,5 @@
 planning:
-	tj3 taskjuggler/main.tjp -o html/
+	tj3 src/main.tjp -o html/
 
 .PHONY: clean
 
