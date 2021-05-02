@@ -3457,7 +3457,7 @@
 											"top": 844,
 											"width": 377.04443359375,
 											"height": 13,
-											"text": "+displayVerifyAirCleanerEfficiency(radius: float)",
+											"text": "+displayVerifyAirCleanerEfficiency(responses: Map<float float>)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -5764,7 +5764,7 @@
 											"top": 829,
 											"width": 739.31787109375,
 											"height": 13,
-											"text": "+verifyAirCleanerEfficiency(cleanerid: string): float",
+											"text": "+verifyAirCleanerEfficiency(cleanerid: string): Map<float float>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -8304,8 +8304,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF5LmTW5pvPrYY="
 									},
-									"name": "radius",
-									"type": "float"
+									"name": "responses",
+									"type": "Map<float float>"
 								}
 							]
 						},
@@ -9121,7 +9121,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF5I1fcqh2mWn0="
 									},
-									"type": "float",
+									"type": "Map<float float>",
 									"direction": "return"
 								}
 							]
