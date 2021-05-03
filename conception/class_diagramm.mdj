@@ -5849,7 +5849,7 @@
 											"top": 904,
 											"width": 739.31787109375,
 											"height": 13,
-											"text": "+compareSensors(target: Map<Attribut float>, current: Map<Attribut float>): float",
+											"text": "+compareMeans(target: Map<Attribut float>, current: Map<Attribut float>): float",
 											"horizontalAlignment": 0
 										},
 										{
@@ -9263,7 +9263,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF5I024L/c73f8="
 							},
-							"name": "compareSensors",
+							"name": "compareMeans",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
