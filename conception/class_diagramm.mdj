@@ -1263,7 +1263,7 @@
 											"top": 332,
 											"width": 132.8056640625,
 											"height": 13,
-											"text": "-longitutde: float",
+											"text": "-longitude: float",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7591,7 +7591,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF5Ium5XAfvD9o="
 							},
-							"name": "longitutde",
+							"name": "longitude",
 							"visibility": "private",
 							"type": "float"
 						},
