@@ -1,28 +1,30 @@
+//----------------------------------------------------- Private Methods
 /*************************************************************************
-                           PrivateUser  -  description
+                           GovernmentAgency  -  description
                              -------------------
     beginning                : $07/05/2021$
     copyright            : (C) $2021$ by $B3204 and B3025 $
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface of <PrivateUser> (file PrivateUser.h) ----------------
-#if ! defined ( PrivateUser_H )
-#define PrivateUser_H
+//---------- Interface of <GovernmentAgency> (file GovernmentAgency.h) ----------------
+#if ! defined ( GovernmentAgency_H )
+#define GovernmentAgency_H
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
+#include "User.h"
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Role of <PrivateUser>
+// Role of <GovernmentAgency>
 //
 //
 //------------------------------------------------------------------------
 
-class PrivateUser : public virtual User
+class GovernmentAgency : public User
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -35,33 +37,30 @@ public:
     //
 
     // BESOIN DE CREER UNE FONCTION PRIVATE GETPASSWORD ET LA METTRE COMME AMIE DANS CLASSE OU ON SE LOG
-
-    // How to use : returns a copy of the attribute 'id' of the calling PrivateUser
+    string getId();
+    // How to use : returns a copy of the attribute 'id' of the calling GovernmentAgency
     //
     // Precondition :
     //
-//------------------------------------------------- Operators overloading
-    PrivateUser & operator = ( const PrivateUser & aPrivateUser );
-    // How to use :
-    //
-    // Precondition :
-    //
-
 
 //-------------------------------------------- Constructors - destructor
-    PrivateUser ( const PrivateUser & aPrivateUser );
+    GovernmentAgency ( const GovernmentAgency & aGovernmentAgency );
     // How to use (copy constructor):
     //
     // Precondition :
     //
 
-    PrivateUser ( );
+    GovernmentAgency (const string & aLogin, const string & aPassword, const string & aId, float aLatitude, float aLongitude );
+    // How to use : Initialises the attributes id, latitude and longitude with the corresponding parameters.
+    //              start is initialised as null as well as stop
+
+    GovernmentAgency ( );
     // How to use :
     //
     // Precondition :
     //
 
-    virtual ~PrivateUser ( );
+    virtual ~GovernmentAgency ( );
     // How to use :
     //
     // Precondition :
@@ -73,8 +72,7 @@ protected:
 //----------------------------------------------------- Protected Methods
 
 //----------------------------------------------------- Protected Attributes
-string login;
-string password;
+
 
 //------------------------------------------------------------------ PRIVATE
 
@@ -87,7 +85,7 @@ private:
 
 };
 
-//-------------------------------- Other definitions depending on <PrivateUser>
+//-------------------------------- Other definitions depending on <GovernmentAgency>
 
-#endif // PrivateUser_H
+#endif // GovernmentAgency_H
 

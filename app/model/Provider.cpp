@@ -1,12 +1,12 @@
 /*************************************************************************
-                           GovernmentAgency  -  description
+                           Provider  -  description
                              -------------------
     beginning                : $07/05/2021$
     copyright            : (C) $2021$ by $B3204 and B3025 $
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Implementation of <GovernmentAgency> (file GovernmentAgency.cpp) ------------
+//---------- Implementation of <Provider> (file Provider.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,61 +15,70 @@
 using namespace std;
 
 //------------------------------------------------------ Include of local files
-#include "GovernmentAgency.h"
+#include "Provider.h"
 
 //------------------------------------------------------------- Constants
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-// type GovernmentAgency::Method ( Parameters list )
+// type Provider::Method ( Parameters list )
 // Algorithm :
 //
 //{
 //} //----- End of Method
+string Provider::getId ()
+{
+    return id;
+} //----- End of getId
 
-
-//------------------------------------------------- Operators overloading
-GovernmentAgency & GovernmentAgency::operator = ( const GovernmentAgency & aGovernmentAgency )
+//------------------------------------------------- Operators overloadinf
+Provider & Provider::operator = ( const Provider & aProvider )
 // Algorithm :
 //
 {
 } //----- End of operator =
 
+istream& operator>>(std::istream& is, Provider& a) {
+	return is >> a.id;
+}
+
 
 //-------------------------------------------- constructors - destructor
-GovernmentAgency::GovernmentAgency ( const GovernmentAgency & aGovernmentAgency )
+Provider::Provider ( const Provider & aProvider ) : User()
 // Algorithm :
 //
 {
 #ifdef MAP
-    cout << "Calling copy constructor of <GovernmentAgency>" << endl;
+    cout << "Calling copy constructor of <Provider>" << endl;
 #endif
-} //----- End of GovernmentAgency (copy constructor)
+} //----- End of Provider (copy constructor)
 
 
-GovernmentAgency::GovernmentAgency ( )
+Provider::Provider ( ) : User()
 // Algorithm :
 //
 {
 #ifdef MAP
-    cout << "Calling constructor of <GovernmentAgency>" << endl;
+    cout << "Calling constructor of <Provider>" << endl;
 #endif
-} //----- End of GovernmentAgency
+} //----- End of Provider
 
 
-GovernmentAgency::~GovernmentAgency ( )
+Provider::~Provider ( )
 // Algorithm :
 //
 {
 #ifdef MAP
-    cout << "Calling destructor of <GovernmentAgency>" << endl;
+    cout << "Calling destructor of <Provider>" << endl;
 #endif
-} //----- End of ~GovernmentAgency
+} //----- End of ~Provider
 
 
 //------------------------------------------------------------------ PROTECTED
 
-//----------------------------------------------------- Protected Methods 
+//----------------------------------------------------- Protected Methods
 
 //------------------------------------------------------------------ PRIVATE
+
+//----------------------------------------------------- Private Methods

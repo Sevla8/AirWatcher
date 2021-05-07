@@ -1,29 +1,40 @@
-//----------------------------------------------------- Private Methods 
 /*************************************************************************
-                           GovernmentAgency  -  description
+                           Controller  -  description
                              -------------------
     beginning                : $07/05/2021$
     copyright            : (C) $2021$ by $B3204 and B3025 $
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface of <GovernmentAgency> (file GovernmentAgency.h) ----------------
-#if ! defined ( GovernmentAgency_H )
-#define GovernmentAgency_H
+//---------- Interface of <Controller> (file Controller.h) ----------------
+#if ! defined ( Controller_H )
+#define Controller_H
 
-//--------------------------------------------------- Used Interfaces 
+//--------------------------------------------------- Used Interfaces
 #include <string>
+#include "../model/Sensor.h"
+#include "../model/User.h"
+#include "../model/Measurement.h"
+#include "../model/Attribute.h"
+#include "../model/Cleaner.h"
+#include "../model/Provider.h"
+#include "../model/Date.h"
+#include "../model/GovernmentAgency.h"
+#include "../model/PrivateUser.h"
+#include "../model/Model.h"
+
+
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Role of <GovernmentAgency>
+// Role of <Controller>
 //
 //
 //------------------------------------------------------------------------
 
-class GovernmentAgency : public virtual User
+class Controller
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,15 +45,16 @@ public:
     //
     // Precondition :
     //
-
-    // BESOIN DE CREER UNE FONCTION PRIVATE GETPASSWORD ET LA METTRE COMME AMIE DANS CLASSE OU ON SE LOG
-    string getId();
-    // How to use : returns a copy of the attribute 'id' of the calling GovernmentAgency
+Model getModel();
+// type Method ( parameters list );
+    // How to use :
     //
     // Precondition :
     //
+
+
 //------------------------------------------------- Operators overloading
-    GovernmentAgency & operator = ( const GovernmentAgency & aGovernmentAgency );
+    Controller & operator = ( const Controller & aController );
     // How to use :
     //
     // Precondition :
@@ -50,19 +62,26 @@ public:
 
 
 //-------------------------------------------- Constructors - destructor
-    GovernmentAgency ( const GovernmentAgency & aGovernmentAgency );
+    Controller ( const Controller & aController );
     // How to use (copy constructor):
     //
     // Precondition :
     //
 
-    GovernmentAgency ( );
+    Controller ();
+    // How to use : Constructs a Controller
+    //
+    // Precondition :
+    //
+
+
+    Controller ( );
     // How to use :
     //
     // Precondition :
     //
 
-    virtual ~GovernmentAgency ( );
+    virtual ~Controller ( );
     // How to use :
     //
     // Precondition :
@@ -72,9 +91,8 @@ public:
 
 protected:
 //----------------------------------------------------- Protected Methods
-
+string analyseAirQualityInCircularArea(float lattitude, float longitude, float radius, Date begin, Date end);
 //----------------------------------------------------- Protected Attributes
-
 
 //------------------------------------------------------------------ PRIVATE
 
@@ -84,10 +102,11 @@ private:
 
 //----------------------------------------------------- Private Attributes
 
+Model model;
 
 };
 
-//-------------------------------- Other definitions depending on <GovernmentAgency>
+//-------------------------------- Other definitions depending on <Controller>
 
-#endif // GovernmentAgency_H
+#endif // Controller_H
 

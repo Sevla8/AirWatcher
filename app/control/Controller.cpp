@@ -1,40 +1,42 @@
 /*************************************************************************
-                           User  -  description
+                           Controller  -  description
                              -------------------
     beginning                : $07/05/2021$
     copyright            : (C) $2021$ by $B3204 and B3025 $
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Implementation of <User> (file User.cpp) ------------
+//---------- Implementation of <Controller> (file Controller.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include of system files
 #include <iostream>
+#include <sstream>
+#include <string>
+
 using namespace std;
 
 //------------------------------------------------------ Include of local files
-#include "User.h"
+#include "Controller.h"
 
 //------------------------------------------------------------- Constants
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-// type User::Method ( Parameters list )
+// type Controller::Method ( Parameters list )
 // Algorithm :
 //
 //{
 //} //----- End of Method
-
-string User::getId ()
+Model Controller::getModel()
 {
-    return id;
-} //----- End of getId
+    return model;
+} //----- End of getModel
 
 //------------------------------------------------- Operators overloadinf
-User & User::operator = ( const User & aUser )
+Controller & Controller::operator = ( const Controller & aController )
 // Algorithm :
 //
 {
@@ -42,40 +44,54 @@ User & User::operator = ( const User & aUser )
 
 
 //-------------------------------------------- constructors - destructor
-User::User ( const User & aUser )
+Controller::Controller ( const Controller & aController )
 // Algorithm :
 //
 {
 #ifdef MAP
-    cout << "Calling copy constructor of <User>" << endl;
+    cout << "Calling copy constructor of <Controller>" << endl;
 #endif
-} //----- End of User (copy constructor)
+} //----- End of Controller (copy constructor)
 
 
-User::User ( )
+Controller::Controller ( )
 // Algorithm :
 //
 {
 #ifdef MAP
-    cout << "Calling constructor of <User>" << endl;
+    cout << "Calling constructor of <Controller>" << endl;
 #endif
-} //----- End of User
+} //----- End of Controller
 
 
-User::~User ( )
+Controller::~Controller ( )
 // Algorithm :
 //
 {
 #ifdef MAP
-    cout << "Calling destructor of <User>" << endl;
+    cout << "Calling destructor of <Controller>" << endl;
 #endif
-} //----- End of ~User
+} //----- End of ~Controller
 
 
 //------------------------------------------------------------------ PROTECTED
+string Controller :: analyseAirQualityInCircularArea (float latitude, float longitude, float radius, Date begin, Date end)
+{
+    //define airQuality
+    string airQuality="";
+    int nbrSensor=model.getSensors()->
 
-//----------------------------------------------------- Protected Methods 
+    //search all sensors which are in the area
+    for (int i=0; i<;i++)
+    {
+
+    }
+
+    return airQuality;
+
+}
+//----------------------------------------------------- Protected Methods
 
 //------------------------------------------------------------------ PRIVATE
 
-//----------------------------------------------------- Private Methods 
+//----------------------------------------------------- Private Methods

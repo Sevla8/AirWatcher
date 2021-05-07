@@ -10,8 +10,10 @@
 #if ! defined ( Sensor_H )
 #define Sensor_H
 
-//--------------------------------------------------- Used Interfaces 
+//--------------------------------------------------- Used Interfaces
 #include <string>
+#include <iostream>
+#include Measurement.h
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
@@ -22,7 +24,7 @@
 //
 //------------------------------------------------------------------------
 
-class Sensor 
+class Sensor
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,29 +39,29 @@ public:
     string getId();
     // How to use : Returns the attribute 'id' of the calling Sensor
     //
-    // Precondition : 
+    // Precondition :
     //
 
     float getLatitude();
     // How to use : Returns the attribute 'latitude' of the calling Sensor
     //
-    // Precondition : 
+    // Precondition :
     //
 
     float getLongitude();
     // How to use : Returns the attribute 'longitude' of the calling Sensor
     //
-    // Precondition : 
+    // Precondition :
     //
 
     // CHANGE IN CLASS DIAGRAM
     bool isMalfuntioning();
     // How to use : Returns the attribute 'malfunctioning' of the calling Sensor
     //
-    // Precondition : 
+    // Precondition :
     //
 
-    
+
 
 
 //------------------------------------------------- Operators overloading
@@ -91,6 +93,8 @@ public:
 
 //------------------------------------------------------------------ PROTECTED
 
+friend std::istream& operator>>(std::istream&, Sensor&);
+
 protected:
 //----------------------------------------------------- Protected Methods
 
@@ -108,9 +112,10 @@ string id;
 float latitude;
 float longitude;
 bool malfunctioning;
-
+list<Measurement> measurements;
 };
-
+// TODO mettre list de mesures
+// TODO sensor à une liste de mesure. D'abordinitialiser sensors avec liste mesure = [0], ensuite mesure à un attribut (et pas un attribut id), quan don créé les object du file reader on met attribut à null.
 //-------------------------------- Other definitions depending on <Sensor>
 
 #endif // Sensor_H

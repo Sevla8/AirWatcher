@@ -1,28 +1,37 @@
 /*************************************************************************
-                           Cleaner  -  description
+                           Reader  -  description
                              -------------------
     beginning                : $07/05/2021$
     copyright            : (C) $2021$ by $B3204 and B3025 $
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface of <Cleaner> (file Cleaner.h) ----------------
-#if ! defined ( Cleaner_H )
-#define Cleaner_H
+//---------- Interface of <Reader> (file Reader.h) ----------------
+#if ! defined ( Reader_H )
+#define Reader_H
 
-//--------------------------------------------------- Used Interfaces 
+//--------------------------------------------------- Used Interfaces
 #include <string>
+#include <list>
+#include <fstream>
+#include "../model/Sensor.h"
+#include "../model/PrivateUser.h"
+#include "../model/Measurement.h"
+#include "../model/Attribute.h"
+#include "../model/Cleaner.h"
+#include "../model/Provider.h"
+
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Role of <Cleaner>
-//
+// Role of <Reader>
+//	Read and parse data in csv files
 //
 //------------------------------------------------------------------------
 
-class Cleaner 
+class Reader
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -33,25 +42,16 @@ public:
     //
     // Precondition :
     //
-    string getId ();
-    // How to use : returns a copy of the attribute 'id' of the calling Cleaner
-    //
-    // Precondition :
-    //
-    float getLatitude();
-    // How to use : Returns a copy of the  attribute 'latitude' of the calling Cleaner
-    //
-    // Precondition : 
-    //
 
-    float getLongitude();
-    // How to use : Returns a copy of the attribute 'longitude' of the calling Cleaner
-    //
-    // Precondition : 
-    //
+	static list<Sensor>* readSensors(string filename);
+    static list<PrivateUser>* readPrivateUsers(string filename);
+    static list<Measurement>* readMeasurements(string filename);
+    static list<Attribute>* readAttributes(string filename);
+    static list<Cleaner>* readCleaners(string filename);
+    static list<Provider>* readProviders(string filename);
 
 //------------------------------------------------- Operators overloading
-    Cleaner & operator = ( const Cleaner & aCleaner );
+    Reader & operator = ( const Reader & aReader );
     // How to use :
     //
     // Precondition :
@@ -59,19 +59,19 @@ public:
 
 
 //-------------------------------------------- Constructors - destructor
-    Cleaner ( const Cleaner & aCleaner );
+    Reader ( const Reader & aReader );
     // How to use (copy constructor):
     //
     // Precondition :
     //
 
-    Cleaner ( );
+    Reader ( );
     // How to use :
     //
     // Precondition :
     //
 
-    virtual ~Cleaner ( );
+    virtual ~Reader ( );
     // How to use :
     //
     // Precondition :
@@ -91,16 +91,11 @@ private:
 //----------------------------------------------------- Private Methods
 
 //----------------------------------------------------- Private Attributes
-string id;
-float latitude;
-float longitude;
-/* INCLUDE À REGLER
-Timestamp start;
-Timestamp stop;
-*/
+
+
 };
 
-//-------------------------------- Other definitions depending on <Cleaner>
+//-------------------------------- Other definitions depending on <Reader>
 
-#endif // Cleaner_H
+#endif // Reader_H
 

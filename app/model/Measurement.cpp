@@ -16,6 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include of local files
 #include "Measurement.h"
+#include "Date.h"
 
 //------------------------------------------------------------- Constants
 
@@ -29,12 +30,9 @@ using namespace std;
 //} //----- End of Method
 
 
-//------------------------------------------------- Operators overloadinf
-Measurement & Measurement::operator = ( const Measurement & aMeasurement )
-// Algorithm :
-//
-{
-} //----- End of operator =
+istream& operator>>(std::istream& is, Measurement& m) {
+	return is >> m.date >> m.sensorId >> m.attributeId >> m.value;
+}
 
 
 //-------------------------------------------- constructors - destructor
@@ -46,7 +44,13 @@ Measurement::Measurement ( const Measurement & aMeasurement )
     cout << "Calling copy constructor of <Measurement>" << endl;
 #endif
 } //----- End of Measurement (copy constructor)
-
+Measurement::Measurement (Date & theDate, string & theSensorId, string & theAttributeId, float theValue )
+{
+    date = theDate;
+    sensorId = theSensorId;
+    attributeId = theAttributeId;
+    value = theValue;
+}//----- End of Measurement (param constructor)
 
 Measurement::Measurement ( )
 // Algorithm :
@@ -70,8 +74,8 @@ Measurement::~Measurement ( )
 
 //------------------------------------------------------------------ PROTECTED
 
-//----------------------------------------------------- Protected Methods 
+//----------------------------------------------------- Protected Methods
 
 //------------------------------------------------------------------ PRIVATE
 
-//----------------------------------------------------- Private Methods 
+//----------------------------------------------------- Private Methods

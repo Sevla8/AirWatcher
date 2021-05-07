@@ -54,6 +54,9 @@ Sensor & Sensor::operator = ( const Sensor & aSensor )
 {
 } //----- End of operator =
 
+istream& operator>>(std::istream& is, Sensor& a) {
+	return is >> a.id >> a.latitude >> a.longitude;
+}
 
 //-------------------------------------------- constructors - destructor
 Sensor::Sensor ( const Sensor & aSensor )
@@ -88,8 +91,8 @@ Sensor::~Sensor ( )
 
 //------------------------------------------------------------------ PROTECTED
 
-//----------------------------------------------------- Protected Methods 
+//----------------------------------------------------- Protected Methods
 
 //------------------------------------------------------------------ PRIVATE
 
-//----------------------------------------------------- Private Methods 
+//----------------------------------------------------- Private Methods

@@ -1,28 +1,28 @@
 /*************************************************************************
-                           User  -  description
+                           Date  -  description
                              -------------------
     beginning                : $07/05/2021$
     copyright            : (C) $2021$ by $B3204 and B3025 $
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface of <User> (file User.h) ----------------
-#if ! defined ( User_H )
-#define User_H
+//---------- Interface of <Date> (file Date.h) ----------------
+#if ! defined ( Date_H )
+#define Date_H
 
-//--------------------------------------------------- Used Interfaces 
+//--------------------------------------------------- Used Interfaces
 #include <string>
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Role of <User>
+// Role of <Date>
 //
 //
 //------------------------------------------------------------------------
 
-class User 
+class Date
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,34 +34,44 @@ public:
     // Precondition :
     //
 
-    // BESOIN DE CREER UNE FONCTION PRIVATE GETPASSWORD ET LA METTRE COMME AMIE DANS CLASSE OU ON SE LOG
-    string getId();
-    // How to use : returns a copy of the attribute 'id' of the calling User
-    //
-    // Precondition :
-    //
-//------------------------------------------------- Operators overloading
-    User & operator = ( const User & aUser );
-    // How to use :
-    //
-    // Precondition :
-    //
-
+int getYear();
+// How to use : return a copy of the attribute year
+//
+int getMonth();
+// How to use : return a copy of the attribute month
+//
+int getDay();
+// How to use : return a copy of the attribute day
+//
+int getHour();
+// How to use : return a copy of the attribute hour
+//
+int getMinutes();
+// How to use : return a copy of the attribute minutes
+//
+int getSeconds();
+// How to use : return a copy of the attribute seconds
+//
 
 //-------------------------------------------- Constructors - destructor
-    User ( const User & aUser );
-    // How to use (copy constructor):
+    Date ( const Date & aDate );
+    // How to use (copy constructor): Instantiate and initialize a new instace of Date having the same attributes as aDate
     //
     // Precondition :
     //
 
-    User ( );
-    // How to use :
+    Date(int year, int month, int day, int hour, int minutes, int seconds);
+    // How to use (copy constructor): Instantiate and initialize a new instace of Date having the attributes affected by the
+    //                                  corresponding parameters
+
+
+    Date ( );
+    // How to use : Initialize a new date having all the values as the default Date : 01-01-1970 00:00:00
     //
     // Precondition :
     //
 
-    virtual ~User ( );
+    virtual ~Date ( );
     // How to use :
     //
     // Precondition :
@@ -69,12 +79,12 @@ public:
 
 //------------------------------------------------------------------ PROTECTED
 
+friend std::istream& operator>>(std::istream&, Date&);
+
 protected:
 //----------------------------------------------------- Protected Methods
 
 //----------------------------------------------------- Protected Attributes
-string login;
-string password;
 
 //------------------------------------------------------------------ PRIVATE
 
@@ -83,11 +93,17 @@ private:
 //----------------------------------------------------- Private Methods
 
 //----------------------------------------------------- Private Attributes
+int year;
+int month;
+int day;
 
+int hour;
+int minute;
+int second;
 
 };
 
-//-------------------------------- Other definitions depending on <User>
+//-------------------------------- Other definitions depending on <Date>
 
-#endif // User_H
+#endif // Date_H
 
