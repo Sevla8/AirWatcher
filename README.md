@@ -99,7 +99,7 @@ Check out <https://gitlab.insa-lyon.fr/b3204-b3205/airwatcher/-/issues>
 AUTHORS
 =======
 
-* Adrien Jaillet <adrien.jailler@insa-lyon.fr>
+* Adrien Jaillet <adrien.jaillet@insa-lyon.fr>
 * William Jean <william.jean@insa-lyon.fr>
 * Matheus de Barros Silva <matheus.de-barros-silva@insa-lyon.fr>
 * Jade Prevôt <jade.prevot@insa-lyon.fr>
