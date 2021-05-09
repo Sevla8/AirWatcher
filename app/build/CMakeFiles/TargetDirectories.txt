@@ -1,0 +1,3 @@
+/home/sevla/Projects/AirWatcher/app/build/CMakeFiles/rebuild_cache.dir
+/home/sevla/Projects/AirWatcher/app/build/CMakeFiles/edit_cache.dir
+/home/sevla/Projects/AirWatcher/app/build/CMakeFiles/AirWatcher.dir

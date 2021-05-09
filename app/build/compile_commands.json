@@ -1,0 +1,67 @@
+[
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/main.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/main.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/main.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/model/Attribute.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/model/Attribute.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/model/Attribute.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/model/Cleaner.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/model/Cleaner.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/model/Cleaner.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/model/Date.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/model/Date.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/model/Date.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/model/GovernmentAgency.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/model/GovernmentAgency.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/model/GovernmentAgency.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/model/Measurement.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/model/Measurement.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/model/Measurement.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/model/Model.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/model/Model.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/model/Model.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/model/PrivateUser.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/model/PrivateUser.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/model/PrivateUser.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/model/Provider.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/model/Provider.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/model/Provider.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/model/Sensor.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/model/Sensor.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/model/Sensor.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/model/User.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/model/User.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/model/User.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/factory/Reader.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/factory/Reader.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/factory/Reader.cpp"
+},
+{
+  "directory": "/home/sevla/Projects/AirWatcher/app/build",
+  "command": "/usr/bin/g++-10   -g -o CMakeFiles/AirWatcher.dir/src/control/Controller.cpp.o -c /home/sevla/Projects/AirWatcher/app/src/control/Controller.cpp",
+  "file": "/home/sevla/Projects/AirWatcher/app/src/control/Controller.cpp"
+}
+]
