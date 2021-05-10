@@ -75,7 +75,7 @@ Controller::~Controller ( )
 
 
 //------------------------------------------------------------------ PROTECTED
-string Controller :: analyseAirQualityInCircularArea (float latitude, float longitude, float radius, Date begin, Date end)
+/*string Controller :: analyseAirQualityInCircularArea (float latitude, float longitude, float radius, Date begin, Date end)
 {
     //define airQuality
     string airQuality="";
@@ -168,7 +168,7 @@ string Controller :: analyseAirQualityInCircularArea (float latitude, float long
 
     return airQuality;
 
-}
+}*/ 
 //----------------------------------------------------- Protected Methods
 
 //------------------------------------------------------------------ PRIVATE
