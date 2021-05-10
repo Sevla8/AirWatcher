@@ -10,6 +10,7 @@ class Model {
 	public:
 		Model();
 	friend ostream& operator<<(std::ostream&, const Model&);
+	friend class Controller;
 	protected:
 	private:
 		set<Sensor> sensors;

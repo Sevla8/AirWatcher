@@ -16,6 +16,7 @@ class Sensor {
 		Sensor(const SensorData&, const UserData&, const list<MeasurementData>&, const set<AttributeData>&);
 		bool operator<(const Sensor&) const;
 	friend ostream& operator<<(std::ostream&, const Sensor&);
+	friend class Controller;
 	protected:
 	private:
 		string id;
@@ -23,7 +24,7 @@ class Sensor {
 		float longitude;
 		bool malfunctioning;
 		User* user;
-		set<Measurement> measurements;
+		list<Measurement> measurements;
 };
 
 #endif

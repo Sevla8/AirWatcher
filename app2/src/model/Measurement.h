@@ -13,6 +13,7 @@ class Measurement {
 		Measurement(const MeasurementData&, const AttributeData&);
 		bool operator<(const Measurement&) const;
 	friend ostream& operator<<(std::ostream&, const Measurement&);
+	friend class Controller;
 	protected:
 	private:
 		float value;

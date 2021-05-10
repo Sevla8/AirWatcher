@@ -11,6 +11,8 @@ class Date {
 		Date(int, int, int, int, int, int);
 		Date();
 		bool operator<(const Date&) const;
+		bool operator==(const Date&) const;
+		bool operator<=(const Date&) const;
 	friend std::istream& operator>>(std::istream&, Date&);
 	friend ostream& operator<<(std::ostream&, const Date&);
 	protected:

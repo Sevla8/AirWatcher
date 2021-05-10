@@ -50,20 +50,29 @@ bool Date::operator<(const Date& d) const {
 	return false;
 }
 
+bool Date::operator==(const Date& d) const {
+	return year == d.year && month == d.month && day == d.day &&
+		hour == d.hour && minute == d.minute && second == d.second;
+}
+
+bool Date::operator<=(const Date& d) const {
+	return *this < d || *this == d;
+}
+
 Date::Date(int theYear, int theMonth, int theDay, int theHour, int theMinute, int theSecond) {
-    year = theYear;
-    month = theMonth;
-    day = theDay;
-    hour = theHour;
-    minute = theMinute;
-    second = theSecond;
+	year = theYear;
+	month = theMonth;
+	day = theDay;
+	hour = theHour;
+	minute = theMinute;
+	second = theSecond;
 }
 
 Date::Date() {
-    year = 1970;
-    month = 1;
-    year = 1;
-    hour = 0;
-    minute = 0;
-    second = 0;
+	year = 1970;
+	month = 1;
+	year = 1;
+	hour = 0;
+	minute = 0;
+	second = 0;
 }

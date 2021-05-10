@@ -134,7 +134,7 @@ set<SensorData> Reader::readSensors(string filename) {
 	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
+		cout << "Error : impossible to open the file" << endl;
 		return set<SensorData>();
 	}
 
@@ -150,7 +150,7 @@ set<UserData> Reader::readUsers(string filename) {
 	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
+		cout << "Error : impossible to open the file" << endl;
 		return set<UserData>();
 	}
 
@@ -163,10 +163,10 @@ set<UserData> Reader::readUsers(string filename) {
 }
 
 multiset<MeasurementData> Reader::readMeasurements(string filename) {
-    ifstream is(filename);
+	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
+		cout << "Error : impossible to open the file" << endl;
 		return multiset<MeasurementData>();
 	}
 
@@ -179,10 +179,10 @@ multiset<MeasurementData> Reader::readMeasurements(string filename) {
 }
 
 set<AttributeData> Reader::readAttributes(string filename) {
-    ifstream is(filename);
+	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
+		cout << "Error : impossible to open the file" << endl;
 		return set<AttributeData>();
 	}
 
@@ -195,10 +195,10 @@ set<AttributeData> Reader::readAttributes(string filename) {
 }
 
 set<CleanerData> Reader::readCleaners(string filename) {
-    ifstream is(filename);
+	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
+		cout << "Error : impossible to open the file" << endl;
 		return set<CleanerData>();
 	}
 
@@ -211,10 +211,10 @@ set<CleanerData> Reader::readCleaners(string filename) {
 }
 
 set<ProviderData> Reader::readProviders(string filename) {
-    ifstream is(filename);
+	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
+		cout << "Error : impossible to open the file" << endl;
 		return set<ProviderData>();
 	}
 

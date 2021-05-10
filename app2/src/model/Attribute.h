@@ -11,6 +11,7 @@ class Attribute {
 		Attribute(const AttributeData&);
 		bool operator<(const Attribute&) const;
 	friend ostream& operator<<(std::ostream&, const Attribute&);
+	friend class Controller;
 	protected:
 	private:
 		string id;

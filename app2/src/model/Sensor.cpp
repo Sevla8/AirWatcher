@@ -32,7 +32,7 @@ Sensor::Sensor(const SensorData& sd, const list<MeasurementData>& md, const set<
 
 	for (list<MeasurementData>::const_iterator it = md.begin(); it != md.end(); ++it) {
 		AttributeData a = *ad.find(AttributeData(it->attributeId));
-		measurements.insert(Measurement(*it, a));
+		measurements.push_back(Measurement(*it, a));
 	}
 
 	user = new User();
@@ -46,7 +46,7 @@ Sensor::Sensor(const SensorData& sd, const UserData& ud, const list<MeasurementD
 	for (list<MeasurementData>::const_iterator it = md.begin(); it != md.end(); ++it) {
 		bool exist = ad.find(AttributeData(it->attributeId)) == ad.end() ? false : true;
 		AttributeData a = *ad.find(AttributeData(it->attributeId));
-		measurements.insert(Measurement(*it, a));
+		measurements.push_back(Measurement(*it, a));
 	}
 
 	user = new PrivateUser(ud);
