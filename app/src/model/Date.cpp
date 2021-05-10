@@ -27,6 +27,32 @@ using namespace std;
 //
 //{
 //} //----- End of Method
+bool Date::operator <= (Date aDate)
+{
+    bool smaller = false;
+
+    if (this.year<aDate.year)
+    {
+        smaller=true;
+    } else if (this.year==aDate.year && this.month<=aDate.month)
+    {
+        smaller=true;
+    } else if (this.year==aDate.year && this.month==aDate.month && this.day<=aDate.day)
+    {
+        smaller=true;
+    } else if (this.year==aDate.year && this.month==aDate.month && this.day==aDate.day && this.hour<=aDate.hour)
+    {
+        smaller=true;
+    } else if (this.year==aDate.year && this.month==aDate.month && this.day==aDate.day && this.hour==aDate.hour && this.minute<=aDate.minute)
+    {
+        smaller=true;
+    } else if (this.year==aDate.year && this.month==aDate.month && this.day==aDate.day && this.hour==aDate.hour && this.minute==aDate.minute && this.second<=aDate.second)
+    {
+        smaller=true;
+    } 
+
+    return smaller;
+}
 
 std::istream& operator>>(std::istream& is, Date& date) {
 	char dash, column;

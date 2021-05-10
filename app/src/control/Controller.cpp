@@ -58,9 +58,9 @@ Controller::Controller ( )
 // Algorithm :
 //
 {
-	#ifdef MAP
-		cout << "Calling constructor of <Controller>" << endl;
-	#endif
+#ifdef MAP
+    cout << "Calling constructor of <Controller>" << endl;
+#endif
 } //----- End of Controller
 
 
@@ -75,23 +75,103 @@ Controller::~Controller ( )
 
 
 //------------------------------------------------------------------ PROTECTED
-// string Controller :: analyseAirQualityInCircularArea (float latitude, float longitude, float radius, Date begin, Date end)
-// {
-//     //define airQuality
-//     string airQuality="";
-//     int nbrSensor=model.getSensors()->
+/*string Controller :: analyseAirQualityInCircularArea (float latitude, float longitude, float radius, Date begin, Date end)
+{
+    //define airQuality
+    string airQuality="";
+    float indexAir=0.0;
+    float currentLatitude=0.0;
+    float currentLongitude=0.0;
+    list<Sensor>* sensorsInArea;
+    float conversionRadius=radius;//find the relation
+    Date defaultDate=Date();
+    int nbrMeasurementUsed=0;
 
-//     //search all sensors which are in the area
-//     for (int i=0; i<;i++)
-//     {
 
-//     }
 
-//     return airQuality;
+    //search all sensors which are in the area
+    for(list<Sensor>::iterator currentSensor = model.getSensors()->begin(); currentSensor != model.getSensors()->end(); currentSensor++)
+    {
+        currentLatitude=currentSensor->getLatitude();
+        currentLongitude=currentSensor->getLongitude();
+        float distance=sqrt(pow(currentLatitude-latitude, 2)+pow(currentLongitude-longitude, 2));
+        
+        if(distance<=conversionRadius)
+        {
+            sensorsInArea->push_back(currentSensor);          
+        }		
+	}
+    
+    //to make the difference between time interval and ponctual measurement
+    if (end == defaultDate)
+    {
+        for(list<Sensor>::iterator currentSensor = sensorsInArea->begin(); currentSensor != sensorsInArea->end(); currentSensor++)
+        {
+            list <Measurement>* currentMeasurementList = currentSensor.getMeasurements();
+            
+            for(list<Measurement>::iterator currentMeasurements = currentMeasurementList->begin(); currentMeasurements != currentMeasurementList->end(); currentMeasurements++)
+            {
+                if(currentMeasurements.date==begin)
+                {
+                    if (currentMeasurements.attributeId=="PM10")//déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
+                    {
+                        indexAir+=currentMeasurements.value;
+                        nbrMeasurementUsed++;
+                    }
+                }
+            }
+        }
+        if (nbrMeasurementUsed!=0)
+        {
+            indexAir=indexAir/nbrMeasurementUsed;
+        }
+        
+    } 
+    else
+    {
+        
+        for(list<Sensor>::iterator currentSensor = sensorsInArea->begin(); currentSensor != sensorsInArea->end(); currentSensor++)
+        {
+            list <Measurement>* currentMeasurementList = currentSensor.getMeasurements();
 
-// }
+            for(list<Measurement>::iterator currentMeasurements = currentMeasurementList->begin(); currentMeasurements != currentMeasurementList->end(); currentMeasurements++)
+            {
+                if(begin<=currentMeasurements.date<=end)
+                {
+                    if (currentMeasurements.attributeId=="PM10")//déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
+                    {
+                        indexAir+=currentMeasurements.value;
+                        nbrMeasurementUsed++;
+                    }
+                }
+            }
+        }
+        indexAir=indexAir/nbrMeasurementUsed;
+        
+    }
+    if (indexAir<=27)
+    {
+        airQuality="Bon";
+    }
+    else if (28<=indexAir<=49)
+    {
+        airQuality="Médiocre";
+    }
+    else if (50<=indexAir)
+    {
+        airQuality="Mauvais";
+    }
+
+
+
+
+
+    return airQuality;
+
+}*/ 
 //----------------------------------------------------- Protected Methods
 
 //------------------------------------------------------------------ PRIVATE
 
 //----------------------------------------------------- Private Methods
+

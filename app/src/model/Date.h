@@ -80,6 +80,7 @@ int getSeconds();
 //------------------------------------------------------------------ PROTECTED
 
 friend std::istream& operator>>(std::istream&, Date&);
+bool operator <= (Date aDate);
 
 protected:
 //----------------------------------------------------- Protected Methods
