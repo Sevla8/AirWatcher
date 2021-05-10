@@ -80,12 +80,12 @@ string Controller :: analyseAirQualityInCircularArea (float latitude, float long
     //define airQuality
     string airQuality="";
     float indexAir=0.0;
-    int nbrSensor=model.getSensors()->size();
     float currentLatitude=0.0;
     float currentLongitude=0.0;
     list<Sensor>* sensorsInArea;
     conversionRadius=radius;//find the relation
     defaultDate=Date();
+    int nbrMeasurementUsed=0;
 
 
 
@@ -108,12 +108,12 @@ string Controller :: analyseAirQualityInCircularArea (float latitude, float long
         for(list<Sensor>::iterator currentSensor = sensorsInArea->begin(); currentSensor != sensorsInArea->end(); currentSensor++)
         {
             list <Measurement>* currentMeasurementList = currentSensor.getMeasurements();
-            int nbrMeasurementUsed=0;
+            
             for(list<Measurement>::iterator currentMeasurements = currentMeasurementList->begin(); currentMeasurements != currentMeasurementList->end(); currentMeasurements++)
             {
                 if(currentMeasurements.date==begin)
                 {
-                    if (currentMeasurements.attributeId=="PM10")//déterminer quel(s) type d'attribut(s) sera(seront) renvoyé(s)
+                    if (currentMeasurements.attributeId=="PM10")//déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
                     {
                         indexAir+=currentMeasurements.value;
                         nbrMeasurementUsed++;
@@ -129,20 +129,25 @@ string Controller :: analyseAirQualityInCircularArea (float latitude, float long
     } 
     else
     {
-        /*for(list<Sensor>::iterator currentSensor = sensorsInArea->begin(); currentSensor != sensorsInArea->end(); currentSensor++)
+        
+        for(list<Sensor>::iterator currentSensor = sensorsInArea->begin(); currentSensor != sensorsInArea->end(); currentSensor++)
         {
             list <Measurement>* currentMeasurementList = currentSensor.getMeasurements();
 
             for(list<Measurement>::iterator currentMeasurements = currentMeasurementList->begin(); currentMeasurements != currentMeasurementList->end(); currentMeasurements++)
             {
-                if(currentMeasurements.date==begin)
+                if(begin<=currentMeasurements.date<=end)
                 {
-                    indexAir+=currentMeasurements.value;
+                    if (currentMeasurements.attributeId=="PM10")//déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
+                    {
+                        indexAir+=currentMeasurements.value;
+                        nbrMeasurementUsed++;
+                    }
                 }
             }
         }
-        indexAir=indexAir/sensorsInArea->size();
-        */
+        indexAir=indexAir/nbrMeasurementUsed;
+        
     }
     if (indexAir<=27)
     {
@@ -169,3 +174,4 @@ string Controller :: analyseAirQualityInCircularArea (float latitude, float long
 //------------------------------------------------------------------ PRIVATE
 
 //----------------------------------------------------- Private Methods
+
