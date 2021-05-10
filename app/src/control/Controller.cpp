@@ -83,8 +83,8 @@ string Controller :: analyseAirQualityInCircularArea (float latitude, float long
     float currentLatitude=0.0;
     float currentLongitude=0.0;
     list<Sensor>* sensorsInArea;
-    conversionRadius=radius;//find the relation
-    defaultDate=Date();
+    float conversionRadius=radius;//find the relation
+    Date defaultDate=Date();
     int nbrMeasurementUsed=0;
 
 
@@ -98,7 +98,7 @@ string Controller :: analyseAirQualityInCircularArea (float latitude, float long
         
         if(distance<=conversionRadius)
         {
-            sensorsInArea.push_back(currentSensor);          
+            sensorsInArea->push_back(currentSensor);          
         }		
 	}
     
