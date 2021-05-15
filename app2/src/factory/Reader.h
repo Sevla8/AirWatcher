@@ -1,10 +1,25 @@
+/*************************************************************************
+                           Reader  -  description
+                             -------------------
+    beginning                : $07/05/2021$
+    copyright            : (C) $2021$ by $B3204 and B3025 $
+    e-mail               : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+                            brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
+*************************************************************************/
+
+//---------- Interface of <Reader> (file Reader.h) ----------------
 #if ! defined ( Reader_H )
 #define Reader_H
 
+//--------------------------------------------------- Used Interfaces
 #include <string>
 #include <set>
 #include <fstream>
 #include "../model/Date.h"
+
+//------------------------------------------------------------- Constants
+
+//------------------------------------------------------------------ Types
 
 struct SensorData {
 	string id;
@@ -75,16 +90,82 @@ struct ProviderData {
 	friend ostream& operator<<(std::ostream&, const ProviderData&);
 };
 
+//------------------------------------------------------------------------
+// Role of <Reader>
+//	Read and parse data in csv files
+//
+//------------------------------------------------------------------------
+
 class Reader {
+//----------------------------------------------------------------- PUBLIC
 	public:
+	//----------------------------------------------------- Public methods
+    // type Method ( parameters list );
+    // How to use :
+    //
+    // Precondition :
+    //
+
 		static set<SensorData> readSensors(string filename);
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+    	// Precondition :
+    	//
+
 		static set<UserData> readUsers(string filename);
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+    	// Precondition :
+    	//
+
 		static multiset<MeasurementData> readMeasurements(string filename);
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+    	// Precondition :
+    	//
+
 		static set<AttributeData> readAttributes(string filename);
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+    	// Precondition :
+    	//
+	
 		static set<CleanerData> readCleaners(string filename);
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+    	// Precondition :
+    	//
+
 		static set<ProviderData> readProviders(string filename);
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+    	// Precondition :
+    	//
+
+	//------------------------------------------------- Operators overloading
+
+	//-------------------------------------------- Constructors - destructor
+
+//------------------------------------------------------------------ PROTECTED
 	protected:
+	//----------------------------------------------------- Protected Methods
+
+	//----------------------------------------------------- Protected Attributes
+
+//------------------------------------------------------------------ PRIVATE
 	private:
+	//----------------------------------------------------- Private Methods
+
+	//----------------------------------------------------- Private Attributes
+
 };
 
-#endif
+//-------------------------------- Other definitions depending on <Reader>
+
+#endif // Reader_H
