@@ -1,3 +1,17 @@
+/*************************************************************************
+                           Controller  -  description
+                             -------------------
+    beginning                : $07/05/2021$
+    copyright            : (C) $2021$ by $B3204 and B3025 $
+    e-mail               : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+                            brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
+*************************************************************************/
+
+//---------- Implementation of <Controller> (file Controller.cpp) ------------
+
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include of system files
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -5,21 +19,31 @@
 
 using namespace std;
 
+//------------------------------------------------------ Include of local files
 #include "Controller.h"
 
-Controller::Controller() {}
+//------------------------------------------------------------- Constants
 
-Controller::~Controller() {}
+//----------------------------------------------------------------- PUBLIC
 
-ostream& operator<<(std::ostream& os, const Controller& c) {
-	return os << c.model;
-}
+//----------------------------------------------------- Public Methods
+// type Controller::Method ( Parameters list )
+// Algorithm :
+//
+//{
+//} //----- End of Method
 
-Model Controller::getModel() const {
+Model Controller::getModel() const 
+//Algorithm :
+//
+{
 	return model;
-}
+}  //----- End of getModel
 
-string Controller::analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end) {
+string Controller::analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end) 
+//Algorithm :
+//
+{
 	//define airQuality
 	string airQuality="";
 	float indexAir = 0.0;
@@ -82,4 +106,36 @@ string Controller::analyseAirQualityInCircularArea(float latitude, float longitu
 		airQuality = "Mauvais";
 	}
 	return airQuality;
-}
+} //----- End of analyseAirQualityInCircularArea
+
+//------------------------------------------------- Operators overloadinf
+ostream& operator<<(std::ostream& os, const Controller& c) 
+// Algorithm :
+//
+{
+	return os << c.model;
+} //----- End of operator <<
+
+//-------------------------------------------- constructors - destructor
+Controller::Controller() 
+// Algorithm :
+//
+{
+
+} //----- End of Controller
+
+Controller::~Controller() 
+// Algorithm :
+//
+{
+
+} //----- End of ~Controller
+
+//------------------------------------------------------------------ PROTECTED
+
+//----------------------------------------------------- Protected Methods
+
+//------------------------------------------------------------------ PRIVATE
+
+//----------------------------------------------------- Private Methods
+
