@@ -1,10 +1,36 @@
+/*************************************************************************
+                           Reader  -  description
+                             -------------------
+    beginning                : $07/05/2021$
+    copyright            : (C) $2021$ by $B3204 and B3025 $
+    e-mail               : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+                            brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
+*************************************************************************/
+
+//---------- Implementation of <Reader> (file Reader.cpp) ------------
+
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include of system files
 #include <iostream>
 #include <sstream>
 #include <string>
 
 using namespace std;
 
+//------------------------------------------------------ Include of local files
 #include "Reader.h"
+
+//------------------------------------------------------------- Constants
+
+//----------------------------------------------------------------- PUBLIC
+
+//----------------------------------------------------- Public Methods
+// type Reader::Method ( Parameters list )
+// Algorithm :
+//
+//{
+//} //----- End of Method
 
 istream& operator>>(std::istream& is, SensorData& s) {
 	string tmp;
@@ -130,7 +156,10 @@ bool ProviderData::operator<(const ProviderData& p) const {
 	return cleanerId < p.cleanerId;
 }
 
-set<SensorData> Reader::readSensors(string filename) {
+set<SensorData> Reader::readSensors(string filename) 
+//Algorithm :
+//
+{
 	ifstream is(filename);
 
 	if (!is) {
@@ -144,9 +173,12 @@ set<SensorData> Reader::readSensors(string filename) {
 		sensors.insert(sensor);
 	}
 	return sensors;
-}
+} //----- End of readSensors
 
-set<UserData> Reader::readUsers(string filename) {
+set<UserData> Reader::readUsers(string filename) 
+//Algorithm :
+//
+{
 	ifstream is(filename);
 
 	if (!is) {
@@ -160,9 +192,12 @@ set<UserData> Reader::readUsers(string filename) {
 		users.insert(user);
 	}
 	return users;
-}
+} //----- End of readUsers
 
-multiset<MeasurementData> Reader::readMeasurements(string filename) {
+multiset<MeasurementData> Reader::readMeasurements(string filename) 
+//Algorithm :
+//
+{
 	ifstream is(filename);
 
 	if (!is) {
@@ -176,9 +211,12 @@ multiset<MeasurementData> Reader::readMeasurements(string filename) {
 		measurements.insert(measurement);
 	}
 	return measurements;
-}
+} //----- End of readMeasurements
 
-set<AttributeData> Reader::readAttributes(string filename) {
+set<AttributeData> Reader::readAttributes(string filename) 
+//Algorithm :
+//
+{
 	ifstream is(filename);
 
 	if (!is) {
@@ -192,9 +230,12 @@ set<AttributeData> Reader::readAttributes(string filename) {
 		attributes.insert(attribute);
 	}
 	return attributes;
-}
+} //----- End of readAttributes
 
-set<CleanerData> Reader::readCleaners(string filename) {
+set<CleanerData> Reader::readCleaners(string filename) 
+//Algorithm :
+//
+{
 	ifstream is(filename);
 
 	if (!is) {
@@ -208,9 +249,12 @@ set<CleanerData> Reader::readCleaners(string filename) {
 		cleaners.insert(cleaner);
 	}
 	return cleaners;
-}
+} //----- End of readCleaners
 
-set<ProviderData> Reader::readProviders(string filename) {
+set<ProviderData> Reader::readProviders(string filename) 
+//Algorithm :
+//
+{
 	ifstream is(filename);
 
 	if (!is) {
@@ -224,4 +268,16 @@ set<ProviderData> Reader::readProviders(string filename) {
 		providers.insert(provider);
 	}
 	return providers;
-}
+} //----- End of readProviders
+
+//------------------------------------------------- Operators overloadinf
+
+//-------------------------------------------- constructors - destructor
+
+//------------------------------------------------------------------ PROTECTED
+
+//----------------------------------------------------- Protected Methods
+
+//------------------------------------------------------------------ PRIVATE
+
+//----------------------------------------------------- Private Methods
