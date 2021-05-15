@@ -1,16 +1,71 @@
+/*************************************************************************
+                           User  -  description
+                             -------------------
+    beginning                : $07/05/2021$
+    copyright            : (C) $2021$ by $B3204 and B3025 $
+    e-mail               : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+                            brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
+*************************************************************************/
+
+//---------- Implementation of <User> (file User.cpp) ------------
+
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include of system files
 #include <iostream>
 using namespace std;
 
+//------------------------------------------------------ Include of local files
 #include "User.h"
 #include "../factory/Reader.h"
 
-ostream& operator<<(std::ostream& os, const User& p) {
+//------------------------------------------------------------- Constants
+
+//----------------------------------------------------------------- PUBLIC
+
+//----------------------------------------------------- Public Methods
+// type User::Method ( Parameters list )
+// Algorithm :
+//
+//{
+//} //----- End of Method
+
+//------------------------------------------------- Operators overloadinf
+
+ostream& operator<<(std::ostream& os, const User& p) 
+// Algorithm :
+//
+{
 	return os << ";";
-}
+} //----- End of operator <<
 
-User::User() {}
+//-------------------------------------------- constructors - destructor
 
-User::User(const UserData& ud) {}
+User::User() 
+// Algorithm :
+//
+{
 
-User::~User() {}
+} //----- End of User
 
+User::User(const UserData& ud) 
+// Algorithm :
+//
+{
+
+} //----- End of User
+
+User::~User() 
+// Algorithm :
+//
+{
+
+} //----- End of ~User
+
+//------------------------------------------------------------------ PROTECTED
+
+//----------------------------------------------------- Protected Methods
+
+//------------------------------------------------------------------ PRIVATE
+
+//----------------------------------------------------- Private Methods
