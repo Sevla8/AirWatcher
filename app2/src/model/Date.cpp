@@ -1,10 +1,41 @@
+/*************************************************************************
+                           Date  -  description
+                             -------------------
+    beginning                : $07/05/2021$
+    copyright            : (C) $2021$ by $B3204 and B3025 $
+    e-mail               : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+                            brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
+*************************************************************************/
+
+//---------- Implementation of <Date> (file Date.cpp) ------------
+
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include of system files
 #include <iostream>
 #include <sstream>
 using namespace std;
 
+//------------------------------------------------------ Include of local files
 #include "Date.h"
 
-std::istream& operator>>(std::istream& is, Date& d) {
+//------------------------------------------------------------- Constants
+
+//----------------------------------------------------------------- PUBLIC
+
+//----------------------------------------------------- Public Methods
+// type Date::Method ( Parameters list )
+// Algorithm :
+//
+//{
+//} //----- End of Method
+
+//------------------------------------------------- Operators overloading
+
+std::istream& operator>>(std::istream& is, Date& d) 
+// Algorithm :
+//
+{
 	string tmp;
 	stringstream ss;
 	getline(is, tmp, '-');
@@ -26,15 +57,21 @@ std::istream& operator>>(std::istream& is, Date& d) {
 	ss = stringstream(tmp);
 	ss >> d.second;
 	return is;
-}
+} //----- End of operator >>
 
-ostream& operator<<(std::ostream& os, const Date& d) {
+ostream& operator<<(std::ostream& os, const Date& d) 
+// Algorithm :
+//
+{
 	return os << d.year << "-" << d.month << "-" <<
 		d.day << " " << d.hour << ":" << d.minute <<
 		":" << d.second;
-}
+} //----- End of operator <<
 
-bool Date::operator<(const Date& d) const {
+bool Date::operator<(const Date& d) const 
+// Algorithm :
+//
+{
 	if (year < d.year) return true;
 	if (year > d.year) return false;
 	if (month < d.month) return true;
@@ -48,25 +85,36 @@ bool Date::operator<(const Date& d) const {
 	if (second < d.second) return true;
 	if (second > d.second) return false;
 	return false;
-}
+} //----- End of operator <
 
-bool Date::operator==(const Date& d) const {
+bool Date::operator==(const Date& d) const 
+// Algorithm :
+//
+{
 	return year == d.year && month == d.month && day == d.day &&
 		hour == d.hour && minute == d.minute && second == d.second;
-}
+} //----- End of operator ==
 
-bool Date::operator<=(const Date& d) const {
+bool Date::operator<=(const Date& d) const 
+// Algorithm :
+//
+{
 	return *this < d || *this == d;
-}
+} //----- End of operator <=
 
-Date::Date(int theYear, int theMonth, int theDay, int theHour, int theMinute, int theSecond) {
+//-------------------------------------------- constructors - destructor
+
+Date::Date(int theYear, int theMonth, int theDay, int theHour, int theMinute, int theSecond) 
+// Algorithm :
+//
+{
 	year = theYear;
 	month = theMonth;
 	day = theDay;
 	hour = theHour;
 	minute = theMinute;
 	second = theSecond;
-}
+} //----- End of Date (parameters constructor)
 
 Date::Date() {
 	year = 1970;
@@ -75,4 +123,12 @@ Date::Date() {
 	hour = 0;
 	minute = 0;
 	second = 0;
-}
+} //----- End of Date
+
+//------------------------------------------------------------------ PROTECTED
+
+//----------------------------------------------------- Protected Methods
+
+//------------------------------------------------------------------ PRIVATE
+
+//----------------------------------------------------- Private Methods
