@@ -1,6 +1,23 @@
+/*************************************************************************
+                           Model  -  description
+                             -------------------
+    beginning                : $07/05/2021$
+    copyright            : (C) $2021$ by $B3204 and B3025 $
+    e-mail               : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+                            brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
+*************************************************************************/
+
+//---------- Implementation of <Model> (file Model.cpp) ------------
+
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include of system files
 #include <iostream>
 #include <list>
 #include <set>
+using namespace std;
+
+//------------------------------------------------------ Include of local files
 #include "Model.h"
 #include "Sensor.h"
 #include "Cleaner.h"
@@ -10,9 +27,39 @@
 #include "Measurement.h"
 #include "../factory/Reader.h"
 
-using namespace std;
+//------------------------------------------------------------- Constants
 
-Model::Model() {
+//----------------------------------------------------------------- PUBLIC
+
+//----------------------------------------------------- Public Methods
+// type Model::Method ( Parameters list )
+// Algorithm :
+//
+//{
+//} //----- End of Method
+
+//------------------------------------------------- Operators overloadinf
+
+ostream& operator<<(std::ostream& os, const Model& m) 
+// Algorithm :
+//
+{
+	for (set<Sensor>::const_iterator iter = m.sensors.begin(); iter != m.sensors.end(); ++iter) {
+		os << *iter << endl;
+	}
+	os << endl;
+	for (set<Cleaner>::const_iterator iter = m.cleaners.begin(); iter != m.cleaners.end(); ++iter) {
+		os << *iter << endl;
+	}
+	return os;
+} //----- End of operator <<
+
+//-------------------------------------------- constructors - destructor
+
+Model::Model() 
+// Algorithm :
+//
+{
 	set<SensorData> sensorData = Reader::readSensors("../../dataset/sensors.csv");
 	set<CleanerData> cleanerData = Reader::readCleaners("../../dataset/cleaners.csv");
 	set<AttributeData> attributeData = Reader::readAttributes("../../dataset/attributes.csv");
@@ -38,15 +85,12 @@ Model::Model() {
 		if (exist) sensors.insert(Sensor(sd, *userData.find(UserData(iter->id)), list, attributeData));
 		else sensors.insert(Sensor(sd, list, attributeData));
 	}
-}
+}  //----- End of Model
 
-ostream& operator<<(std::ostream& os, const Model& m) {
-	for (set<Sensor>::const_iterator iter = m.sensors.begin(); iter != m.sensors.end(); ++iter) {
-		os << *iter << endl;
-	}
-	os << endl;
-	for (set<Cleaner>::const_iterator iter = m.cleaners.begin(); iter != m.cleaners.end(); ++iter) {
-		os << *iter << endl;
-	}
-	return os;
-}
+//------------------------------------------------------------------ PROTECTED
+
+//----------------------------------------------------- Protected Methods
+
+//------------------------------------------------------------------ PRIVATE
+
+//----------------------------------------------------- Private Methods
