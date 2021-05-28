@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Controller  -  description
+                           UserInterface  -  description
                              -------------------
     beginning                : $07/05/2021$
     copyright            : (C) $2021$ by $B3204 and B3025 $
@@ -7,90 +7,82 @@
                             brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
-//---------- Interface of <Controller> (file Controller.h) ----------------
-#ifndef Controller_H
-#define Controller_H
+//---------- Interface of <UserInterface> (file UserInterface.h) ----------------
+#ifndef UserInterface_H
+#define UserInterface_H
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
 #include <vector>
-#include "../model/Model.h"
+#include <iostream>
+#include "../control/Controller.h"
+#include "../model/Date.h"
+
+
+using namespace std;
 
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Role of <Controller>
+// Role of <UserInterface>
 //
 //
 //------------------------------------------------------------------------
 
-class Controller {
+class UserInterface {
+
 //----------------------------------------------------------------- PUBLIC
 	public:
 	//----------------------------------------------------- Public methods
-    // type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
-
-		const Model& getModel();
-		// type Method ( parameters list );
-    	// How to use :
-    	//
-    	// Precondition :
-    	//
-
-		string analyseAirQualityInCircularArea(float, float, float, const Date&, const Date&);
-		// type Method ( parameters list );
-    	// How to use :
-    	//
-		// Precondition :
-    	//
-
-		vector<Sensor> rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end);
-		// type Method ( parameters list );
-    	// How to use :
-    	//
-		// Precondition :
-    	//
-
-		double CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const;
+        int displayMenu();
+        // type Method ( parameters list );
+        // How to use :
+        //
+        // Precondition :
+        //
 
 	//------------------------------------------------- Operators overloading
 
-	//-------------------------------------------- Constructors - destructor
-		Controller();
-		// How to use : Constructs a Controller
-    	//
-    	// Precondition :
-    	//
 
-		virtual ~Controller();
+	//-------------------------------------------- Constructors - destructor
+
+		UserInterface();
 		// How to use :
     	//
     	// Precondition :
     	//
 
-	friend ostream& operator<<(std::ostream&, const Controller&);
+        virtual ~UserInterface();
+        // How to use :
+    	//
+    	// Precondition :
+    	//
 
 //------------------------------------------------------------------ PROTECTED
 	protected:
 	//----------------------------------------------------- Protected Methods
 
-	//----------------------------------------------------- Protected Attributes
+	//----------------------------------------------------- Protected attributes
 
 //------------------------------------------------------------------ PRIVATE
 	private:
 	//----------------------------------------------------- Private Methods
+        int displayAirQualityArea();
+        // type Method ( parameters list );
+        // How to use :
+        //
+        // Precondition :
+        //
+
+
 
 	//----------------------------------------------------- Private Attributes
 
-	Model model;
+    Controller controller;
 };
 
-//-------------------------------- Other definitions depending on <Controller>
+//-------------------------------- Other definitions depending on <Sensor>
 
-#endif // Controller_H
+#endif // Sensor_H

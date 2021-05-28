@@ -109,7 +109,10 @@ string Controller::analyseAirQualityInCircularArea(float latitude, float longitu
 	return airQuality;
 } //----- End of analyseAirQualityInCircularArea
 
-vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end){
+vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end)
+//Algorithm :
+//
+{
 	multimap<double, Sensor> map;
 	Sensor target = model.FindSensor(sensorId);
 	set<Sensor> sensors = model.GetSensors();
@@ -124,15 +127,18 @@ vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, cons
 		result.push_back(entry.second);
 	}
 	return result;
-}
+}//----- End of rankingSensorsSimilarity
 
-double Controller::CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const {
+double Controller::CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const
+//Algorithm :
+//
+{
 	double diff = abs(mean1[0] - mean2[0])
 				+ abs(mean1[1] - mean2[1])
 				+ abs(mean1[2] - mean2[2])
 				+ abs(mean1[3] - mean2[3]);
 	return diff;
-}
+}//----- End of CompareMeans
 
 //------------------------------------------------- Operators overloadinf
 ostream& operator<<(std::ostream& os, const Controller& c)
