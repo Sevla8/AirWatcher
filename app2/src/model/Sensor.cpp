@@ -34,7 +34,7 @@ using namespace std;
 
 //------------------------------------------------- Operators overloadinf
 
-ostream& operator<<(std::ostream& os, const Sensor& s) 
+ostream& operator<<(std::ostream& os, const Sensor& s)
 // Algorithm :
 //
 {
@@ -45,14 +45,14 @@ ostream& operator<<(std::ostream& os, const Sensor& s)
 
 	os << endl;
 
-	for (auto it = s.measurements.begin(); it != s.measurements.end(); ++it) {
-		os << "	" << *it << endl;
+	for (const auto &it : s.measurements) {
+		os << "	" << it << endl;
 	}
 
 	return os;
 } //----- End of operator <<
 
-bool Sensor::operator<(const Sensor& s) const 
+bool Sensor::operator<(const Sensor& s) const
 // Algorithm :
 //
 {
@@ -61,36 +61,37 @@ bool Sensor::operator<(const Sensor& s) const
 
 //-------------------------------------------- constructors - destructor
 
-Sensor::Sensor(const SensorData& sd, const list<MeasurementData>& md, const set<AttributeData>& ad) :
+Sensor::Sensor(const SensorData& sd, const vector<MeasurementData>& md, const set<AttributeData>& ad) :
 // Algorithm :
 //
 	id(sd.id),
 	latitude(sd.latitude),
 	longitude(sd.longitude) {
 
-	for (list<MeasurementData>::const_iterator it = md.begin(); it != md.end(); ++it) {
-		AttributeData a = *ad.find(AttributeData(it->attributeId));
-		measurements.push_back(Measurement(*it, a));
+	for (const auto &it: md) {
+		AttributeData a = *ad.find(AttributeData(it.attributeId));
+		measurements.push_back(Measurement(it, a));
 	}
 
 	user = new User();
 } //----- End of Sensor
 
-Sensor::Sensor(const SensorData& sd, const UserData& ud, const list<MeasurementData>& md, const set<AttributeData>& ad) :
+Sensor::Sensor(const SensorData& sd, const UserData& ud, const vector<MeasurementData>& md, const set<AttributeData>& ad) :
 // Algorithm :
 //
 	id(sd.id),
 	latitude(sd.latitude),
 	longitude(sd.longitude) {
 
-	for (list<MeasurementData>::const_iterator it = md.begin(); it != md.end(); ++it) {
-		bool exist = ad.find(AttributeData(it->attributeId)) == ad.end() ? false : true;
-		AttributeData a = *ad.find(AttributeData(it->attributeId));
-		measurements.push_back(Measurement(*it, a));
+	for (const auto &it: md) {
+		bool exist = ad.find(AttributeData(it.attributeId)) == ad.end() ? false : true;
+		AttributeData a = *ad.find(AttributeData(it.attributeId));
+		measurements.push_back(Measurement(it, a));
 	}
 
 	user = new PrivateUser(ud);
 } //----- End of Sensor
+
 
 //------------------------------------------------------------------ PROTECTED
 

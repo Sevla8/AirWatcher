@@ -13,7 +13,7 @@
 
 //-------------------------------------------------------- Include of system files
 #include <iostream>
-#include <list>
+#include <vector>
 #include <set>
 using namespace std;
 
@@ -37,26 +37,25 @@ using namespace std;
 //
 //{
 //} //----- End of Method
-
 //------------------------------------------------- Operators overloadinf
 
-ostream& operator<<(std::ostream& os, const Model& m) 
+ostream& operator<<(std::ostream& os, const Model& m)
 // Algorithm :
 //
 {
-	for (set<Sensor>::const_iterator iter = m.sensors.begin(); iter != m.sensors.end(); ++iter) {
-		os << *iter << endl;
+	for(const auto &iter: m.sensors) {
+		os << iter << endl;
 	}
 	os << endl;
-	for (set<Cleaner>::const_iterator iter = m.cleaners.begin(); iter != m.cleaners.end(); ++iter) {
-		os << *iter << endl;
+	for(const auto &iter: m.cleaners) {
+		os << iter << endl;
 	}
 	return os;
 } //----- End of operator <<
 
 //-------------------------------------------- constructors - destructor
 
-Model::Model() 
+Model::Model()
 // Algorithm :
 //
 {
@@ -67,23 +66,23 @@ Model::Model()
 	set<ProviderData> providerData = Reader::readProviders("../../dataset/providers.csv");
 	multiset<MeasurementData> measurementData = Reader::readMeasurements("../../dataset/measurements.csv");
 
-	for (set<CleanerData>::const_iterator iter = cleanerData.begin(); iter != cleanerData.end(); ++iter) {
-		CleanerData cd = *iter;
-		ProviderData pd = *providerData.find(ProviderData(iter->id));
+	for (const auto &iter: cleanerData) {
+		CleanerData cd = iter;
+		ProviderData pd = *providerData.find(ProviderData(iter.id));
 		cleaners.insert(Cleaner(cd, pd));
 	}
 
-	for (set<SensorData>::const_iterator iter = sensorData.begin(); iter != sensorData.end(); ++iter) {
-		SensorData sd = *iter;
-		bool exist = userData.find(UserData(iter->id)) == userData.end() ? false : true;
-		list<MeasurementData> list;
-		auto it = measurementData.find(MeasurementData(iter->id));
+	for (const auto &iter: sensorData) {
+		SensorData sd = iter;
+		bool exist = userData.find(UserData(iter.id)) == userData.end() ? false : true;
+		vector<MeasurementData> vector;
+		auto it = measurementData.find(MeasurementData(iter.id));
 		while (it != measurementData.end() && it->sensorId == sd.id) {
-			list.push_back(*it);
+			vector.push_back(*it);
 			++it;
 		}
-		if (exist) sensors.insert(Sensor(sd, *userData.find(UserData(iter->id)), list, attributeData));
-		else sensors.insert(Sensor(sd, list, attributeData));
+		if (exist) sensors.insert(Sensor(sd, *userData.find(UserData(iter.id)), vector, attributeData));
+		else sensors.insert(Sensor(sd, vector, attributeData));
 	}
 }  //----- End of Model
 

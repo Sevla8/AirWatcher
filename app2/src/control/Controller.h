@@ -13,6 +13,7 @@
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
+#include <vector>
 #include "../model/Model.h"
 
 //------------------------------------------------------------- Constants
@@ -35,7 +36,7 @@ class Controller {
     // Precondition :
     //
 
-		Model getModel() const;
+		Model& getModel();
 		// type Method ( parameters list );
     	// How to use :
     	//
@@ -78,7 +79,7 @@ class Controller {
 
 	//----------------------------------------------------- Private Attributes
 
-		Model model;
+	Model model;
 };
 
 //-------------------------------- Other definitions depending on <Controller>

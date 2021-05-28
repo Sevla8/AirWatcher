@@ -19,6 +19,7 @@ set(SOURCE_FILES
 	src/model/User.cpp
 	src/factory/Reader.cpp
 	src/control/Controller.cpp
+	src/user-interface/UserInterface.cpp
 )
 
 set(HEADER_FILES
@@ -34,6 +35,7 @@ set(HEADER_FILES
 	src/model/User.h
 	src/factory/Reader.h
 	src/control/Controller.h
+	src/user-interface/UserInterface.h
 )
 
 set(TEST_FILES

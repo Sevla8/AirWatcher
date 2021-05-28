@@ -33,7 +33,7 @@ using namespace std;
 //{
 //} //----- End of Method
 
-Model Controller::getModel() const 
+Model& Controller::getModel() 
 //Algorithm :
 //
 {
@@ -49,61 +49,65 @@ string Controller::analyseAirQualityInCircularArea(float latitude, float longitu
 	float indexAir = 0.0;
 	float currentLatitude = 0.0;
 	float currentLongitude = 0.0;
-	list<Sensor> sensorsInArea;
+	vector<Sensor> sensorsInArea;
 	float conversionRadius = radius; //find the relation
 	Date defaultDate = Date();
 	int nbrMeasurementUsed = 0;
 
 	//search all sensors which are in the area
-	for (set<Sensor>::const_iterator currentSensor = model.sensors.begin(); currentSensor != model.sensors.end(); ++currentSensor) {
-		currentLatitude = currentSensor->latitude;
-		currentLongitude = currentSensor->longitude;
+	for (const auto &currentSensor : model.sensors) {
+		currentLatitude = currentSensor.latitude;
+		currentLongitude = currentSensor.longitude;
 		float distance = sqrt(pow(currentLatitude - latitude, 2) + pow(currentLongitude - longitude, 2));
 		if (distance <= conversionRadius) {
-			sensorsInArea.push_back(*currentSensor);
+			sensorsInArea.push_back(currentSensor);
 		}
 	}
 
-	//to make the difference between time interval and ponctual measurement
-	if (end == defaultDate)	{
-		for (list<Sensor>::const_iterator currentSensor = sensorsInArea.begin(); currentSensor != sensorsInArea.end(); ++currentSensor) {
-			list<Measurement> currentMeasurementList = currentSensor->measurements;
+	if(sensorsInArea.empty()) {
+		airQuality = "No sensors in this area";
+		} else {
+		//to make the difference between time interval and ponctual measurement
+			if (end == defaultDate)	{
+				for (const auto &currentSensor : sensorsInArea) {
+					vector<Measurement> currentMeasurementList = currentSensor.measurements;
 
-			for (list<Measurement>::const_iterator currentMeasurement = currentMeasurementList.begin(); currentMeasurement != currentMeasurementList.end(); ++currentMeasurement) {
-				if (currentMeasurement->date == begin) {
-					if (currentMeasurement->attribute.id == "PM10") { //déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
-						indexAir += currentMeasurement->value;
-						++nbrMeasurementUsed;
+					for (const auto &currentMeasurement : currentMeasurementList) {
+						if (currentMeasurement.date == begin) { // TODO : gérer le probleme ici, on ne renvoie aucuns capteurs sinon...
+							if (currentMeasurement.attribute.id == "PM10") { //déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
+								indexAir += currentMeasurement.value;  // TODO: gérer le problème pour voir + de mesures.
+								++nbrMeasurementUsed;
+							}
+						}
 					}
 				}
-			}
-		}
-		if (nbrMeasurementUsed != 0) {
-			indexAir = indexAir / nbrMeasurementUsed;
-		}
-	}
-	else {
-		for (list<Sensor>::const_iterator currentSensor = sensorsInArea.begin(); currentSensor != sensorsInArea.end(); ++currentSensor) {
-			list <Measurement> currentMeasurementList = currentSensor->measurements;
-			for (list<Measurement>::const_iterator currentMeasurement = currentMeasurementList.begin(); currentMeasurement != currentMeasurementList.end(); ++currentMeasurement) {
-				if (begin <= currentMeasurement->date && currentMeasurement->date <= end) {
-					if (currentMeasurement->attribute.id=="PM10") { //déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
-						indexAir += currentMeasurement->value;
-						++nbrMeasurementUsed;
-					}
+				if (nbrMeasurementUsed != 0) {
+					indexAir = indexAir / nbrMeasurementUsed;
 				}
 			}
+			else {
+				for (const auto &currentSensor : sensorsInArea) {
+					vector <Measurement> currentMeasurementList = currentSensor.measurements;
+					for (const auto &currentMeasurement : currentMeasurementList) {
+						if (begin <= currentMeasurement.date && currentMeasurement.date <= end) {
+							if (currentMeasurement.attribute.id=="PM10") { //déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
+								indexAir += currentMeasurement.value;
+								++nbrMeasurementUsed;
+							}
+						}
+					}
+				}
+				indexAir=indexAir/nbrMeasurementUsed;
+			}
+		if (indexAir <= 27) {
+			airQuality = "Bon";
 		}
-		indexAir=indexAir/nbrMeasurementUsed;
-	}
-	if (indexAir <= 27) {
-		airQuality = "Bon";
-	}
-	else if (28 <= indexAir && indexAir <= 49) {
-		airQuality = "Médiocre";
-	}
-	else if (50 <= indexAir) {
-		airQuality = "Mauvais";
+		else if (28 <= indexAir && indexAir <= 49) {
+			airQuality = "Médiocre";
+		}
+		else if (50 <= indexAir) {
+			airQuality = "Mauvais";
+		}
 	}
 	return airQuality;
 } //----- End of analyseAirQualityInCircularArea
