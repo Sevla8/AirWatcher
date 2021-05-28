@@ -32,9 +32,21 @@ using namespace std;
 //{
 //} //----- End of Method
 
+const Attribute& Measurement::GetAttribute() const {
+	return attribute;
+}
+
+const Date& Measurement::GetDate() const {
+	return date;
+}
+
+double Measurement::GetValue() const{
+	return value;
+}
+
 //------------------------------------------------- Operators overloading
 
-ostream& operator<<(std::ostream& os, const Measurement& m) 
+ostream& operator<<(std::ostream& os, const Measurement& m)
 // Algorithm :
 //
 {
@@ -42,7 +54,7 @@ ostream& operator<<(std::ostream& os, const Measurement& m)
 		m.attribute << ";";
 } //----- End of operator <<
 
-bool Measurement::operator<(const Measurement& m) const 
+bool Measurement::operator<(const Measurement& m) const
 // Algorithm :
 //
 {

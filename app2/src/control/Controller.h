@@ -35,7 +35,7 @@ class Controller {
     // Precondition :
     //
 
-		Model getModel() const;
+		const Model& getModel();
 		// type Method ( parameters list );
     	// How to use :
     	//
@@ -48,6 +48,15 @@ class Controller {
     	//
 		// Precondition :
     	//
+
+		vector<Sensor> rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end);
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+		// Precondition :
+    	//
+
+		double CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const;
 
 	//------------------------------------------------- Operators overloading
 
@@ -63,7 +72,7 @@ class Controller {
     	//
     	// Precondition :
     	//
-		
+
 	friend ostream& operator<<(std::ostream&, const Controller&);
 
 //------------------------------------------------------------------ PROTECTED
@@ -78,7 +87,7 @@ class Controller {
 
 	//----------------------------------------------------- Private Attributes
 
-		Model model;
+	Model model;
 };
 
 //-------------------------------- Other definitions depending on <Controller>

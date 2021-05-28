@@ -32,7 +32,7 @@ using namespace std;
 
 //------------------------------------------------- Operators overloading
 
-std::istream& operator>>(std::istream& is, Date& d) 
+std::istream& operator>>(std::istream& is, Date& d)
 // Algorithm :
 //
 {
@@ -59,7 +59,7 @@ std::istream& operator>>(std::istream& is, Date& d)
 	return is;
 } //----- End of operator >>
 
-ostream& operator<<(std::ostream& os, const Date& d) 
+ostream& operator<<(std::ostream& os, const Date& d)
 // Algorithm :
 //
 {
@@ -68,7 +68,7 @@ ostream& operator<<(std::ostream& os, const Date& d)
 		":" << d.second;
 } //----- End of operator <<
 
-bool Date::operator<(const Date& d) const 
+bool Date::operator<(const Date& d) const
 // Algorithm :
 //
 {
@@ -87,7 +87,7 @@ bool Date::operator<(const Date& d) const
 	return false;
 } //----- End of operator <
 
-bool Date::operator==(const Date& d) const 
+bool Date::operator==(const Date& d) const
 // Algorithm :
 //
 {
@@ -95,16 +95,20 @@ bool Date::operator==(const Date& d) const
 		hour == d.hour && minute == d.minute && second == d.second;
 } //----- End of operator ==
 
-bool Date::operator<=(const Date& d) const 
+bool Date::operator<=(const Date& d) const
 // Algorithm :
 //
 {
 	return *this < d || *this == d;
 } //----- End of operator <=
 
+bool Date::operator>=(const Date& d) const {
+	return !(*this < d);
+}
+
 //-------------------------------------------- constructors - destructor
 
-Date::Date(int theYear, int theMonth, int theDay, int theHour, int theMinute, int theSecond) 
+Date::Date(int theYear, int theMonth, int theDay, int theHour, int theMinute, int theSecond)
 // Algorithm :
 //
 {

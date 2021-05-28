@@ -13,7 +13,7 @@
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
-#include <list>
+#include <vector>
 #include <iostream>
 #include "Measurement.h"
 #include "PrivateUser.h"
@@ -42,6 +42,10 @@ class Sensor {
     // Precondition :
     //
 
+	vector<double> CalculateMean(const Date& date1, const Date& date2) const;
+
+	vector<Measurement> GetMeasurements() const;
+
 	//------------------------------------------------- Operators overloading
 
 		bool operator<(const Sensor&) const;
@@ -52,18 +56,20 @@ class Sensor {
 
 	//-------------------------------------------- Constructors - destructor
 
-		Sensor(const SensorData&, const list<MeasurementData>&, const set<AttributeData>&);
+		Sensor(const SensorData&, const vector<MeasurementData>&, const set<AttributeData>&);
 		// How to use :
     	//
     	// Precondition :
     	//
 
-		Sensor(const SensorData&, const UserData&, const list<MeasurementData>&, const set<AttributeData>&);
+		Sensor(const SensorData&, const UserData&, const vector<MeasurementData>&, const set<AttributeData>&);
 		// How to use :
     	//
     	// Precondition :
     	//
-		
+
+		Sensor(const string&);
+
 	friend ostream& operator<<(std::ostream&, const Sensor&);
 	friend class Controller;
 
@@ -83,7 +89,7 @@ class Sensor {
 		float longitude;
 		bool malfunctioning;
 		User* user;
-		list<Measurement> measurements;
+		vector<Measurement> measurements;
 };
 
 //-------------------------------- Other definitions depending on <Sensor>

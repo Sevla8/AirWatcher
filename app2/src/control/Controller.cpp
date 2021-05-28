@@ -16,6 +16,7 @@
 #include <sstream>
 #include <string>
 #include <cmath>
+#include <map>
 
 using namespace std;
 
@@ -33,14 +34,14 @@ using namespace std;
 //{
 //} //----- End of Method
 
-Model Controller::getModel() const 
+const Model& Controller::getModel()
 //Algorithm :
 //
 {
 	return model;
 }  //----- End of getModel
 
-string Controller::analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end) 
+string Controller::analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end)
 //Algorithm :
 //
 {
@@ -49,30 +50,30 @@ string Controller::analyseAirQualityInCircularArea(float latitude, float longitu
 	float indexAir = 0.0;
 	float currentLatitude = 0.0;
 	float currentLongitude = 0.0;
-	list<Sensor> sensorsInArea;
+	vector<Sensor> sensorsInArea;
 	float conversionRadius = radius; //find the relation
 	Date defaultDate = Date();
 	int nbrMeasurementUsed = 0;
 
 	//search all sensors which are in the area
-	for (set<Sensor>::const_iterator currentSensor = model.sensors.begin(); currentSensor != model.sensors.end(); ++currentSensor) {
-		currentLatitude = currentSensor->latitude;
-		currentLongitude = currentSensor->longitude;
+	for (const auto &currentSensor : model.sensors) {
+		currentLatitude = currentSensor.latitude;
+		currentLongitude = currentSensor.longitude;
 		float distance = sqrt(pow(currentLatitude - latitude, 2) + pow(currentLongitude - longitude, 2));
 		if (distance <= conversionRadius) {
-			sensorsInArea.push_back(*currentSensor);
+			sensorsInArea.push_back(currentSensor);
 		}
 	}
 
 	//to make the difference between time interval and ponctual measurement
 	if (end == defaultDate)	{
-		for (list<Sensor>::const_iterator currentSensor = sensorsInArea.begin(); currentSensor != sensorsInArea.end(); ++currentSensor) {
-			list<Measurement> currentMeasurementList = currentSensor->measurements;
+		for (const auto &currentSensor : sensorsInArea) {
+			vector<Measurement> currentMeasurementList = currentSensor.measurements;
 
-			for (list<Measurement>::const_iterator currentMeasurement = currentMeasurementList.begin(); currentMeasurement != currentMeasurementList.end(); ++currentMeasurement) {
-				if (currentMeasurement->date == begin) {
-					if (currentMeasurement->attribute.id == "PM10") { //déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
-						indexAir += currentMeasurement->value;
+			for (const auto &currentMeasurement : currentMeasurementList) {
+				if (currentMeasurement.date == begin) {
+					if (currentMeasurement.attribute.id == "PM10") { //déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
+						indexAir += currentMeasurement.value;
 						++nbrMeasurementUsed;
 					}
 				}
@@ -83,12 +84,12 @@ string Controller::analyseAirQualityInCircularArea(float latitude, float longitu
 		}
 	}
 	else {
-		for (list<Sensor>::const_iterator currentSensor = sensorsInArea.begin(); currentSensor != sensorsInArea.end(); ++currentSensor) {
-			list <Measurement> currentMeasurementList = currentSensor->measurements;
-			for (list<Measurement>::const_iterator currentMeasurement = currentMeasurementList.begin(); currentMeasurement != currentMeasurementList.end(); ++currentMeasurement) {
-				if (begin <= currentMeasurement->date && currentMeasurement->date <= end) {
-					if (currentMeasurement->attribute.id=="PM10") { //déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
-						indexAir += currentMeasurement->value;
+		for (const auto &currentSensor : sensorsInArea) {
+			vector <Measurement> currentMeasurementList = currentSensor.measurements;
+			for (const auto &currentMeasurement : currentMeasurementList) {
+				if (begin <= currentMeasurement.date && currentMeasurement.date <= end) {
+					if (currentMeasurement.attribute.id=="PM10") { //déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
+						indexAir += currentMeasurement.value;
 						++nbrMeasurementUsed;
 					}
 				}
@@ -108,8 +109,33 @@ string Controller::analyseAirQualityInCircularArea(float latitude, float longitu
 	return airQuality;
 } //----- End of analyseAirQualityInCircularArea
 
+vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end){
+	multimap<double, Sensor> map;
+	Sensor target = model.FindSensor(sensorId);
+	set<Sensor> sensors = model.GetSensors();
+	vector<double> targetMean = target.CalculateMean(begin, end);
+	for (const auto& sensor : sensors) {
+		vector<double> mean = sensor.CalculateMean(begin, end);
+		double difference = CompareMeans(targetMean, mean);
+		map.insert({difference, sensor});
+	}
+	vector<Sensor> result;
+	for (const auto& entry : map) {
+		result.push_back(entry.second);
+	}
+	return result;
+}
+
+double Controller::CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const {
+	double diff = abs(mean1[0] - mean2[0])
+				+ abs(mean1[1] - mean2[1])
+				+ abs(mean1[2] - mean2[2])
+				+ abs(mean1[3] - mean2[3]);
+	return diff;
+}
+
 //------------------------------------------------- Operators overloadinf
-ostream& operator<<(std::ostream& os, const Controller& c) 
+ostream& operator<<(std::ostream& os, const Controller& c)
 // Algorithm :
 //
 {
@@ -117,14 +143,14 @@ ostream& operator<<(std::ostream& os, const Controller& c)
 } //----- End of operator <<
 
 //-------------------------------------------- constructors - destructor
-Controller::Controller() 
+Controller::Controller()
 // Algorithm :
 //
 {
 
 } //----- End of Controller
 
-Controller::~Controller() 
+Controller::~Controller()
 // Algorithm :
 //
 {

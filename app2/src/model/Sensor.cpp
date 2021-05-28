@@ -32,9 +32,59 @@ using namespace std;
 //{
 //} //----- End of Method
 
+vector<Measurement> Sensor::GetMeasurements() const {
+	return measurements;
+}
+
+vector<double> Sensor::CalculateMean(const Date& begin, const Date& end) const
+// Algorithm :
+//
+{
+	double sumO3 = 0;
+	double sumSO2 = 0;
+	double sumNO2 = 0;
+	double sumPM10 = 0;
+	int numberO3 = 0;
+	int numberSO2 = 0;
+	int numberNO2 = 0;
+	int numberPM10 = 0;
+	for (const auto& measurement : measurements) {
+		if (measurement.GetAttribute().GetId() == "O3" &&
+			measurement.GetDate() >= begin &&
+			measurement.GetDate() <= end) {
+			sumO3 += measurement.GetValue();
+			numberO3++;
+		}
+		else if (measurement.GetAttribute().GetId() == "SO2" &&
+			measurement.GetDate() >= begin &&
+			measurement.GetDate() <= end) {
+			sumSO2 += measurement.GetValue();
+			numberSO2++;
+		}
+		else if (measurement.GetAttribute().GetId() == "NO2" &&
+			measurement.GetDate() >= begin &&
+			measurement.GetDate() <= end) {
+			sumNO2 += measurement.GetValue();
+			numberNO2++;
+		}
+		else if (measurement.GetAttribute().GetId() == "PM10" &&
+			measurement.GetDate() >= begin &&
+			measurement.GetDate() <= end) {
+			sumPM10 += measurement.GetValue();
+			numberPM10++;
+		}
+	}
+	vector<double> result;
+	result.push_back(sumO3 / numberO3);
+	result.push_back(sumSO2 / numberSO2);
+	result.push_back(sumNO2 / numberNO2);
+	result.push_back(sumPM10 / numberPM10);
+	return result;
+} //----- End of CalculateMean
+
 //------------------------------------------------- Operators overloadinf
 
-ostream& operator<<(std::ostream& os, const Sensor& s) 
+ostream& operator<<(std::ostream& os, const Sensor& s)
 // Algorithm :
 //
 {
@@ -45,14 +95,14 @@ ostream& operator<<(std::ostream& os, const Sensor& s)
 
 	os << endl;
 
-	for (auto it = s.measurements.begin(); it != s.measurements.end(); ++it) {
-		os << "	" << *it << endl;
+	for (const auto &it : s.measurements) {
+		os << "	" << it << endl;
 	}
 
 	return os;
 } //----- End of operator <<
 
-bool Sensor::operator<(const Sensor& s) const 
+bool Sensor::operator<(const Sensor& s) const
 // Algorithm :
 //
 {
@@ -61,36 +111,40 @@ bool Sensor::operator<(const Sensor& s) const
 
 //-------------------------------------------- constructors - destructor
 
-Sensor::Sensor(const SensorData& sd, const list<MeasurementData>& md, const set<AttributeData>& ad) :
+Sensor::Sensor(const SensorData& sd, const vector<MeasurementData>& md, const set<AttributeData>& ad) :
 // Algorithm :
 //
 	id(sd.id),
 	latitude(sd.latitude),
 	longitude(sd.longitude) {
 
-	for (list<MeasurementData>::const_iterator it = md.begin(); it != md.end(); ++it) {
-		AttributeData a = *ad.find(AttributeData(it->attributeId));
-		measurements.push_back(Measurement(*it, a));
+	for (const auto &it: md) {
+		AttributeData a = *ad.find(AttributeData(it.attributeId));
+		measurements.push_back(Measurement(it, a));
 	}
 
 	user = new User();
 } //----- End of Sensor
 
-Sensor::Sensor(const SensorData& sd, const UserData& ud, const list<MeasurementData>& md, const set<AttributeData>& ad) :
+Sensor::Sensor(const SensorData& sd, const UserData& ud, const vector<MeasurementData>& md, const set<AttributeData>& ad) :
 // Algorithm :
 //
 	id(sd.id),
 	latitude(sd.latitude),
 	longitude(sd.longitude) {
 
-	for (list<MeasurementData>::const_iterator it = md.begin(); it != md.end(); ++it) {
-		bool exist = ad.find(AttributeData(it->attributeId)) == ad.end() ? false : true;
-		AttributeData a = *ad.find(AttributeData(it->attributeId));
-		measurements.push_back(Measurement(*it, a));
+	for (const auto &it: md) {
+		bool exist = ad.find(AttributeData(it.attributeId)) == ad.end() ? false : true;
+		AttributeData a = *ad.find(AttributeData(it.attributeId));
+		measurements.push_back(Measurement(it, a));
 	}
 
 	user = new PrivateUser(ud);
 } //----- End of Sensor
+
+Sensor::Sensor(const string& id) :
+	id(id) {
+}
 
 //------------------------------------------------------------------ PROTECTED
 

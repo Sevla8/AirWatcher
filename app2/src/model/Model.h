@@ -30,12 +30,16 @@
 class Model {
 //----------------------------------------------------------------- PUBLIC
 	public:
+		Sensor FindSensor(const string& id) const;
 	//----------------------------------------------------- Public methods
     // type Method ( parameters list );
     // How to use :
     //
     // Precondition :
     //
+
+		set<Sensor> GetSensors() const;
+
 
 	//------------------------------------------------- Operators overloading
 

@@ -37,6 +37,12 @@ class Attribute {
 	// Precondition :
 	//
 
+		const string& GetId() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
 	//------------------------------------------------- Operators overloading
 		bool operator<(const Attribute&) const;
 		// How to use :
@@ -56,7 +62,7 @@ class Attribute {
 		//
 		// Precondition :
 		//
-		
+
 	friend ostream& operator<<(std::ostream&, const Attribute&);
 	friend class Controller;
 

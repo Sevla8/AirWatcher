@@ -39,6 +39,12 @@ class Measurement {
     // Precondition :
     //
 
+	const Attribute& GetAttribute() const;
+
+	const Date& GetDate() const;
+
+	double GetValue() const;
+
 	//------------------------------------------------- Operators overloading
 
 		bool operator<(const Measurement&) const;
@@ -74,7 +80,7 @@ class Measurement {
 	//----------------------------------------------------- Private Methods
 
 	//----------------------------------------------------- Private Attributes
-		float value;
+		double value;
 		Date date;
 		Attribute attribute;
 };

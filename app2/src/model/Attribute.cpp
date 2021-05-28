@@ -31,16 +31,19 @@ using namespace std;
 //{
 //} //----- End of Method
 
+const string& Attribute::GetId() const{
+  return id;
+}
 
 //------------------------------------------------- Operators overloadinf
-ostream& operator<<(std::ostream& os, const Attribute& a) 
+ostream& operator<<(std::ostream& os, const Attribute& a)
 // Algorithm :
 //
 {
 	return os << a.id << ";" << a.unit << ";" << a.description << ";";
 } //----- End of operator <<
 
-bool Attribute::operator<(const Attribute& a) const 
+bool Attribute::operator<(const Attribute& a) const
 // Algorithm :
 //
 {

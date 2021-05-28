@@ -57,6 +57,9 @@ class Date {
     	// Precondition :
     	//
 
+		bool operator>=(const Date&) const;
+
+
 	//-------------------------------------------- Constructors - destructor
 
 		Date(int, int, int, int, int, int);
@@ -68,7 +71,7 @@ class Date {
     	//
     	// Precondition :
     	//
-		
+
 	friend std::istream& operator>>(std::istream&, Date&);
 	friend ostream& operator<<(std::ostream&, const Date&);
 
