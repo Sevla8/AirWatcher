@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Model  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -28,15 +28,11 @@ using namespace std;
 #include "Measurement.h"
 #include "../factory/Reader.h"
 
-//------------------------------------------------------------- Constants
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
 
 Sensor Model::FindSensor(const string& id) const
-// Algorithm :
-//
 {
 	Sensor s(id);
 	set<Sensor>::iterator iter = sensors.find(s);
@@ -60,8 +56,6 @@ const set<Cleaner>& Model::GetCleaners() const
 //------------------------------------------------- Operators overloadinf
 
 ostream& operator<<(std::ostream& os, const Model& m)
-// Algorithm :
-//
 {
 	for(const auto &iter: m.sensors) {
 		os << iter << endl;
@@ -75,16 +69,14 @@ ostream& operator<<(std::ostream& os, const Model& m)
 
 //-------------------------------------------- constructors - destructor
 
-Model::Model()
-// Algorithm :
-//
+Model::Model(string sensorsPath, string cleanersPath, string attributesPath, string usersPath, string providersPath, string measurementsPath)
 {
-	set<SensorData> sensorData = Reader::readSensors("../../dataset/sensors.csv");
-	set<CleanerData> cleanerData = Reader::readCleaners("../../dataset/cleaners.csv");
-	set<AttributeData> attributeData = Reader::readAttributes("../../dataset/attributes.csv");
-	set<UserData> userData = Reader::readUsers("../../dataset/users.csv");
-	set<ProviderData> providerData = Reader::readProviders("../../dataset/providers.csv");
-	multiset<MeasurementData> measurementData = Reader::readMeasurements("../../dataset/measurements.csv");
+	set<SensorData> sensorData = Reader::readSensors(sensorsPath);
+	set<CleanerData> cleanerData = Reader::readCleaners(cleanersPath);
+	set<AttributeData> attributeData = Reader::readAttributes(attributesPath);
+	set<UserData> userData = Reader::readUsers(usersPath);
+	set<ProviderData> providerData = Reader::readProviders(providersPath);
+	multiset<MeasurementData> measurementData = Reader::readMeasurements(measurementsPath);
 
 	for (const auto &iter: cleanerData) {
 		CleanerData cd = iter;

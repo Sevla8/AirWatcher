@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Cleaner  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -22,7 +22,6 @@ using namespace std;
 #include "Provider.h"
 #include "../factory/Reader.h"
 
-//------------------------------------------------------------- Constants
 
 //----------------------------------------------------------------- PUBLIC
 
@@ -72,26 +71,20 @@ const Provider& Cleaner::GetProvider() const
 
 //------------------------------------------------- Operators overloading
 
-ostream& operator<<(std::ostream& os, const Cleaner& c)
-// Algorithm :
-//
+ostream& operator<<(std::ostream& os, const Cleaner& aCleaner)
 {
-	return os << c.id << ";" << c.latitude << ";" << c.longitude <<
-		";" << c.start << ";" << c.stop << ";" << c.provider << ";";
+	return os << aCleaner.id << ";" << aCleaner.latitude << ";" << aCleaner.longitude <<
+		";" << aCleaner.start << ";" << aCleaner.stop << ";" << aCleaner.provider << ";";
 } //----- End of operator <<
 
-bool Cleaner::operator<(const Cleaner& c) const
-// Algorithm :
-//
+bool Cleaner::operator<(const Cleaner& aCleaner) const
 {
-	return id < c.id;
+	return id < aCleaner.id;
 } //----- End of operator <
 
 //-------------------------------------------- constructors - destructor
 
 Cleaner::Cleaner(const CleanerData& cd, const ProviderData& pd) :
-// Algorithm :
-//
 	provider(pd),
 	id(cd.id),
 	latitude(cd.latitude),

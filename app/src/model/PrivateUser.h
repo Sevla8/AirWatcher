@@ -1,9 +1,9 @@
 /*************************************************************************
 						   PrivateUser  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -17,12 +17,9 @@
 #include "User.h"
 #include "../factory/Reader.h"
 
-//------------------------------------------------------------- Constants
-
-//------------------------------------------------------------------ Types
-
 //------------------------------------------------------------------------
 // Role of <PrivateUser>
+//
 //
 //
 //------------------------------------------------------------------------
@@ -51,24 +48,14 @@ class PrivateUser : public User {
 		//
 
 		//------------------------------------------------- Operators overloading
-		bool operator<(const PrivateUser&) const;
-		// How to use :
-		//
-		// Precondition :
-		//
+		bool operator<(const PrivateUser& aPrivateUser) const;
+		// How to use : Returns true if the id of aPrivateUser is higher than the calling PrivateUser's one
 
-		friend ostream& operator<<(std::ostream&, const PrivateUser&);
-		// How to use :
-		//
-		// Precondition :
-		//
+		friend ostream& operator<<(std::ostream& os, const PrivateUser& aPrivateUser );
+
 
 		//-------------------------------------------- Constructors - destructor
 		PrivateUser();
-		// How to use :
-		//
-		// Precondition :
-		//
 
 		PrivateUser(const string&, int, bool);
 		// How to use :
@@ -76,8 +63,8 @@ class PrivateUser : public User {
 		// Precondition :
 		//
 
-		PrivateUser(const UserData&);
-		// How to use :
+		PrivateUser(const UserData& anUserData);
+		// How to use : Initialises a PrivateUser by parsing the data in anUserData
 		//
 		// Precondition :
 		//
@@ -94,22 +81,13 @@ class PrivateUser : public User {
 		// Precondition :
 		//
 
-	//------------------------------------------------------------------ PROTECTED
-	protected:
-		//----------------------------------------------------- Protected Methods
-
-		//----------------------------------------------------- Protected Attributes
-
 	//------------------------------------------------------------------ PRIVATE
 	private:
-		//----------------------------------------------------- Private Methods
 
 		//----------------------------------------------------- Private Attributes
 		string id;
 		int score;
 		bool malicious;
 };
-
-//-------------------------------- Other definitions depending on <PrivateUser>
 
 #endif // PrivateUser_H

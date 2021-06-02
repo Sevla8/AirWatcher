@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Sensor  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -20,13 +20,9 @@
 #include "../factory/Reader.h"
 
 using namespace std;
-
-//------------------------------------------------------------- Constants
-
-//------------------------------------------------------------------ Types
-
 //------------------------------------------------------------------------
 // Role of <Sensor>
+//
 //
 //
 //------------------------------------------------------------------------
@@ -36,15 +32,11 @@ class Sensor {
 	public:
 		//----------------------------------------------------- Public methods
 		vector<double> CalculateMean(const Date& date1, const Date& date2) const;
-		// How to use :
-		//
-		// Precondition :
+		// How to use : returns a vector containing the means of each type of Measurement made by the calling Sensor
 		//
 
 		vector<Measurement> GetMeasurements() const;
-		// How to use :
-		//
-		// Precondition :
+		// How to use : Returns a vector containing all the Measurements made by the calling Sensor
 		//
 
 		User* GetUser() const;
@@ -60,54 +52,36 @@ class Sensor {
 		//
 
 		float GetLatitude() const;
-		// How to use :
-		//
-		// Precondition :
-		//
+		// How to use : Returns the latitude of the calling Sensor
 
 		float GetLongitude() const;
-		// How to use :
-		//
-		// Precondition :
-		//
+		// How to use : Returns the longitude of the calling Sensor
 
 		const string& GetId() const;
-		// How to use :
+		// How to use : Returns the id of the calling Sensor
 		//
 		// Precondition :
 		//
 
 		//------------------------------------------------- Operators overloading
-		bool operator<(const Sensor&) const;
-		// How to use :
+		bool operator<(const Sensor& aSensor) const;
+		// How to use : Returns true if aSensor's id is higher than the calling Sensor's one
 		//
-		// Precondition :
-		//
+
 
 		friend ostream& operator<<(std::ostream&, const Sensor&);
-		// How to use :
-		//
-		// Precondition :
-		//
 
 		//-------------------------------------------- Constructors - destructor
-		Sensor(const SensorData&, const vector<MeasurementData>&, const set<AttributeData>&);
-		// How to use :
-		//
-		// Precondition :
-		//
-
-		Sensor(const SensorData&, const UserData&, const vector<MeasurementData>&, const set<AttributeData>&);
-		// How to use :
-		//
-		// Precondition :
+		Sensor(const SensorData& aSensorData, const vector<MeasurementData>& aMeasurementsDataVector, const set<AttributeData>& anAttributeDataSet);
+		// 	How to use : Constructs a Sensor by parsing data in aSensorData and linking it to the Measurements contained in aMeasurementsDataVector
+		// 	it has made and the respective Attributes contained on the set
 		//
 
-		Sensor(const string&);
-		// How to use :
-		//
-		// Precondition :
-		//
+
+		Sensor(const SensorData& aSensorData, const UserData& anUserData, const vector<MeasurementData>& aMeasurementsDataVector, const set<AttributeData>& anAttributeDataSet);
+		// 	How to use : Constructs a Sensor by parsing data in aSensorData and linking it to the Measurements contained in aMeasurementsDataVector
+		// 	it has made and the respective Attributes contained on the set. Furthermore, it associates the Sensor to it's User
+
 
 		Sensor(const string&, float, float, bool, User*, const vector<Measurement>&);
 		// How to use :
@@ -121,15 +95,19 @@ class Sensor {
 		// Precondition :
 		//
 
+		Sensor(const string& id);
+		// How to use : Constructs a Sensor by giving it the id in parameter. None of the other attributes are affected.
+		//
+		// Precondition :
+		//
+
 	//------------------------------------------------------------------ PROTECTED
 	protected:
 		//----------------------------------------------------- Protected Methods
 
-		//----------------------------------------------------- Protected attributes
 
 	//------------------------------------------------------------------ PRIVATE
 	private:
-		//----------------------------------------------------- Private Methods
 
 		//----------------------------------------------------- Private Attributes
 		string id;
@@ -140,6 +118,5 @@ class Sensor {
 		vector<Measurement> measurements;
 };
 
-//-------------------------------- Other definitions depending on <Sensor>
 
 #endif // Sensor_H

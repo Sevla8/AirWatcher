@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Reader  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -91,8 +91,9 @@ struct ProviderData {
 };
 
 //------------------------------------------------------------------------
-// Role of <Reader>
-//	Read and parse data in csv files
+// 	Role of <Reader>
+//
+//	Read and parse data contained in csv files into the correspondig structures defined above
 //
 //------------------------------------------------------------------------
 
@@ -100,39 +101,57 @@ class Reader {
 	//----------------------------------------------------------------- PUBLIC
 	public:
 		//----------------------------------------------------- Public methods
-		static set<SensorData> readSensors(string filename);
-		// How to use :
-		//
+		static set<SensorData> readSensors(string filepath);
+		// 	How to use : Parse the data contained in the file whose path is given by filepath
+		//	into SensorDatas that are inserted in a set. The set is returned.
+		// 	Precondition : The document has the following structure :
+		//		SensorNumber;latitude;longitude;
+		//		Example : Sensor0;44;-1;
 		// Precondition :
 		//
 
-		static set<UserData> readUsers(string filename);
-		// How to use :
-		//
+		static set<UserData> readUsers(string filepath);
+		// 	How to use : Parse the data contained in the file whose path is given by filepath
+		//	into UserDatas that are inserted in a set. The set is returned.
+		// 	Precondition : The document has the following structure :
+		//		UserNumber;SensorTheyHave;
+		//		Example : User0;Sensor70;
 		// Precondition :
 		//
 
-		static multiset<MeasurementData> readMeasurements(string filename);
-		// How to use :
-		//
+		static multiset<MeasurementData> readMeasurements(string filepath);
+		// 	How to use : Parse the data contained in the file whose path is given by filepath
+		//	into MeasurementDatas that are inserted in a multiset. The multiset is returned.
+		// 	Precondition : The document has the following structure :
+		//		DateofMeasure TimeOfMeasure;SensorNumber;AttributeMeasured;ValueOfMeasure;
+		//		Example : 2019-01-01 12:00:00;Sensor0;O3;50.25;
 		// Precondition :
 		//
 
-		static set<AttributeData> readAttributes(string filename);
-		// How to use :
-		//
+		static set<AttributeData> readAttributes(string filepath);
+		// 	How to use : Parse the data contained in the file whose path is given by filepath
+		//	into AttributeDatas that are inserted in a set. The set is returned.
+		// 	Precondition : The document has the following structure :
+		//		AttributeMeasured;UnitsOfMeasure;TextDescriptionInFrench
+		//		Example : O3;µg/m3;concentration d'ozone;
 		// Precondition :
 		//
 
-		static set<CleanerData> readCleaners(string filename);
-		// How to use :
-		//
+		static set<CleanerData> readCleaners(string filepath);
+		// 	How to use : Parse the data contained in the file whose path is given by filepath
+		//	into CleanerDatas that are inserted in a set. The set is returned.
+		// 	Precondition : The document has the following structure :
+		//		CleanerNumber;Latitude;Longitude;DateBeginOfOperation TimeBeginOfOperation;DateEndOfOperation TimeEndOfOperation;
+		//		Example : Cleaner0;45.333333;1.333333;2019-02-01 12:00:00;2019-03-01 00:00:00;
 		// Precondition :
 		//
 
-		static set<ProviderData> readProviders(string filename);
-		// How to use :
-		//
+		static set<ProviderData> readProviders(string filepath);
+		// 	How to use : Parse the data contained in the file whose path is given by filepath
+		//	into ProviderDatas that are inserted in a set. The set is returned.
+		// 	Precondition : The document has the following structure :
+		//		ProviderNumber;CleanerTheyHave;
+		//		Example : Provider0;Cleaner0;
 		// Precondition :
 		//
 
@@ -151,7 +170,6 @@ class Reader {
 		//----------------------------------------------------- Private Methods
 
 		//----------------------------------------------------- Private Attributes
-
 };
 
 //-------------------------------- Other definitions depending on <Reader>

@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Controller  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -22,23 +22,17 @@ using namespace std;
 //------------------------------------------------------ Include of local files
 #include "Controller.h"
 
-//------------------------------------------------------------- Constants
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
 
 const Model& Controller::getModel()
-//Algorithm :
-//
 {
 	return model;
 }  //----- End of getModel
 
 map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end, bool isPeriod)
-//Algorithm :
-//
-{
+{ 	//	O(S+N)
 	//define airQuality
 	string airQuality="";
 	float indexAir = 0.0;
@@ -53,23 +47,24 @@ map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, f
 		currentLatitude = currentSensor.GetLatitude();
 		currentLongitude = currentSensor.GetLongitude();
 		float distance = sqrt(pow(currentLatitude - latitude, 2) + pow(currentLongitude - longitude, 2));
+
 		if (distance <= conversionRadius) {
-			sensorsInArea.push_back(currentSensor);
+			sensorsInArea.push_back(currentSensor); // O(1)
 		}
-	}
+	} // O(S)
 
 	map<string, float> result;
 	vector <Measurement> currentMeasurementList;
 
 	//to make the difference between time interval and ponctual measurement
 	if (!isPeriod)	{
-		for (const auto &currentSensor : sensorsInArea) {
-			for (const auto &currentMeasurement : currentSensor.GetMeasurements()) {
+		for (const auto &currentSensor : sensorsInArea) { // O(S)
+			for (const auto &currentMeasurement : currentSensor.GetMeasurements()) { // O(N/S)
 				if (currentMeasurement.GetDate().EqualsDay(begin)) {
-					currentMeasurementList.push_back(currentMeasurement);
+					currentMeasurementList.push_back(currentMeasurement); //O(1)
 				}
 			}
-		}
+		} // O(N)
 	}
 	else {
 		for (const auto &currentSensor : sensorsInArea) {
@@ -79,28 +74,28 @@ map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, f
 				}
 			}
 		}
-	}
+	} // O(N)
+
 	if(currentMeasurementList.empty()){
 		result.insert({"NO DATA", 0.0});
 	} else {
-		result = CalculateMeans(currentMeasurementList);
+		result = CalculateMeans(currentMeasurementList); // O(N)
 	}
 	return result;
 } //----- End of analyseAirQualityInCircularArea
 
 vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end)
-//Algorithm :
-//
-{
+{ 	// O(Nlog(N))
 	multimap<double, Sensor> map;
 	Sensor target = model.FindSensor(sensorId);
 	set<Sensor> sensors = model.GetSensors();
 	vector<double> targetMean = target.CalculateMean(begin, end);
 	for (const auto& sensor : sensors) {
-		vector<double> mean = sensor.CalculateMean(begin, end);
-		double difference = CompareMeans(targetMean, mean);
-		map.insert({difference, sensor});
-	}
+		vector<double> mean = sensor.CalculateMean(begin, end); // O (N/S) in avg
+		double difference = CompareMeans(targetMean, mean);	// O (1)
+		map.insert({difference, sensor});	// O (Nlog(size+N) )
+	} // O (S(N/S + Nlog(N)) -> O(Nlog(N))
+
 	vector<Sensor> result;
 	for (const auto& entry : map) {
 		result.push_back(entry.second);
@@ -109,20 +104,21 @@ vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, cons
 }//----- End of rankingSensorsSimilarity
 
 double Controller::CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const
-//Algorithm :
-//
 {
-	double diff = abs(mean1[0] - mean2[0])
-				+ abs(mean1[1] - mean2[1])
-				+ abs(mean1[2] - mean2[2])
-				+ abs(mean1[3] - mean2[3]);
+	// Knowing the max prevents SegmentationFaults
+	int maxIndex = max(mean1.size(), mean1.size());
+
+	double diff = 0.0;
+
+	for(int i=0; i< maxIndex;i++){
+		diff += abs(mean1[i] - mean2[i]);
+	}
 	return diff;
 }//----- End of CompareMeans
 
+
 map<string, float> Controller::CalculateMeans(const vector<Measurement>& measurements) const
-//Algorithm :
-//
-{
+{ // O(N)
 	double sumO3 = 0;
 	double sumSO2 = 0;
 	double sumNO2 = 0;
@@ -158,8 +154,6 @@ map<string, float> Controller::CalculateMeans(const vector<Measurement>& measure
 }//----- End of calculateMeans
 
 string Controller::CalculateAirQualityValue(const map<string, float>& mapMeans) const
-//Algorithm :
-//
 {
 	float o3;
 	float so2;
@@ -190,34 +184,19 @@ string Controller::CalculateAirQualityValue(const map<string, float>& mapMeans) 
 	return airQuality;
 } //----- End of CalculateAirQualityValue
 
-//------------------------------------------------- Operators overloadinf
+//------------------------------------------------- Operators overloading
 
 ostream& operator<<(std::ostream& os, const Controller& c)
-// Algorithm :
-//
 {
 	return os << c.model;
 } //----- End of operator <<
 
-//-------------------------------------------- constructors - destructor
-
+//-------------------------------------------- Constructors - destructor
 Controller::Controller()
-// Algorithm :
-//
 {
 } //----- End of Controller
 
 Controller::~Controller()
-// Algorithm :
-//
 {
 } //----- End of ~Controller
-
-//------------------------------------------------------------------ PROTECTED
-
-//----------------------------------------------------- Protected Methods
-
-//------------------------------------------------------------------ PRIVATE
-
-//----------------------------------------------------- Private Methods
 

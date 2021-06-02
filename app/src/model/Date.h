@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Date  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -24,7 +24,8 @@ using namespace std;
 //------------------------------------------------------------------------
 // Role of <Date>
 //
-//
+//	Simple class representing dates using integers for year, month, day, hours, minutes, seconds
+//	and  providing simple comparisons between Dates
 //------------------------------------------------------------------------
 
 class Date {
@@ -74,54 +75,47 @@ class Date {
 		//
 
 		//------------------------------------------------- Operators overloading
-		bool operator<(const Date&) const;
+		bool operator<(const Date& aDate) const;
+		// How to use : retruns true if aDate is less recent than the calling Date
+		//
+		// Precondition : aDate is not null
+		//
+
+		bool operator==(const Date& aDate) const;
+		// How to use : retruns true if aDate is exactly the same as the calling Date
+		//
+		// Precondition : aDate is not null
+		//
+
+
+		bool operator<=(const Date& aDate) const;
+		// How to use : retruns true if aDate is exactly the same or less recent than the calling Date
+		//
+		// Precondition : aDate is not null
+		//
+
+		bool operator>=(const Date& aDate) const;
+		// How to use : retruns true if aDate is exactly the same or more recent than the calling Date
+		//
+		// Precondition : aDate is not null
+		//
+
+		friend std::istream& operator>>(std::istream& is, Date& aDate);
 		// How to use :
 		//
 		// Precondition :
 		//
 
-		bool operator==(const Date&) const;
-		// How to use :
-		//
-		// Precondition :
-		//
-
-		bool operator<=(const Date&) const;
-		// How to use :
-		//
-		// Precondition :
-		//
-
-		bool operator>=(const Date&) const;
-		// How to use :
-		//
-		// Precondition :
-		//
-
-		friend std::istream& operator>>(std::istream&, Date&);
-		// How to use :
-		//
-		// Precondition :
-		//
-
-		friend ostream& operator<<(std::ostream&, const Date&);
+		friend ostream& operator<<(std::ostream& is, const Date& aDate);
 		// How to use :
 		//
 		// Precondition :
 		//
 
 		//-------------------------------------------- Constructors - destructor
-		Date(int, int, int, int, int, int);
-		// How to use (copy constructor): Instantiate and initialize a new instace of Date having the attributes affected by the
-		//								  corresponding parameters
-		// Precondition :
-		//
-
-		Date();
-		// How to use : Initialize a new date having all the values as the default Date : 01-01-1970 00:00:00
-		//
-		// Precondition :
-		//
+		Date(int year = 1970, int month = 1, int day = 1, int hours = 0, int minutes = 0, int seconds=0);
+		// How to use : Instantiate and initialize a new instace of Date having the attributes affected by the
+		// corresponding parameters. Initialized by default as 01/01/1970 00:00:00
 
 	//------------------------------------------------------------------ PROTECTED
 	protected:
