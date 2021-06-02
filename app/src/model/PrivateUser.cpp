@@ -26,6 +26,27 @@ using namespace std;
 
 //----------------------------------------------------- Public Methods
 
+const string& PrivateUser::GetId() const
+// Algorithm :
+//
+{
+	return id;
+} //----- End of GetId
+
+int PrivateUser::GetScore() const
+// Algorithm :
+//
+{
+	return score;
+} //----- End of GetScore
+
+bool PrivateUser::GetMalicious() const
+// Algorithm :
+//
+{
+	return malicious;
+} //----- End of GetMalicious
+
 //------------------------------------------------- Operators overloading
 
 ostream& operator<<(std::ostream& os, const PrivateUser& pu)
@@ -57,6 +78,24 @@ PrivateUser::PrivateUser(const UserData& ud) :
 PrivateUser::PrivateUser()
 // Algorithm :
 //
+{
+} //----- End of PrivateUser
+
+PrivateUser::PrivateUser(const string& id, int score, bool malicious) :
+// Algorithm :
+//
+	id(id),
+	score(score),
+	malicious(malicious)
+{
+} //----- End of PrivateUser
+
+PrivateUser::PrivateUser(const PrivateUser& privateUser) :
+// Algorithm :
+//
+	id(privateUser.id),
+	score(privateUser.score),
+	malicious(privateUser.malicious)
 {
 } //----- End of PrivateUser
 

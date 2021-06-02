@@ -31,6 +31,12 @@ class Provider : public User {
 	public:
 		//----------------------------------------------------- Public methods
 
+		const string& GetId() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
 		//------------------------------------------------- Operators overloading
 		bool operator<(const Provider&) const;
 		// How to use :
@@ -46,6 +52,18 @@ class Provider : public User {
 
 		//-------------------------------------------- Constructors - destructor
 		Provider(const ProviderData&);
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		Provider();
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		Provider(const string&);
 		// How to use :
 		//
 		// Precondition :

@@ -33,6 +33,7 @@ class Measurement {
 	//----------------------------------------------------------------- PUBLIC
 	public:
 		//----------------------------------------------------- Public methods
+
 		const Attribute& GetAttribute() const;
 		// How to use :
 		//
@@ -45,7 +46,7 @@ class Measurement {
 		// Precondition :
 		//
 
-		double GetValue() const;
+		float GetValue() const;
 		// How to use :
 		//
 		// Precondition :
@@ -77,6 +78,18 @@ class Measurement {
 		// Precondition :
 		//
 
+		Measurement(float, const Date&, const Attribute&);
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		Measurement();
+		// How to use :
+		//
+		// Precondition :
+		//
+
 	//------------------------------------------------------------------ PROTECTED
 	protected:
 		//----------------------------------------------------- Protected Methods
@@ -88,7 +101,7 @@ class Measurement {
 		//----------------------------------------------------- Private Methods
 
 		//----------------------------------------------------- Private Attributes
-		double value;
+		float value;
 		Date date;
 		Attribute attribute;
 };

@@ -31,11 +31,48 @@ class Date {
 	//----------------------------------------------------------------- PUBLIC
 	public:
 		//----------------------------------------------------- Public methods
-		bool equalsDay(const Date&) const;
+		int GetYear() const;
 		// How to use :
 		//
 		// Precondition :
 		//
+
+		int GetMonth() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		int GetDay() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		int GetHour() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		int GetMinute() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		int GetSecond() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		bool EqualsDay(const Date&) const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
 		//------------------------------------------------- Operators overloading
 		bool operator<(const Date&) const;
 		// How to use :

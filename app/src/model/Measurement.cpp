@@ -42,7 +42,7 @@ const Date& Measurement::GetDate() const
 	return date;
 } //----- End of method GetDate
 
-double Measurement::GetValue() const
+float Measurement::GetValue() const
 // Algorithm :
 //
 {
@@ -81,6 +81,20 @@ Measurement::Measurement(const MeasurementData& md, const AttributeData& ad) :
 	value(md.value),
 	date(md.date),
 	attribute(ad) {
+} //----- End of Measurement
+
+Measurement::Measurement(float value, const Date& date, const Attribute& attribute) :
+// Algorithm :
+//
+	value(value),
+	date(date),
+	attribute(attribute) {
+} //----- End of Measurement
+
+Measurement::Measurement()
+// Algorithm :
+//
+{
 } //----- End of Measurement
 
 //------------------------------------------------------------------ PROTECTED

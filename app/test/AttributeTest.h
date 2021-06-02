@@ -8,11 +8,8 @@
 class AttributeTest : public ::testing::Test {
 	protected:
 		virtual void SetUp() {
-			AttributeData attributeData1 = *Reader::readAttributes("../../dataset/tests/attributes.csv").begin();
-			attribute1 = Attribute(attributeData1);
-
-			AttributeData attributeData2 = *++Reader::readAttributes("../../dataset/tests/attributes.csv").begin();
-			attribute2 = Attribute(attributeData2);
+			attribute1 = Attribute("NO2", "unit1", "description1");
+			attribute2 = Attribute("O3", "unit2", "description2");
 		}
 
 		Attribute attribute1;

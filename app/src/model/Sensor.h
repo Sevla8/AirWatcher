@@ -47,6 +47,18 @@ class Sensor {
 		// Precondition :
 		//
 
+		User* GetUser() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		bool GetMalfunctioning() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
 		float GetLatitude() const;
 		// How to use :
 		//
@@ -59,7 +71,7 @@ class Sensor {
 		// Precondition :
 		//
 
-		string GetId() const;
+		const string& GetId() const;
 		// How to use :
 		//
 		// Precondition :
@@ -92,6 +104,18 @@ class Sensor {
 		//
 
 		Sensor(const string&);
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		Sensor(const string&, float, float, bool, User*, const vector<Measurement>&);
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		Sensor();
 		// How to use :
 		//
 		// Precondition :

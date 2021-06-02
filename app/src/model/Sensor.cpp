@@ -27,6 +27,20 @@ using namespace std;
 
 //----------------------------------------------------- Public Methods
 
+User* Sensor::GetUser() const
+// How to use :
+//
+{
+	return user;
+} //----- End of GetUser
+
+bool Sensor::GetMalfunctioning() const
+// How to use :
+//
+{
+	return malfunctioning;
+} //----- End of GetMalfunctioning
+
 float Sensor::GetLatitude() const
 // How to use :
 //
@@ -41,7 +55,7 @@ float Sensor::GetLongitude() const
 	return longitude;
 } //----- End of GetLongitude
 
-string Sensor::GetId() const
+const string& Sensor::GetId() const
 // How to use :
 //
 {
@@ -162,7 +176,27 @@ Sensor::Sensor(const SensorData& sd, const UserData& ud, const vector<Measuremen
 } //----- End of Sensor
 
 Sensor::Sensor(const string& id) :
+// Algorithm :
+//
 	id(id) {
+} //----- End of Sensor
+
+Sensor::Sensor(const string& id, float latitude, float longitude, bool malfunctioning, User* user, const vector<Measurement>& measurements) :
+// Algorithm :
+//
+	id(id),
+	latitude(latitude),
+	longitude(longitude),
+	malfunctioning(malfunctioning),
+	measurements(measurements) {
+
+	user = new User(*user);
+} //----- End of Sensor
+
+Sensor::Sensor()
+// Algorithm :
+//
+{
 } //----- End of Sensor
 
 //------------------------------------------------------------------ PROTECTED

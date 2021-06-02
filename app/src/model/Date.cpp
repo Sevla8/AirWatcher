@@ -25,12 +25,54 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-bool Date::equalsDay(const Date& d) const
+int Date::GetYear() const
+// Algorithm :
+//
+{
+	return year;
+} //----- End of GetYear
+
+int Date::GetMonth() const
+// Algorithm :
+//
+{
+	return month;
+} //----- End of GetMonth
+
+int Date::GetDay() const
+// Algorithm :
+//
+{
+	return day;
+} //----- End of GetDay
+
+int Date::GetHour() const
+// Algorithm :
+//
+{
+	return hour;
+} //----- End of GetHour
+
+int Date::GetMinute() const
+// Algorithm :
+//
+{
+	return minute;
+} //----- End of GetMinute
+
+int Date::GetSecond() const
+// Algorithm :
+//
+{
+	return second;
+} //----- End of GetSecond
+
+bool Date::EqualsDay(const Date& d) const
 // Algorithm :
 //
 {
 	return year == d.year && month == d.month && day == d.day;
-} //----- End of equalsDay
+} //----- End of EqualsDay
 
 //------------------------------------------------- Operators overloading
 

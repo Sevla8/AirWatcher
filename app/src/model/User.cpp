@@ -49,6 +49,12 @@ User::User(const UserData& ud)
 {
 } //----- End of User
 
+User::User(const User&)
+// Algorithm :
+//
+{
+} //----- End of User
+
 User::~User()
 // Algorithm :
 //

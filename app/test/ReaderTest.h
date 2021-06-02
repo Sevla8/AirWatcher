@@ -1,5 +1,5 @@
-#ifndef READERTEST_H
-#define READERTEST_H
+#ifndef READER_TEST_H
+#define READER_TEST_H
 
 #include "gtest/gtest.h"
 #include "../src/factory/Reader.h"

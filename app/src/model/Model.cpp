@@ -43,12 +43,19 @@ Sensor Model::FindSensor(const string& id) const
 	return *iter;
 } //----- End of method FindSensor
 
-set<Sensor> Model::GetSensors() const
+const set<Sensor>& Model::GetSensors() const
 // Algorithm :
 //
 {
 	return sensors;
-} //----- End of GetSensor
+} //----- End of GetSensors
+
+const set<Cleaner>& Model::GetCleaners() const
+// Algorithm :
+//
+{
+	return cleaners;
+} //----- End of GetCleaners
 
 //------------------------------------------------- Operators overloadinf
 
@@ -97,6 +104,13 @@ Model::Model()
 		if (exist) sensors.insert(Sensor(sd, *userData.find(UserData(iter.id)), vector, attributeData));
 		else sensors.insert(Sensor(sd, vector, attributeData));
 	}
+}  //----- End of Model
+
+Model::Model(const set<Sensor>& sensors, const set<Cleaner>& cleaners) :
+// Algorithm :
+//
+	sensors(sensors),
+	cleaners(cleaners) {
 }  //----- End of Model
 
 //------------------------------------------------------------------ PROTECTED

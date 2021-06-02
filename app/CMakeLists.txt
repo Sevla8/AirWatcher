@@ -35,12 +35,24 @@ set(SOURCE_FILES
 )
 
 set(TEST_FILES
-	test/ReaderTest.cpp
-	test/ReaderTest.h
 	test/AttributeTest.h
 	test/AttributeTest.cpp
+	test/CleanerTest.h
+	test/CleanerTest.cpp
 	test/ControllerTest.h
 	test/ControllerTest.cpp
+	test/DateTest.h
+	test/DateTest.cpp
+	test/MeasurementTest.h
+	test/MeasurementTest.cpp
+	test/PrivateUserTest.h
+	test/PrivateUserTest.cpp
+	test/ProviderTest.h
+	test/ProviderTest.cpp
+	test/ReaderTest.h
+	test/ReaderTest.cpp
+	test/SensorTest.h
+	test/SensorTest.cpp
 )
 
 add_executable(AirWatcher src/main.cpp ${SOURCE_FILES})

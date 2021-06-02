@@ -2,8 +2,20 @@
 
 // Test of the method Controller::analyseAirQualityInCircularArea() method does
 
-TEST_F(ControllerTest, AirQuality) {
-	ASSERT_EQ("Bon", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44, -1, 10, debut, fin, true)));
+    // cout<<"Choose the longitude. (44 : 47.6)"<<endl;
+    // cin>>longitude;
+    // cout<<"Choose the latitude. (-1 : 5.3)"<<endl;
+
+TEST_F(ControllerTest, AirQuality1) {
+	ASSERT_EQ("Bad", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, -1.0f, 10.0f, debut, fin, true)));
+}
+
+TEST_F(ControllerTest, AirQuality2) {
+	ASSERT_EQ("Poor", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(47.0f, 5.0f, 1.0f, debut, fin, true)));
+}
+
+TEST_F(ControllerTest, AirQuality3) {
+	ASSERT_EQ("Very good", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(46.0f, 2.0f, 0.1f, debut, fin, true)));
 }
 
 // TEST_F(ControllerTest, RankingSensorSimilarities)

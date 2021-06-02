@@ -32,6 +32,24 @@ class PrivateUser : public User {
 	public:
 		//----------------------------------------------------- Public methods
 
+		const string& GetId() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		int GetScore() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		bool GetMalicious() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
 		//------------------------------------------------- Operators overloading
 		bool operator<(const PrivateUser&) const;
 		// How to use :
@@ -52,7 +70,19 @@ class PrivateUser : public User {
 		// Precondition :
 		//
 
+		PrivateUser(const string&, int, bool);
+		// How to use :
+		//
+		// Precondition :
+		//
+
 		PrivateUser(const UserData&);
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		PrivateUser(const PrivateUser&);
 		// How to use :
 		//
 		// Precondition :

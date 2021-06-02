@@ -32,6 +32,43 @@ using namespace std;
 class Cleaner {
 	//----------------------------------------------------------------- PUBLIC
 	public:
+		//----------------------------------------------------- Public methods
+		const string& GetId() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		float GetLatitude() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		float GetLongitude() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		const Date& GetStart() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		const Date& GetStop() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		const Provider& GetProvider() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
 		//------------------------------------------------- Operators overloading
 		bool operator<(const Cleaner&) const;
 		// How to use :
@@ -47,6 +84,18 @@ class Cleaner {
 
 		//-------------------------------------------- Constructors - destructor
 		Cleaner(const CleanerData&, const ProviderData&);
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		Cleaner(const string&, float, float, const Date&, const Date&, const Provider&);
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		Cleaner();
 		// How to use :
 		//
 		// Precondition :

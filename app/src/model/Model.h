@@ -31,13 +31,19 @@ class Model {
 	//----------------------------------------------------------------- PUBLIC
 	public:
 		//----------------------------------------------------- Public methods
-		Sensor FindSensor(const string& id) const;
+		const set<Sensor>& GetSensors() const;
 		// How to use :
 		//
 		// Precondition :
 		//
 
-		set<Sensor> GetSensors() const;
+		const set<Cleaner>& GetCleaners() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		Sensor FindSensor(const string& id) const;
 		// How to use :
 		//
 		// Precondition :
@@ -52,6 +58,12 @@ class Model {
 
 		//-------------------------------------------- Constructors - destructor
 		Model();
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		Model(const set<Sensor>&, const set<Cleaner>&);
 		// How to use :
 		//
 		// Precondition :

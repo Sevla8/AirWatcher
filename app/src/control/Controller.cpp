@@ -65,7 +65,7 @@ map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, f
 	if (!isPeriod)	{
 		for (const auto &currentSensor : sensorsInArea) {
 			for (const auto &currentMeasurement : currentSensor.GetMeasurements()) {
-				if (currentMeasurement.GetDate().equalsDay(begin)) {
+				if (currentMeasurement.GetDate().EqualsDay(begin)) {
 					currentMeasurementList.push_back(currentMeasurement);
 				}
 			}

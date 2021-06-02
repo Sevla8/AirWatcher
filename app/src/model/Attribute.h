@@ -37,6 +37,18 @@ class Attribute {
 		// Precondition :
 		//
 
+		const string& GetUnit() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		const string& GetDescription() const;
+		// How to use :
+		//
+		// Precondition :
+		//
+
 		//------------------------------------------------- Operators overloading
 		bool operator<(const Attribute&) const;
 		// How to use :
@@ -52,6 +64,12 @@ class Attribute {
 
 		//-------------------------------------------- Constructors - destructor
 		Attribute();
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		Attribute(const string&, const string&, const string&);
 		// How to use :
 		//
 		// Precondition :

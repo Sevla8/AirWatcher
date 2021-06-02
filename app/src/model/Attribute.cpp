@@ -34,6 +34,20 @@ const string& Attribute::GetId() const
 	return id;
 } //----- End of GetId
 
+const string& Attribute::GetUnit() const
+// Algorithm :
+//
+{
+	return unit;
+} //----- End of GetUnit
+
+const string& Attribute::GetDescription() const
+// Algorithm :
+//
+{
+	return description;
+} //----- End of GetDescription
+
 //------------------------------------------------- Operators overloading
 
 ostream& operator<<(std::ostream& os, const Attribute& a)
@@ -56,8 +70,16 @@ Attribute::Attribute()
 // Algorithm :
 //
 {
-
 }
+
+Attribute::Attribute(const string& id, const string& unit, const string& description) :
+// Algorithm :
+//
+	id(id),
+	unit(unit),
+	description(description) {
+}  //----- End of Attribute
+
 
 Attribute::Attribute(const AttributeData& ad) :
 // Algorithm :

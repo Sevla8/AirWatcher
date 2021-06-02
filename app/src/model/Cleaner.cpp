@@ -28,6 +28,48 @@ using namespace std;
 
 //----------------------------------------------------- Public Methods
 
+const string& Cleaner::GetId() const
+// Algorithm :
+//
+{
+	return id;
+} //----- End of GetId
+
+float Cleaner::GetLatitude() const
+// Algorithm :
+//
+{
+	return latitude;
+} //----- End of GetLatitude
+
+float Cleaner::GetLongitude() const
+// Algorithm :
+//
+{
+	return longitude;
+} //----- End of GetLongitude
+
+const Date& Cleaner::GetStart() const
+// Algorithm :
+//
+{
+	return start;
+} //----- End of GetStart
+
+const Date& Cleaner::GetStop() const
+// Algorithm :
+//
+{
+	return stop;
+} //----- End of GetStop
+
+const Provider& Cleaner::GetProvider() const
+// Algorithm :
+//
+{
+	return provider;
+} //----- End of GetProvider
+
 //------------------------------------------------- Operators overloading
 
 ostream& operator<<(std::ostream& os, const Cleaner& c)
@@ -56,6 +98,23 @@ Cleaner::Cleaner(const CleanerData& cd, const ProviderData& pd) :
 	longitude(cd.longitude),
 	start(cd.start),
 	stop(cd.stop) {
+}  //----- End of Cleaner
+
+Cleaner::Cleaner(const string& id, float latitude, float longitude, const Date& start, const Date& stop, const Provider& provider) :
+// Algorithm :
+//
+	id(id),
+	latitude(latitude),
+	longitude(longitude),
+	start(start),
+	stop(stop),
+	provider(provider) {
+}  //----- End of Cleaner
+
+Cleaner::Cleaner()
+// Algorithm :
+//
+{
 }  //----- End of Cleaner
 
 //------------------------------------------------------------------ PROTECTED

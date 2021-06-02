@@ -26,6 +26,13 @@ using namespace std;
 
 //----------------------------------------------------- Public Methods
 
+const string& Provider::GetId() const
+// Algorithm :
+//
+{
+	return id;
+} //----- End of GetId
+
 //------------------------------------------------- Operators overloadinf
 
 ostream& operator<<(std::ostream& os, const Provider& p)
@@ -50,6 +57,18 @@ Provider::Provider(const ProviderData& pd) :
 	User(),
 	id(pd.id) {
 } //----- End of Provider
+
+Provider::Provider()
+// Algorithm :
+//
+{
+}
+
+Provider::Provider(const string& id) :
+// Algorithm :
+//
+	id(id) {
+}
 
 Provider::~Provider()
 // Algorithm :

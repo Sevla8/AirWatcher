@@ -53,6 +53,12 @@ class User {
 		// Precondition :
 		//
 
+		User(const User&);
+		// How to use :
+		//
+		// Precondition :
+		//
+
 		virtual ~User();
 		// How to use :
 		//
