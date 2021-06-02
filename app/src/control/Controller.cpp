@@ -32,7 +32,7 @@ const Model& Controller::getModel()
 }  //----- End of getModel
 
 map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end, bool isPeriod)
-{
+{ 	//	O(S+N)
 	//define airQuality
 	string airQuality="";
 	float indexAir = 0.0;
@@ -49,22 +49,22 @@ map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, f
 		float distance = sqrt(pow(currentLatitude - latitude, 2) + pow(currentLongitude - longitude, 2));
 		
 		if (distance <= conversionRadius) {
-			sensorsInArea.push_back(currentSensor);
+			sensorsInArea.push_back(currentSensor); // O(1)
 		}
-	}
+	} // O(S)
 
 	map<string, float> result;
 	vector <Measurement> currentMeasurementList;
 
 	//to make the difference between time interval and ponctual measurement
 	if (!isPeriod)	{
-		for (const auto &currentSensor : sensorsInArea) {
-			for (const auto &currentMeasurement : currentSensor.GetMeasurements()) {
-				if (currentMeasurement.GetDate().equalsDay(begin)) {
-					currentMeasurementList.push_back(currentMeasurement);
+		for (const auto &currentSensor : sensorsInArea) { // O(S)
+			for (const auto &currentMeasurement : currentSensor.GetMeasurements()) { // O(N/S)
+				if (currentMeasurement.GetDate().equalsDay(begin)) { 
+					currentMeasurementList.push_back(currentMeasurement); //O(1)
 				}
 			}
-		}
+		} // O(N) 
 	}
 	else {
 		for (const auto &currentSensor : sensorsInArea) {
@@ -74,27 +74,28 @@ map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, f
 				}
 			}
 		}
-	}
+	} // O(N)
+
 	if(currentMeasurementList.empty()){
 		result.insert({"NO DATA", 0.0});
 	} else {
-		result = CalculateMeans(currentMeasurementList);
+		result = CalculateMeans(currentMeasurementList); // O(N)
 	}
 	return result;
 } //----- End of analyseAirQualityInCircularArea
 
 vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end)
-//	Algorithm : 
-{ 
+{ 	// O(Nlog(N))
 	multimap<double, Sensor> map;
 	Sensor target = model.FindSensor(sensorId);
 	set<Sensor> sensors = model.GetSensors();
 	vector<double> targetMean = target.CalculateMean(begin, end);
 	for (const auto& sensor : sensors) {
-		vector<double> mean = sensor.CalculateMean(begin, end);
-		double difference = CompareMeans(targetMean, mean);
-		map.insert({difference, sensor});
-	}
+		vector<double> mean = sensor.CalculateMean(begin, end); // O (N/S) in avg
+		double difference = CompareMeans(targetMean, mean);	// O (1)
+		map.insert({difference, sensor});	// O (Nlog(size+N) )
+	} // O (S(N/S + Nlog(N)) -> O(Nlog(N))
+
 	vector<Sensor> result;
 	for (const auto& entry : map) {
 		result.push_back(entry.second);
@@ -117,7 +118,7 @@ double Controller::CompareMeans(const vector<double>& mean1, const vector<double
 
 
 map<string, float> Controller::CalculateMeans(const vector<Measurement>& measurements) const
-{
+{ // O(N)
 	double sumO3 = 0;
 	double sumSO2 = 0;
 	double sumNO2 = 0;
