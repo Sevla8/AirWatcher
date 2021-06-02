@@ -8,7 +8,7 @@
 *************************************************************************/
 
 //---------- Interface of <Reader> (file Reader.h) ----------------
-#if ! defined ( Reader_H )
+#ifndef Reader_H
 #define Reader_H
 
 //--------------------------------------------------- Used Interfaces
