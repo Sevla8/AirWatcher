@@ -1,9 +1,10 @@
 /*************************************************************************
-                           Reader  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Reader  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Implementation of <Reader> (file Reader.cpp) ------------
@@ -25,166 +26,302 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-// type Reader::Method ( Parameters list )
-// Algorithm :
+
+set<SensorData> Reader::readSensors(string filename)
+//Algorithm :
 //
-//{
-//} //----- End of Method
-
-
-list<Sensor>* Reader::readSensors(string filename) {
+{
 	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
-		return nullptr;
+		cout << "Error : impossible to open the file" << endl;
+		return set<SensorData>();
 	}
 
-	list<Sensor>* sensors = new list<Sensor>();
-	string line;
-	while (getline(is, line)) {
-		istringstream iss(line);
-		Sensor sensor;
-		is >> sensor;
-		sensors->push_back(sensor);
+	set<SensorData> sensors;
+	SensorData sensor;
+	while (is >> sensor) {
+		sensors.insert(sensor);
 	}
 	return sensors;
-}
+} //----- End of readSensors
 
-list<PrivateUser>* Reader::readPrivateUsers(string filename) {
+set<UserData> Reader::readUsers(string filename)
+//Algorithm :
+//
+{
 	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
-		return nullptr;
+		cout << "Error : impossible to open the file" << endl;
+		return set<UserData>();
 	}
 
-	list<PrivateUser>* privateUsers = new list<PrivateUser>();
-	string line;
-	while (getline(is, line)) {
-		istringstream iss(line);
-		PrivateUser privateUser;
-		is >> privateUser;
-		privateUsers->push_back(privateUser);
+	set<UserData> users;
+	UserData user;
+	while (is >> user) {
+		users.insert(user);
 	}
-	return privateUsers;
-}
+	return users;
+} //----- End of readUsers
 
-list<Measurement>* Reader::readMeasurements(string filename) {
-    ifstream is(filename);
+multiset<MeasurementData> Reader::readMeasurements(string filename)
+//Algorithm :
+//
+{
+	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
-		return nullptr;
+		cout << "Error : impossible to open the file" << endl;
+		return multiset<MeasurementData>();
 	}
 
-	list<Measurement>* measurements = new list<Measurement>();
-	string line;
-	while (getline(is, line)) {
-		istringstream iss(line);
-		Measurement measurement;
-		is >> measurement;
-		measurements->push_back(measurement);
+	multiset<MeasurementData> measurements;
+	MeasurementData measurement;
+	while (is >> measurement) {
+		measurements.insert(measurement);
 	}
 	return measurements;
-}
+} //----- End of readMeasurements
 
-list<Attribute>* Reader::readAttributes(string filename) {
-    ifstream is(filename);
+set<AttributeData> Reader::readAttributes(string filename)
+//Algorithm :
+//
+{
+	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
-		return nullptr;
+		cout << "Error : impossible to open the file" << endl;
+		return set<AttributeData>();
 	}
 
-	list<Attribute>* attributes = new list<Attribute>();
-	string line;
-	while (getline(is, line)) {
-		Attribute attribute;
-		is >> attribute;
-		attributes->push_back(attribute);
+	set<AttributeData> attributes;
+	AttributeData attribute;
+	while (is >> attribute) {
+		attributes.insert(attribute);
 	}
 	return attributes;
-}
+} //----- End of readAttributes
 
-list<Cleaner>* Reader::readCleaners(string filename) {
-    ifstream is(filename);
+set<CleanerData> Reader::readCleaners(string filename)
+//Algorithm :
+//
+{
+	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
-		return nullptr;
+		cout << "Error : impossible to open the file" << endl;
+		return set<CleanerData>();
 	}
 
-	list<Cleaner>* cleaners = new list<Cleaner>();
-	string line;
-	while (getline(is, line)) {
-		istringstream iss(line);
-		Cleaner cleaner;
-		is >> cleaner;
-		cleaners->push_back(cleaner);
+	set<CleanerData> cleaners;
+	CleanerData cleaner;
+	while (is >> cleaner) {
+		cleaners.insert(cleaner);
 	}
 	return cleaners;
-}
+} //----- End of readCleaners
 
-list<Provider>* Reader::readProviders(string filename) {
-    ifstream is(filename);
+set<ProviderData> Reader::readProviders(string filename)
+//Algorithm :
+//
+{
+	ifstream is(filename);
 
 	if (!is) {
-        cout << "Error : impossible to open the file" << endl;
-		return nullptr;
+		cout << "Error : impossible to open the file" << endl;
+		return set<ProviderData>();
 	}
 
-	list<Provider>* providers = new list<Provider>();
-	string line;
-	while (getline(is, line)) {
-		istringstream iss(line);
-		Provider provider;
-		is >> provider;
-		providers->push_back(provider);
+	set<ProviderData> providers;
+	ProviderData provider;
+	while (is >> provider) {
+		providers.insert(provider);
 	}
 	return providers;
+} //----- End of readProviders
+
+//------------------------------------------------- Operators overloading
+
+istream& operator>>(std::istream& is, SensorData& s)
+//Algorithm :
+//
+{
+	string tmp;
+	stringstream ss;
+	getline(is, s.id, ';');
+	getline(is, tmp, ';');
+	ss = stringstream(tmp);
+	ss >> s.latitude;
+	getline(is, tmp, ';');
+	ss = stringstream(tmp);
+	ss >> s.longitude;
+	getline(is, tmp);
+	return is;
 }
 
-
-
-//------------------------------------------------- Operators overloadinf
-Reader & Reader::operator = ( const Reader & aReader )
-// Algorithm :
+ostream& operator<<(std::ostream& os, const SensorData& s)
+//Algorithm :
 //
 {
-} //----- End of operator =
+	return os << s.id << ";" << s.latitude << ";" << s.longitude << ";";
+}
 
+bool SensorData::operator<(const SensorData& s) const
+//Algorithm :
+//
+{
+	return id < s.id;
+}
+
+istream& operator>>(std::istream& is, UserData& pa)
+//Algorithm :
+//
+{
+	string tmp;
+	getline(is, pa.id, ';');
+	getline(is, pa.sensorId, ';');
+	getline(is, tmp);
+	return is;
+}
+
+ostream& operator<<(std::ostream& os, const UserData& pa)
+//Algorithm :
+//
+{
+	return os << pa.id << ";" << pa.sensorId << ";";
+}
+
+bool UserData::operator<(const UserData& pu) const
+//Algorithm :
+//
+{
+	return sensorId < pu.sensorId;
+}
+
+istream& operator>>(std::istream& is, MeasurementData& m)
+//Algorithm :
+//
+{
+	string tmp;
+	stringstream ss;
+	getline(is, tmp, ';');
+	ss = stringstream(tmp);
+	ss >> m.date;
+	getline(is, m.sensorId, ';');
+	getline(is, m.attributeId, ';');
+	getline(is, tmp, ';');
+	ss = stringstream(tmp);
+	ss >> m.value;
+	getline(is, tmp);
+	return is;
+}
+
+ostream& operator<<(std::ostream& os, const MeasurementData& m)
+//Algorithm :
+//
+{
+	return os << m.date << ";" << m.sensorId << ";" <<
+		m.attributeId << ";" << m.value << ";";
+}
+
+bool MeasurementData::operator<(const MeasurementData& m) const
+//Algorithm :
+//
+{
+	return sensorId < m.sensorId;
+}
+
+istream& operator>>(std::istream& is, AttributeData& a)
+//Algorithm :
+//
+{
+	string tmp;
+	getline(is, a.id, ';');
+	getline(is, a.unit, ';');
+	getline(is, a.description, ';');
+	getline(is, tmp);
+	return is;
+}
+
+ostream& operator<<(std::ostream& os, const AttributeData& a)
+//Algorithm :
+//
+{
+	return os << a.id << ";" << a.unit << ";" << a.description << ";";
+}
+
+bool AttributeData::operator<(const AttributeData& a) const
+//Algorithm :
+//
+{
+	return id < a.id;
+}
+
+istream& operator>>(std::istream& is, CleanerData& c)
+//Algorithm :
+//
+{
+	string tmp;
+	stringstream ss;
+	getline(is, c.id, ';');
+	getline(is, tmp, ';');
+	ss = stringstream(tmp);
+	ss >> c.latitude;
+	getline(is, tmp, ';');
+	ss = stringstream(tmp);
+	ss >> c.longitude;
+	getline(is, tmp, ';');
+	ss = stringstream(tmp);
+	ss >> c.start;
+	getline(is, tmp, ';');
+	ss = stringstream(tmp);
+	ss >> c.stop;
+	getline(is, tmp);
+	return is;
+}
+
+ostream& operator<<(std::ostream& os, const CleanerData& c)
+//Algorithm :
+//
+{
+	return os << c.id << ";" << c.latitude << ";" << c.longitude <<
+		";" << c.start << ";" << c.stop << ";";
+}
+
+bool CleanerData::operator<(const CleanerData& c) const
+//Algorithm :
+//
+{
+	return id < c.id;
+}
+
+istream& operator>>(std::istream& is, ProviderData& p)
+//Algorithm :
+//
+{
+	string tmp;
+	getline(is, p.id, ';');
+	getline(is, p.cleanerId, ';');
+	getline(is, tmp);
+	return is;
+}
+
+ostream& operator<<(std::ostream& os, const ProviderData& p)
+//Algorithm :
+//
+{
+	return os << p.id << ";" << p.cleanerId << ";";
+}
+
+bool ProviderData::operator<(const ProviderData& p) const
+//Algorithm :
+//
+{
+	return cleanerId < p.cleanerId;
+}
 
 //-------------------------------------------- constructors - destructor
-Reader::Reader ( const Reader & aReader )
-// Algorithm :
-//
-{
-#ifdef MAP
-    cout << "Calling copy constructor of <Reader>" << endl;
-#endif
-} //----- End of Reader (copy constructor)
-
-
-Reader::Reader ( )
-// Algorithm :
-//
-{
-#ifdef MAP
-    cout << "Calling constructor of <Reader>" << endl;
-#endif
-} //----- End of Reader
-
-
-Reader::~Reader ( )
-// Algorithm :
-//
-{
-#ifdef MAP
-    cout << "Calling destructor of <Reader>" << endl;
-#endif
-} //----- End of ~Reader
-
 
 //------------------------------------------------------------------ PROTECTED
 

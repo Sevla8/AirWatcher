@@ -1,9 +1,10 @@
 /*************************************************************************
-                           Provider  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Provider  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Implementation of <Provider> (file Provider.cpp) ------------
@@ -12,68 +13,49 @@
 
 //-------------------------------------------------------- Include of system files
 #include <iostream>
+
 using namespace std;
 
 //------------------------------------------------------ Include of local files
 #include "Provider.h"
+#include "../factory/Reader.h"
 
 //------------------------------------------------------------- Constants
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-// type Provider::Method ( Parameters list )
-// Algorithm :
-//
-//{
-//} //----- End of Method
-string Provider::getId ()
-{
-    return id;
-} //----- End of getId
 
 //------------------------------------------------- Operators overloadinf
-Provider & Provider::operator = ( const Provider & aProvider )
+
+ostream& operator<<(std::ostream& os, const Provider& p)
 // Algorithm :
 //
 {
-} //----- End of operator =
+	return os << p.id << ";";
+} //----- End of operator <<
 
-istream& operator>>(std::istream& is, Provider& a) {
-	return is >> a.id;
-}
-
+bool Provider::operator<(const Provider& p) const
+// Algorithm :
+//
+{
+	return id < p.id;
+} //----- End of operator <
 
 //-------------------------------------------- constructors - destructor
-Provider::Provider ( const Provider & aProvider ) : User()
+
+Provider::Provider(const ProviderData& pd) :
 // Algorithm :
 //
-{
-#ifdef MAP
-    cout << "Calling copy constructor of <Provider>" << endl;
-#endif
-} //----- End of Provider (copy constructor)
-
-
-Provider::Provider ( ) : User()
-// Algorithm :
-//
-{
-#ifdef MAP
-    cout << "Calling constructor of <Provider>" << endl;
-#endif
+	User(),
+	id(pd.id) {
 } //----- End of Provider
 
-
-Provider::~Provider ( )
+Provider::~Provider()
 // Algorithm :
 //
 {
-#ifdef MAP
-    cout << "Calling destructor of <Provider>" << endl;
-#endif
 } //----- End of ~Provider
-
 
 //------------------------------------------------------------------ PROTECTED
 

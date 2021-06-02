@@ -1,19 +1,24 @@
 /*************************************************************************
-                           Measurement  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Measurement  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface of <Measurement> (file Measurement.h) ----------------
-#if ! defined ( Measurement_H )
+#ifndef Measurement_H
 #define Measurement_H
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
 #include "Date.h"
+#include "Attribute.h"
+#include "../factory/Reader.h"
+
 using namespace std;
+
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
@@ -24,79 +29,70 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-class Measurement
-{
-//----------------------------------------------------------------- PUBLIC
+class Measurement {
+	//----------------------------------------------------------------- PUBLIC
+	public:
+		//----------------------------------------------------- Public methods
+		const Attribute& GetAttribute() const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-public:
-//----------------------------------------------------- Public methods
-    // type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+		const Date& GetDate() const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
+		double GetValue() const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
+		//------------------------------------------------- Operators overloading
+		bool operator<(const Measurement&) const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
+		friend ostream& operator<<(std::ostream&, const Measurement&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
+		//-------------------------------------------- Constructors - destructor
+		Measurement(const MeasurementData&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
-//------------------------------------------------- Operators overloading
-    Measurement & operator = ( const Measurement & aMeasurement );
-    // How to use :
-    //
-    // Precondition :
-    //
+		Measurement(const MeasurementData&, const AttributeData&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
+	//------------------------------------------------------------------ PROTECTED
+	protected:
+		//----------------------------------------------------- Protected Methods
 
-//-------------------------------------------- Constructors - destructor
-    Measurement ( const Measurement & aMeasurement );
-    // How to use (copy constructor):
-    //
-    // Precondition :
-    //
+		//----------------------------------------------------- Protected Attributes
 
-    Measurement (Date& theDate, string & theSensorId, string & theAttributeId, float theValue );
-    // How to use : Initialises the attributes value, date, sensorId and attributeId with the corresponding parameters.
-    //              start is initialised as null as well as stop
+	//------------------------------------------------------------------ PRIVATE
+	private:
+		//----------------------------------------------------- Private Methods
 
-    Measurement ( );
-    // How to use :
-    //
-    // Precondition :
-    //
-
-    virtual ~Measurement ( );
-    // How to use :
-    //
-    // Precondition :
-    //
-
-//------------------------------------------------------------------ PROTECTED
-
-friend std::istream& operator>>(std::istream&, Measurement&);
-
-protected:
-//----------------------------------------------------- Protected Methods
-
-//----------------------------------------------------- Protected Attributes
-
-//------------------------------------------------------------------ PRIVATE
-
-private:
-
-//----------------------------------------------------- Private Methods
-
-//----------------------------------------------------- Private Attributes
-
-float value;
-Date date;
-string sensorId;
-string attributeId;
-
-
+		//----------------------------------------------------- Private Attributes
+		double value;
+		Date date;
+		Attribute attribute;
 };
 
 //-------------------------------- Other definitions depending on <Measurement>
 
 #endif // Measurement_H
-

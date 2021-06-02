@@ -1,9 +1,10 @@
 /*************************************************************************
-                           Date  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Date  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Implementation of <Date> (file Date.cpp) ------------
@@ -12,6 +13,8 @@
 
 //-------------------------------------------------------- Include of system files
 #include <iostream>
+#include <sstream>
+
 using namespace std;
 
 //------------------------------------------------------ Include of local files
@@ -22,97 +25,111 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-// type Date::Method ( Parameters list )
+
+//------------------------------------------------- Operators overloading
+
+std::istream& operator>>(std::istream& is, Date& d)
 // Algorithm :
 //
-//{
-//} //----- End of Method
-bool Date::operator <= (Date aDate)
 {
-    bool smaller = false;
+	string tmp;
+	stringstream ss;
+	getline(is, tmp, '-');
+	ss = stringstream(tmp);
+	ss >> d.year;
+	getline(is, tmp, '-');
+	ss = stringstream(tmp);
+	ss >> d.month;
+	getline(is, tmp, ' ');
+	ss = stringstream(tmp);
+	ss >> d.day;
+	getline(is, tmp, ':');
+	ss = stringstream(tmp);
+	ss >> d.hour;
+	getline(is, tmp, ':');
+	ss = stringstream(tmp);
+	ss >> d.minute;
+	getline(is, tmp, ';');
+	ss = stringstream(tmp);
+	ss >> d.second;
+	return is;
+} //----- End of operator >>
 
-    if (this.year<aDate.year)
-    {
-        smaller=true;
-    } else if (this.year==aDate.year && this.month<=aDate.month)
-    {
-        smaller=true;
-    } else if (this.year==aDate.year && this.month==aDate.month && this.day<=aDate.day)
-    {
-        smaller=true;
-    } else if (this.year==aDate.year && this.month==aDate.month && this.day==aDate.day && this.hour<=aDate.hour)
-    {
-        smaller=true;
-    } else if (this.year==aDate.year && this.month==aDate.month && this.day==aDate.day && this.hour==aDate.hour && this.minute<=aDate.minute)
-    {
-        smaller=true;
-    } else if (this.year==aDate.year && this.month==aDate.month && this.day==aDate.day && this.hour==aDate.hour && this.minute==aDate.minute && this.second<=aDate.second)
-    {
-        smaller=true;
-    } 
+ostream& operator<<(std::ostream& os, const Date& d)
+// Algorithm :
+//
+{
+	return os << d.year << "-" << d.month << "-" <<
+		d.day << " " << d.hour << ":" << d.minute <<
+		":" << d.second;
+} //----- End of operator <<
 
-    return smaller;
-}
+bool Date::operator<(const Date& d) const
+// Algorithm :
+//
+{
+	if (year < d.year) return true;
+	if (year > d.year) return false;
+	if (month < d.month) return true;
+	if (month > d.month) return false;
+	if (day < d.day) return true;
+	if (day > d.day) return false;
+	if (hour < d.hour) return true;
+	if (hour > d.hour) return false;
+	if (minute < d.minute) return true;
+	if (minute > d.minute) return false;
+	if (second < d.second) return true;
+	if (second > d.second) return false;
+	return false;
+} //----- End of operator <
 
-std::istream& operator>>(std::istream& is, Date& date) {
-	char dash, column;
-	return is >> date.year >> dash >> date.month >> dash >>
-		date.day >> date.hour >> column >> date.minute >>
-		column >> date.second;
+bool Date::operator==(const Date& d) const
+// Algorithm :
+//
+{
+	return year == d.year && month == d.month && day == d.day &&
+		hour == d.hour && minute == d.minute && second == d.second;
+} //----- End of operator ==
+
+bool Date::operator<=(const Date& d) const
+// Algorithm :
+//
+{
+	return *this < d || *this == d;
+} //----- End of operator <=
+
+bool Date::operator>=(const Date& d) const
+// Algorithm :
+//
+{
+	return !(*this < d);
 }
 
 //-------------------------------------------- constructors - destructor
-Date::Date ( const Date & aDate )
-{
-#ifdef MAP
-    cout << "Calling copy constructor of <Date>" << endl;
-#endif
-    year = aDate.year;
-    month = aDate.month;
-    day = aDate.day;
-    hour = aDate.hour;
-    minute = aDate.minute;
-    second = aDate.second;
-} //----- End of Date (copy constructor)
 
-Date::Date ( int theYear, int theMonth, int theDay, int theHour, int theMinute, int theSecond )
+Date::Date(int theYear, int theMonth, int theDay, int theHour, int theMinute, int theSecond) :
+	year(theYear),
+	month(theMonth),
+	day(theDay),
+	hour(theHour),
+	minute(theMinute),
+	second(theSecond)
 // Algorithm :
 //
 {
-#ifdef MAP
-    cout << "Calling copy constructor of <Date>" << endl;
-#endif
-    year = theYear;
-    month = theMonth;
-    day = theDay;
-    hour = theHour;
-    minute = theMinute;
-    second = theSecond;
 } //----- End of Date (parameters constructor)
 
-Date::Date ( )
-{
-#ifdef MAP
-    cout << "Calling constructor of <Date>" << endl;
-#endif
-    year = 1970;
-    month = 1;
-    year = 1;
-    hour = 0;
-    minute = 0;
-    second = 0;
-} //----- End of Date
-
-
-Date::~Date ( )
+Date::Date() :
+	year(1970),
+	month(1),
+	day(1),
+	hour(0),
+	minute(0),
+	second(0)
 // Algorithm :
 //
 {
-#ifdef MAP
-    cout << "Calling destructor of <Date>" << endl;
-#endif
-} //----- End of ~Date
-
+} //----- End of Date
 
 //------------------------------------------------------------------ PROTECTED
 

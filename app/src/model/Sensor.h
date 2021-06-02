@@ -1,21 +1,26 @@
 /*************************************************************************
-                           Sensor  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Sensor  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface of <Sensor> (file Sensor.h) ----------------
-#if ! defined ( Sensor_H )
+#ifndef Sensor_H
 #define Sensor_H
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
-#include <list>
+#include <vector>
 #include <iostream>
 #include "Measurement.h"
+#include "PrivateUser.h"
+#include "../factory/Reader.h"
+
 using namespace std;
+
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
@@ -26,99 +31,91 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-class Sensor
-{
-//----------------------------------------------------------------- PUBLIC
+class Sensor {
+	//----------------------------------------------------------------- PUBLIC
+	public:
+		//----------------------------------------------------- Public methods
+		vector<double> CalculateMean(const Date& date1, const Date& date2) const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-public:
-//----------------------------------------------------- Public methods
-    // type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+		vector<Measurement> GetMeasurements() const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    string getId();
-    // How to use : Returns the attribute 'id' of the calling Sensor
-    //
-    // Precondition :
-    //
+		float GetLatitude() const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    float getLatitude();
-    // How to use : Returns the attribute 'latitude' of the calling Sensor
-    //
-    // Precondition :
-    //
+		float GetLongitude() const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    float getLongitude();
-    // How to use : Returns the attribute 'longitude' of the calling Sensor
-    //
-    // Precondition :
-    //
+		string GetId() const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    // CHANGE IN CLASS DIAGRAM
-    bool isMalfuntioning();
-    // How to use : Returns the attribute 'malfunctioning' of the calling Sensor
-    //
-    // Precondition :
-    //
+		//------------------------------------------------- Operators overloading
+		bool operator<(const Sensor&) const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
+		friend ostream& operator<<(std::ostream&, const Sensor&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
+		//-------------------------------------------- Constructors - destructor
+		Sensor(const SensorData&, const vector<MeasurementData>&, const set<AttributeData>&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
+		Sensor(const SensorData&, const UserData&, const vector<MeasurementData>&, const set<AttributeData>&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
-//------------------------------------------------- Operators overloading
-    Sensor & operator = ( const Sensor & aSensor );
-    // How to use :
-    //
-    // Precondition :
-    //
+		Sensor(const string&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
+	//------------------------------------------------------------------ PROTECTED
+	protected:
+		//----------------------------------------------------- Protected Methods
 
-//-------------------------------------------- Constructors - destructor
-    Sensor ( const Sensor & aSensor );
-    // How to use (copy constructor ):
-    //
-    // Precondition :
-    //
+		//----------------------------------------------------- Protected attributes
 
-    Sensor ( );
-    // How to use :
-    //
-    // Precondition :
-    //
+	//------------------------------------------------------------------ PRIVATE
+	private:
+		//----------------------------------------------------- Private Methods
 
-    virtual ~Sensor ( );
-    // How to use :
-    //
-    // Precondition :
-    //
-
-//------------------------------------------------------------------ PROTECTED
-
-friend std::istream& operator>>(std::istream&, Sensor&);
-
-protected:
-//----------------------------------------------------- Protected Methods
-
-//----------------------------------------------------- Protected attributes
-
-//------------------------------------------------------------------ PRIVATE
-
-private:
-
-//----------------------------------------------------- Private Methods
-
-//----------------------------------------------------- Private Attributes
-
-string id;
-float latitude;
-float longitude;
-bool malfunctioning;
-list<Measurement> measurements;
+		//----------------------------------------------------- Private Attributes
+		string id;
+		float latitude;
+		float longitude;
+		bool malfunctioning;
+		User* user;
+		vector<Measurement> measurements;
 };
-// TODO mettre list de mesures
-// TODO sensor à une liste de mesure. D'abordinitialiser sensors avec liste mesure = [0], ensuite mesure à un attribut (et pas un attribut id), quan don créé les object du file reader on met attribut à null.
+
 //-------------------------------- Other definitions depending on <Sensor>
 
 #endif // Sensor_H
-

@@ -1,18 +1,23 @@
 /*************************************************************************
-                           User  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   User  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface of <User> (file User.h) ----------------
-#if ! defined ( User_H )
+#ifndef User_H
 #define User_H
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
+#include <iostream>
+#include "../factory/Reader.h"
+
 using namespace std;
+
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
@@ -23,65 +28,52 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-class User
-{
-//----------------------------------------------------------------- PUBLIC
+class User {
+	//----------------------------------------------------------------- PUBLIC
+	public:
+		//----------------------------------------------------- Public methods
 
-public:
-//----------------------------------------------------- Public methods
-    // type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+		//------------------------------------------------- Operators overloading
+		friend ostream& operator<<(std::ostream&, const User&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    // BESOIN DE CREER UNE FONCTION PRIVATE GETPASSWORD ET LA METTRE COMME AMIE DANS CLASSE OU ON SE LOG
-    string getId();
-    // How to use : returns a copy of the attribute 'id' of the calling User
-    //
-    // Precondition :
-    //
+		//-------------------------------------------- Constructors - destructor
+		User();
+		// How to use :
+		//
+		// Precondition :
+		//
 
-//-------------------------------------------- Constructors - destructor
-    User ( const User & aUser );
-    // How to use (copy constructor):
-    //
-    // Precondition :
-    //
+		User(const UserData&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    User ( );
-    // How to use :
-    //
-    // Precondition :
-    //
+		virtual ~User();
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    virtual ~User ( );
-    // How to use :
-    //
-    // Precondition :
-    //
+	//------------------------------------------------------------------ PROTECTED
+	protected:
+		//----------------------------------------------------- Protected Methods
 
-//------------------------------------------------------------------ PROTECTED
+		//----------------------------------------------------- Protected Attributes
+		// string login;
+		// string password;
 
-protected:
-//----------------------------------------------------- Protected Methods
+	//------------------------------------------------------------------ PRIVATE
+	private:
+		//----------------------------------------------------- Private Methods
 
-//----------------------------------------------------- Protected Attributes
-string login;
-string password;
-
-//------------------------------------------------------------------ PRIVATE
-
-private:
-
-//----------------------------------------------------- Private Methods
-
-//----------------------------------------------------- Private Attributes
-
-
+		//----------------------------------------------------- Private Attributes
 };
 
 //-------------------------------- Other definitions depending on <User>
 
 #endif // User_H
-

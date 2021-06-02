@@ -1,9 +1,10 @@
 /*************************************************************************
-                           Measurement  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Measurement  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Implementation of <Measurement> (file Measurement.cpp) ------------
@@ -12,83 +13,75 @@
 
 //-------------------------------------------------------- Include of system files
 #include <iostream>
+#include <sstream>
+
 using namespace std;
 
 //------------------------------------------------------ Include of local files
 #include "Measurement.h"
 #include "Date.h"
+#include "../factory/Reader.h"
 
 //------------------------------------------------------------- Constants
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-// type Measurement::Method ( Parameters list )
+
+const Attribute& Measurement::GetAttribute() const
 // Algorithm :
 //
-//{
-//} //----- End of Method
+{
+	return attribute;
+} //----- End of method GetAttribute
 
+const Date& Measurement::GetDate() const
+// Algorithm :
+//
+{
+	return date;
+} //----- End of method GetDate
 
-istream& operator>>(std::istream& is, Measurement& m) {
-	return is >> m.date >> m.sensorId >> m.attributeId >> m.value;
-}
+double Measurement::GetValue() const
+// Algorithm :
+//
+{
+	return value;
+} //----- End of method GetValue
 
+//------------------------------------------------- Operators overloading
+
+ostream& operator<<(std::ostream& os, const Measurement& m)
+// Algorithm :
+//
+{
+	return os << m.value << ";" << m.date << ";" <<
+		m.attribute << ";";
+} //----- End of operator <<
+
+bool Measurement::operator<(const Measurement& m) const
+// Algorithm :
+//
+{
+	return date < m.date;
+} //----- End of operator <
 
 //-------------------------------------------- constructors - destructor
-Measurement::Measurement ( const Measurement & aMeasurement )
-// Algorithm :
-//
-{
-#ifdef MAP
-    cout << "Calling copy constructor of <Measurement>" << endl;
-#endif
-} //----- End of Measurement (copy constructor)
-Measurement::Measurement (Date & theDate, string & theSensorId, string & theAttributeId, float theValue )
-{
-    date = theDate;
-    sensorId = theSensorId;
-    attributeId = theAttributeId;
-    value = theValue;
-}//----- End of Measurement (param constructor)
 
-Measurement::Measurement ( )
+Measurement::Measurement(const MeasurementData& md) :
 // Algorithm :
 //
-{
-#ifdef MAP
-    cout << "Calling constructor of <Measurement>" << endl;
-#endif
+	value(md.value),
+	date(md.date) {
 } //----- End of Measurement
 
-
-Measurement::~Measurement ( )
+Measurement::Measurement(const MeasurementData& md, const AttributeData& ad) :
 // Algorithm :
 //
-{
-#ifdef MAP
-    cout << "Calling destructor of <Measurement>" << endl;
-#endif
-} //----- End of ~Measurement
-
-
-// Date Measurement::getDate()
-// // How to use : returns a copy of the attribute 'date' of the calling Measurement
-// //
-// // Precondition :
-// //
-// {
-// 	return date;
-// }
-
-// float Measurement::getValue()
-// // How to use : returns a copy of the attribute 'value' of the calling Measurement
-// //
-// // Precondition :
-// //
-// {
-// 	return value;
-// }
+	value(md.value),
+	date(md.date),
+	attribute(ad) {
+} //----- End of Measurement
 
 //------------------------------------------------------------------ PROTECTED
 

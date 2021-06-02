@@ -1,9 +1,10 @@
 /*************************************************************************
-                           User  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						ption
+
+	inning
+	yright						 by $B3204 and B3025 $
+	ail						.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							s@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Implementation of <User> (file User.cpp) ------------
@@ -12,61 +13,47 @@
 
 //-------------------------------------------------------- Include of system files
 #include <iostream>
+
 using namespace std;
 
 //------------------------------------------------------ Include of local files
 #include "User.h"
+#include "../factory/Reader.h"
 
 //------------------------------------------------------------- Constants
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-// type User::Method ( Parameters list )
-// Algorithm :
-//
-//{
-//} //----- End of Method
 
 //------------------------------------------------- Operators overloadinf
-// User & User::operator = ( const User & aUser )
-// // Algorithm :
-// //
-// {
-// } //----- End of operator =
 
-
+ostream& operator<<(std::ostream& os, const User& p)
+// Algorithm :
+//
+{
+	return os << ";";
+} //----- End of operator <<
 
 //-------------------------------------------- constructors - destructor
-User::User ( const User & aUser )
+
+User::User()
 // Algorithm :
 //
 {
-#ifdef MAP
-    cout << "Calling copy constructor of <User>" << endl;
-#endif
-} //----- End of User (copy constructor)
-
-
-User::User ( )
-// Algorithm :
-//
-{
-#ifdef MAP
-    cout << "Calling constructor of <User>" << endl;
-#endif
 } //----- End of User
 
-
-User::~User ( )
+User::User(const UserData& ud)
 // Algorithm :
 //
 {
-#ifdef MAP
-    cout << "Calling destructor of <User>" << endl;
-#endif
-} //----- End of ~User
+} //----- End of User
 
+User::~User()
+// Algorithm :
+//
+{
+} //----- End of ~User
 
 //------------------------------------------------------------------ PROTECTED
 

@@ -1,17 +1,22 @@
 /*************************************************************************
-                           Date  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Date  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface of <Date> (file Date.h) ----------------
-#if ! defined ( Date_H )
+#ifndef Date_H
 #define Date_H
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
+#include <iostream>
+
+using namespace std;
+
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
@@ -22,89 +27,80 @@
 //
 //------------------------------------------------------------------------
 
-class Date
-{
-//----------------------------------------------------------------- PUBLIC
+class Date {
+	//----------------------------------------------------------------- PUBLIC
+	public:
+		//----------------------------------------------------- Public methods
 
-public:
-//----------------------------------------------------- Public methods
-    // type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+		//------------------------------------------------- Operators overloading
+		bool operator<(const Date&) const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-int getYear();
-// How to use : return a copy of the attribute year
-//
-int getMonth();
-// How to use : return a copy of the attribute month
-//
-int getDay();
-// How to use : return a copy of the attribute day
-//
-int getHour();
-// How to use : return a copy of the attribute hour
-//
-int getMinutes();
-// How to use : return a copy of the attribute minutes
-//
-int getSeconds();
-// How to use : return a copy of the attribute seconds
-//
+		bool operator==(const Date&) const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-//-------------------------------------------- Constructors - destructor
-    Date ( const Date & aDate );
-    // How to use (copy constructor): Instantiate and initialize a new instace of Date having the same attributes as aDate
-    //
-    // Precondition :
-    //
+		bool operator<=(const Date&) const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    Date(int year, int month, int day, int hour, int minutes, int seconds);
-    // How to use (copy constructor): Instantiate and initialize a new instace of Date having the attributes affected by the
-    //                                  corresponding parameters
+		bool operator>=(const Date&) const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
+		friend std::istream& operator>>(std::istream&, Date&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    Date ( );
-    // How to use : Initialize a new date having all the values as the default Date : 01-01-1970 00:00:00
-    //
-    // Precondition :
-    //
+		friend ostream& operator<<(std::ostream&, const Date&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    virtual ~Date ( );
-    // How to use :
-    //
-    // Precondition :
-    //
+		//-------------------------------------------- Constructors - destructor
+		Date(int, int, int, int, int, int);
+		// How to use (copy constructor): Instantiate and initialize a new instace of Date having the attributes affected by the
+		//								  corresponding parameters
+		// Precondition :
+		//
 
-//------------------------------------------------------------------ PROTECTED
+		Date();
+		// How to use : Initialize a new date having all the values as the default Date : 01-01-1970 00:00:00
+		//
+		// Precondition :
+		//
 
-friend std::istream& operator>>(std::istream&, Date&);
-bool operator <= (Date aDate);
+	//------------------------------------------------------------------ PROTECTED
+	protected:
+		//----------------------------------------------------- Protected Methods
 
-protected:
-//----------------------------------------------------- Protected Methods
+		//----------------------------------------------------- Protected Attributes
 
-//----------------------------------------------------- Protected Attributes
+	//------------------------------------------------------------------ PRIVATE
+	private:
+		//----------------------------------------------------- Private Methods
 
-//------------------------------------------------------------------ PRIVATE
-
-private:
-
-//----------------------------------------------------- Private Methods
-
-//----------------------------------------------------- Private Attributes
-int year;
-int month;
-int day;
-
-int hour;
-int minute;
-int second;
-
+		//----------------------------------------------------- Private Attributes
+		int year;
+		int month;
+		int day;
+		int hour;
+		int minute;
+		int second;
 };
 
 //-------------------------------- Other definitions depending on <Date>
 
 #endif // Date_H
-

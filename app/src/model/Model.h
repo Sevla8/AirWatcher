@@ -1,24 +1,22 @@
 /*************************************************************************
-                           Model  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Model  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface of <Model> (file Model.h) ----------------
-#if ! defined ( Model_H )
+#ifndef Model_H
 #define Model_H
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
-#include <list>
+#include <set>
 #include "Sensor.h"
-#include "PrivateUser.h"
-#include "Measurement.h"
-#include "Attribute.h"
 #include "Cleaner.h"
-#include "Provider.h"
+
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
@@ -29,110 +27,51 @@
 //
 //------------------------------------------------------------------------
 
-class Model
-{
-//----------------------------------------------------------------- PUBLIC
+class Model {
+	//----------------------------------------------------------------- PUBLIC
+	public:
+		//----------------------------------------------------- Public methods
+		Sensor FindSensor(const string& id) const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-public:
-//----------------------------------------------------- Public methods
-    // type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+		set<Sensor> GetSensors() const;
+		// How to use :
+		//
+		// Precondition :
+		//
 
-list <Sensor>* getSensors();
-// type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+		//------------------------------------------------- Operators overloading
+		friend ostream& operator<<(std::ostream&, const Model&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
-list <PrivateUser>* getPrivateUsers();
-// type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+		//-------------------------------------------- Constructors - destructor
+		Model();
+		// How to use :
+		//
+		// Precondition :
+		//
 
-list <Measurement>* getMeasurements();
-// type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+	//------------------------------------------------------------------ PROTECTED
+	protected:
+		//----------------------------------------------------- Protected Methods
 
-list <Attribute>* getAttributes();
-// type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
-list <Cleaner>* getCleaners();
-// type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+		//----------------------------------------------------- Protected Attributes
 
-list <Provider>* getProviders();
-// type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
-//----- End of getProviders
-//------------------------------------------------- Operators overloading
-    Model & operator = ( const Model & aModel );
-    // How to use :
-    //
-    // Precondition :
-    //
+	//------------------------------------------------------------------ PRIVATE
+	private:
+		//----------------------------------------------------- Private Methods
 
-
-//-------------------------------------------- Constructors - destructor
-    Model ( const Model & aModel );
-    // How to use (copy constructor):
-    //
-    // Precondition :
-    //
-
-    Model ( );
-    // How to use :
-    //
-    // Precondition :
-    //
-
-    virtual ~Model ( );
-    // How to use :
-    //
-    // Precondition :
-    //
-
-//------------------------------------------------------------------ PROTECTED
-
-protected:
-//----------------------------------------------------- Protected Methods
-
-//----------------------------------------------------- Protected Attributes
-
-//------------------------------------------------------------------ PRIVATE
-
-private:
-
-//----------------------------------------------------- Private Methods
-
-//----------------------------------------------------- Private Attributes
-
-list<Sensor>* listSensors;
-list<PrivateUser>* listPrivateUsers;
-list<Measurement>* listMeasurements;
-list<Attribute>* listAttributes;
-list<Cleaner>* listCleaners;
-list<Provider>* listProviders;
+		//----------------------------------------------------- Private Attributes
+		set<Sensor> sensors;
+		set<Cleaner> cleaners;
 };
 
 //-------------------------------- Other definitions depending on <Model>
 
 #endif // Model_H
-

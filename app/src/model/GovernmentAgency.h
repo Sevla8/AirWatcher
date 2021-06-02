@@ -1,19 +1,21 @@
 //----------------------------------------------------- Private Methods
 /*************************************************************************
-                           GovernmentAgency  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   GovernmentAgency  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface of <GovernmentAgency> (file GovernmentAgency.h) ----------------
-#if ! defined ( GovernmentAgency_H )
+#ifndef GovernmentAgency_H
 #define GovernmentAgency_H
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
 #include "User.h"
+
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
@@ -24,68 +26,31 @@
 //
 //------------------------------------------------------------------------
 
-class GovernmentAgency : public User
-{
-//----------------------------------------------------------------- PUBLIC
+class GovernmentAgency : public User {
+	//----------------------------------------------------------------- PUBLIC
+	public:
+		//----------------------------------------------------- Public methods
 
-public:
-//----------------------------------------------------- Public methods
-    // type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+		//-------------------------------------------- Constructors - destructor
+		virtual ~GovernmentAgency();
+		// How to use :
+		//
+		// Precondition :
+		//
 
-    // BESOIN DE CREER UNE FONCTION PRIVATE GETPASSWORD ET LA METTRE COMME AMIE DANS CLASSE OU ON SE LOG
-    string getId();
-    // How to use : returns a copy of the attribute 'id' of the calling GovernmentAgency
-    //
-    // Precondition :
-    //
+	//------------------------------------------------------------------ PROTECTED
+	protected:
+		//----------------------------------------------------- Protected Methods
 
-//-------------------------------------------- Constructors - destructor
-    GovernmentAgency ( const GovernmentAgency & aGovernmentAgency );
-    // How to use (copy constructor):
-    //
-    // Precondition :
-    //
+		//----------------------------------------------------- Protected Attributes
 
-    GovernmentAgency (const string & aLogin, const string & aPassword );
-    // How to use : Initialises the attributes id, latitude and longitude with the corresponding parameters.
-    //              start is initialised as null as well as stop
+	//------------------------------------------------------------------ PRIVATE
+	private:
+		//----------------------------------------------------- Private Methods
 
-    GovernmentAgency ( );
-    // How to use :
-    //
-    // Precondition :
-    //
-
-    virtual ~GovernmentAgency ( );
-    // How to use :
-    //
-    // Precondition :
-    //
-
-//------------------------------------------------------------------ PROTECTED
-
-protected:
-//----------------------------------------------------- Protected Methods
-
-//----------------------------------------------------- Protected Attributes
-
-
-//------------------------------------------------------------------ PRIVATE
-
-private:
-
-//----------------------------------------------------- Private Methods
-
-//----------------------------------------------------- Private Attributes
-
-
+		//----------------------------------------------------- Private Attributes
 };
 
 //-------------------------------- Other definitions depending on <GovernmentAgency>
 
 #endif // GovernmentAgency_H
-

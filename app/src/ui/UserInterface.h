@@ -1,5 +1,5 @@
 /*************************************************************************
-						   Provider  -  description
+						   UserInterface  -  description
 							 -------------------
 	beginning				: $07/05/2021$
 	copyright			: (C) $2021$ by $B3204 and B3025 $
@@ -7,51 +7,49 @@
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
-//---------- Interface of <Provider> (file Provider.h) ----------------
-#ifndef Provider_H
-#define Provider_H
+//---------- Interface of <UserInterface> (file UserInterface.h) ----------------
+#ifndef UserInterface_H
+#define UserInterface_H
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
-#include "User.h"
-#include "../factory/Reader.h"
+#include <vector>
+#include <iostream>
+#include "../control/Controller.h"
+#include "../model/Date.h"
+
+using namespace std;
 
 //------------------------------------------------------------- Constants
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Role of <Provider>
+// Role of <UserInterface>
 //
 //
 //------------------------------------------------------------------------
 
-class Provider : public User {
+class UserInterface {
 	//----------------------------------------------------------------- PUBLIC
 	public:
 		//----------------------------------------------------- Public methods
+		int displayMenu();
+		// How to use :
+		//
+		// Precondition :
+		//
 
 		//------------------------------------------------- Operators overloading
-		bool operator<(const Provider&) const;
-		// How to use :
-		//
-		// Precondition :
-		//
-
-		friend ostream& operator<<(std::ostream&, const Provider&);
-		// How to use :
-		//
-		// Precondition :
-		//
 
 		//-------------------------------------------- Constructors - destructor
-		Provider(const ProviderData&);
+		UserInterface();
 		// How to use :
 		//
 		// Precondition :
 		//
 
-		virtual ~Provider();
+		virtual ~UserInterface();
 		// How to use :
 		//
 		// Precondition :
@@ -61,16 +59,27 @@ class Provider : public User {
 	protected:
 		//----------------------------------------------------- Protected Methods
 
-		//----------------------------------------------------- Protected Attributes
+		//----------------------------------------------------- Protected attributes
 
 	//------------------------------------------------------------------ PRIVATE
 	private:
 		//----------------------------------------------------- Private Methods
+		int displayAirQualityArea();
+		// How to use :
+		//
+		// Precondition :
+		//
+
+		int displayRankingSensorsSimilarity();
+		// How to use :
+		//
+		// Precondition :
+		//
 
 		//----------------------------------------------------- Private Attributes
-		string id;
+		Controller controller;
 };
 
-//-------------------------------- Other definitions depending on <Provider>
+//-------------------------------- Other definitions depending on <Sensor>
 
-#endif // Provider_H
+#endif // Sensor_H

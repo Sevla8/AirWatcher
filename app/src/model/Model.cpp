@@ -1,9 +1,10 @@
 /*************************************************************************
-                           Model  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Model  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Implementation of <Model> (file Model.cpp) ------------
@@ -12,15 +13,19 @@
 
 //-------------------------------------------------------- Include of system files
 #include <iostream>
+#include <vector>
+#include <set>
+
 using namespace std;
 
 //------------------------------------------------------ Include of local files
 #include "Model.h"
-#include "../factory/Reader.h"
 #include "Sensor.h"
+#include "Cleaner.h"
+#include "Provider.h"
 #include "PrivateUser.h"
-#include "../factory/Reader.h"
-#include "../factory/Reader.h"
+#include "Attribute.h"
+#include "Measurement.h"
 #include "../factory/Reader.h"
 
 //------------------------------------------------------------- Constants
@@ -28,89 +33,71 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-// type Model::Method ( Parameters list )
+
+Sensor Model::FindSensor(const string& id) const
 // Algorithm :
 //
-//{
-//} //----- End of Method
-list <Sensor>* Model::getSensors()
 {
-    return listSensors;
-} //----- End of getListSensors
+	Sensor s(id);
+	set<Sensor>::iterator iter = sensors.find(s);
+	return *iter;
+} //----- End of method FindSensor
 
-list <PrivateUser>* Model::getPrivateUsers()
+set<Sensor> Model::GetSensors() const
+// Algorithm :
+//
 {
-    return listPrivateUsers;
-} //----- End of getListPrivateUsers
-
-list <Measurement>* Model::getMeasurements()
-{
-    return listMeasurements;
-} //----- End of getMeasurements
-
-list <Attribute>* Model::getAttributes()
-{
-    return listAttributes;
-} //----- End of getAtributes
-
-list <Cleaner>* Model::getCleaners()
-{
-    return listCleaners;
-}//----- End of getCleaners
-
-list <Provider>* Model::getProviders()
-{
-    return listProviders;
-}//----- End of getProviders
-
-
-
+	return sensors;
+} //----- End of GetSensor
 
 //------------------------------------------------- Operators overloadinf
-Model & Model::operator = ( const Model & aModel )
+
+ostream& operator<<(std::ostream& os, const Model& m)
 // Algorithm :
 //
 {
-} //----- End of operator =
-
+	for(const auto &iter: m.sensors) {
+		os << iter << endl;
+	}
+	os << endl;
+	for(const auto &iter: m.cleaners) {
+		os << iter << endl;
+	}
+	return os;
+} //----- End of operator <<
 
 //-------------------------------------------- constructors - destructor
-Model::Model ( const Model & aModel )
+
+Model::Model()
 // Algorithm :
 //
 {
-#ifdef MAP
-    cout << "Calling copy constructor of <Model>" << endl;
-#endif
-} //----- End of Model (copy constructor)
+	set<SensorData> sensorData = Reader::readSensors("../../dataset/sensors.csv");
+	set<CleanerData> cleanerData = Reader::readCleaners("../../dataset/cleaners.csv");
+	set<AttributeData> attributeData = Reader::readAttributes("../../dataset/attributes.csv");
+	set<UserData> userData = Reader::readUsers("../../dataset/users.csv");
+	set<ProviderData> providerData = Reader::readProviders("../../dataset/providers.csv");
+	multiset<MeasurementData> measurementData = Reader::readMeasurements("../../dataset/measurements.csv");
 
+	for (const auto &iter: cleanerData) {
+		CleanerData cd = iter;
+		ProviderData pd = *providerData.find(ProviderData(iter.id));
+		cleaners.insert(Cleaner(cd, pd));
+	}
 
-Model::Model ( )
-// Algorithm :
-//
-{
-	#ifdef MAP
-		cout << "Calling constructor of <Model>" << endl;
-	#endif
-
-	listSensors = Reader::readSensors("../../dataset/sensors.csv");
-	listPrivateUsers = Reader::readPrivateUsers("../../dataset/users.csv");
-	listMeasurements = Reader::readMeasurements("../../dataset/measurements.csv");
-	listAttributes = Reader::readAttributes("../../dataset/attributes.csv");
-	listCleaners = Reader::readCleaners("../../dataset/cleaners.csv");
-	listProviders = Reader::readProviders("../../dataset/providers.csv");
-} //----- End of Model
-
-
-Model::~Model ( )
-// Algorithm :
-//
-{
-#ifdef MAP
-	cout << "Calling destructor of <Model>" << endl;
-#endif
-} //----- End of ~Model
-
+	for (const auto &iter: sensorData) {
+		SensorData sd = iter;
+		bool exist = userData.find(UserData(iter.id)) == userData.end() ? false : true;
+		vector<MeasurementData> vector;
+		auto it = measurementData.find(MeasurementData(iter.id));
+		while (it != measurementData.end() && it->sensorId == sd.id) {
+			vector.push_back(*it);
+			++it;
+		}
+		if (exist) sensors.insert(Sensor(sd, *userData.find(UserData(iter.id)), vector, attributeData));
+		else sensors.insert(Sensor(sd, vector, attributeData));
+	}
+}  //----- End of Model
 
 //------------------------------------------------------------------ PROTECTED
 

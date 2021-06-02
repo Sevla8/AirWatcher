@@ -1,28 +1,20 @@
 /*************************************************************************
-                           Controller  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Controller  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface of <Controller> (file Controller.h) ----------------
-#if ! defined ( Controller_H )
+#ifndef Controller_H
 #define Controller_H
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
-#include "../model/Sensor.h"
-#include "../model/User.h"
-#include "../model/Measurement.h"
-#include "../model/Attribute.h"
-#include "../model/Cleaner.h"
-#include "../model/Provider.h"
-#include "../model/Date.h"
-#include "../model/GovernmentAgency.h"
-#include "../model/PrivateUser.h"
+#include <vector>
 #include "../model/Model.h"
-
 
 //------------------------------------------------------------- Constants
 
@@ -34,73 +26,60 @@
 //
 //------------------------------------------------------------------------
 
-class Controller
-{
-//----------------------------------------------------------------- PUBLIC
+class Controller {
+	//----------------------------------------------------------------- PUBLIC
+	public:
+		//----------------------------------------------------- Public methods
+		const Model& getModel();
+		// How to use :
+		//
+		// Precondition :
+		//
 
-public:
-//----------------------------------------------------- Public methods
-    // type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
-Model getModel();
-// type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
+		string analyseAirQualityInCircularArea(float, float, float, const Date&, const Date&);
+		// How to use :
+		//
+		// Precondition :
+		//
 
+		vector<Sensor> rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end);
+		// How to use :
+		//
+		// Precondition :
+		//
 
-//------------------------------------------------- Operators overloading
-    Controller & operator = ( const Controller & aController );
-    // How to use :
-    //
-    // Precondition :
-    //
+		double CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const;
 
+		//------------------------------------------------- Operators overloading
+		friend ostream& operator<<(std::ostream&, const Controller&);
 
-//-------------------------------------------- Constructors - destructor
-    Controller ( const Controller & aController );
-    // How to use (copy constructor):
-    //
-    // Precondition :
-    //
+		//-------------------------------------------- Constructors - destructor
+		Controller();
+		// How to use : Constructs a Controller
+		//
+		// Precondition :
+		//
 
-    Controller ();
-    // How to use : Constructs a Controller
-    //
-    // Precondition :
-    //
+		virtual ~Controller();
+		// How to use :
+		//
+		// Precondition :
+		//
 
+	//------------------------------------------------------------------ PROTECTED
+	protected:
+		//----------------------------------------------------- Protected Methods
 
-    virtual ~Controller ( );
-    // How to use :
-    //
-    // Precondition :
-    //
+		//----------------------------------------------------- Protected Attributes
 
-//------------------------------------------------------------------ PROTECTED
+	//------------------------------------------------------------------ PRIVATE
+	private:
+		//----------------------------------------------------- Private Methods
 
-protected:
-//----------------------------------------------------- Protected Methods
-string analyseAirQualityInCircularArea(float lattitude, float longitude, float radius, Date begin, Date end);
-//----------------------------------------------------- Protected Attributes
-
-//------------------------------------------------------------------ PRIVATE
-
-private:
-
-//----------------------------------------------------- Private Methods
-
-//----------------------------------------------------- Private Attributes
-
-Model model;
-
+		//----------------------------------------------------- Private Attributes
+		Model model;
 };
 
 //-------------------------------- Other definitions depending on <Controller>
 
 #endif // Controller_H
-

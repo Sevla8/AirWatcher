@@ -1,9 +1,10 @@
 /*************************************************************************
-                           Attribute  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Attribute  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Implementation of <Attribute> (file Attribute.cpp) ------------
@@ -13,89 +14,58 @@
 //-------------------------------------------------------- Include of system files
 #include <iostream>
 #include <sstream>
+
 using namespace std;
 
 //------------------------------------------------------ Include of local files
 #include "Attribute.h"
+#include "../factory/Reader.h"
 
 //------------------------------------------------------------- Constants
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-// type Attribute::Method ( Parameters list )
-// Algorithm :
-//
-//{
-//} //----- End of Method
 
-
-//------------------------------------------------- Operators overloadinf
-Attribute & Attribute::operator = ( const Attribute & aAttribute )
+const string& Attribute::GetId() const
 // Algorithm :
 //
 {
-} //----- End of operator =
+	return id;
+} //----- End of GetId
 
-istream& operator>>(std::istream& is, Attribute& a) {
-	string tmp;
-	getline(is, tmp, ';');
-	cout << tmp;
-	a.id = tmp;
-	getline(is, tmp, ';');
-	a.unit = tmp;
-	getline(is, tmp, ';');
-	a.description = tmp;
-	return is;
-}
+//------------------------------------------------- Operators overloading
 
-ostream& operator<<(std::ostream& os, const Attribute& a) {
+ostream& operator<<(std::ostream& os, const Attribute& a)
+// Algorithm :
+//
+{
 	return os << a.id << ";" << a.unit << ";" << a.description << ";";
-}
+} //----- End of operator <<
 
+bool Attribute::operator<(const Attribute& a) const
+// Algorithm :
+//
+{
+	return id < a.id;
+} //----- End of operator <
 
 //-------------------------------------------- constructors - destructor
-Attribute::Attribute ( const Attribute & aAttribute )
+
+Attribute::Attribute()
 // Algorithm :
 //
 {
-#ifdef MAP
-    cout << "Calling copy constructor of <Attribute>" << endl;
-#endif
-} //----- End of Attribute (copy constructor)
 
+}
 
-Attribute::Attribute ( )
+Attribute::Attribute(const AttributeData& ad) :
 // Algorithm :
 //
-{
-#ifdef MAP
-    cout << "Calling constructor of <Attribute>" << endl;
-#endif
-} //----- End of Attribute
-
-Attribute::Attribute ( string & aId, string & aUnit, string & aDescription  )
-// Algorithm :
-//
-{
-#ifdef MAP
-    cout << "Calling constructor of <Attribute> with parameters" << endl;
-#endif
-    id = aId;
-    unit = aUnit;
-    description = aDescription;
-} //----- End of Attribute
-
-
-Attribute::~Attribute ( )
-// Algorithm :
-//
-{
-#ifdef MAP
-    cout << "Calling destructor of <Attribute>" << endl;
-#endif
-} //----- End of ~Attribute
-
+	id(ad.id),
+	unit(ad.unit),
+	description(ad.description) {
+}  //----- End of Attribute
 
 //------------------------------------------------------------------ PROTECTED
 

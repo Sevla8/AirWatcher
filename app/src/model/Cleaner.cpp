@@ -1,9 +1,10 @@
 /*************************************************************************
-                           Cleaner  -  description
-                             -------------------
-    beginning                : $07/05/2021$
-    copyright            : (C) $2021$ by $B3204 and B3025 $
-    e-mail               : $EMAIL$
+						   Cleaner  -  description
+							 -------------------
+	beginning				: $07/05/2021$
+	copyright			: (C) $2021$ by $B3204 and B3025 $
+	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Implementation of <Cleaner> (file Cleaner.cpp) ------------
@@ -12,90 +13,50 @@
 
 //-------------------------------------------------------- Include of system files
 #include <iostream>
+#include <sstream>
+
 using namespace std;
 
 //------------------------------------------------------ Include of local files
 #include "Cleaner.h"
+#include "Provider.h"
+#include "../factory/Reader.h"
 
 //------------------------------------------------------------- Constants
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
-// type Cleaner::Method ( Parameters list )
-// Algorithm :
-//
-//{
-//} //----- End of Method
-string Cleaner::getId ()
-{
-    return id;
-} //----- End of getId
-
-float Cleaner::getLatitude()
-{
-    return latitude;
-} //----- End of getLatitude
-
-float Cleaner::getLongitude()
-{
-    return longitude;
-} //----- End of getLongitude
-
-/* INCLUDES A REGLER
-Timestamp Cleaner::getStart()
-{
-    return start;
-}//----- End of getStart
-Timestamp Cleaner::getStop()
-{
-    return stop;
-}//----- End of getStop
-*/
 
 //------------------------------------------------- Operators overloading
-Cleaner & Cleaner::operator = ( const Cleaner & aCleaner )
+
+ostream& operator<<(std::ostream& os, const Cleaner& c)
 // Algorithm :
 //
 {
-} //----- End of operator =
+	return os << c.id << ";" << c.latitude << ";" << c.longitude <<
+		";" << c.start << ";" << c.stop << ";" << c.provider << ";";
+} //----- End of operator <<
 
-
-istream& operator>>(std::istream& is, Cleaner& c) {
-	return is >> c.id >> c.latitude >> c.longitude >> c.start >>c.stop;
-}
-
+bool Cleaner::operator<(const Cleaner& c) const
+// Algorithm :
+//
+{
+	return id < c.id;
+} //----- End of operator <
 
 //-------------------------------------------- constructors - destructor
-Cleaner::Cleaner ( const Cleaner & aCleaner )
+
+Cleaner::Cleaner(const CleanerData& cd, const ProviderData& pd) :
 // Algorithm :
 //
-{
-#ifdef MAP
-    cout << "Calling copy constructor of <Cleaner>" << endl;
-#endif
-} //----- End of Cleaner (copy constructor)
-
-
-Cleaner::Cleaner ( )
-// Algorithm :
-//
-{
-#ifdef MAP
-    cout << "Calling constructor of <Cleaner>" << endl;
-#endif
-} //----- End of Cleaner
-
-
-Cleaner::~Cleaner ( )
-// Algorithm :
-//
-{
-#ifdef MAP
-    cout << "Calling destructor of <Cleaner>" << endl;
-#endif
-} //----- End of ~Cleaner
-
+	provider(pd),
+	id(cd.id),
+	latitude(cd.latitude),
+	longitude(cd.longitude),
+	start(cd.start),
+	stop(cd.stop) {
+}  //----- End of Cleaner
 
 //------------------------------------------------------------------ PROTECTED
 
