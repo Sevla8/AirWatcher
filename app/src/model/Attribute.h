@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Attribute  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -17,13 +17,11 @@
 
 using namespace std;
 
-//------------------------------------------------------------- Constants
-
-//------------------------------------------------------------------ Types
-
 //------------------------------------------------------------------------
 // Role of <Attribute>
-//
+// 
+//	Indicates for a given Measurement which were the id, the unit and its textual
+//	description
 //
 //------------------------------------------------------------------------
 
@@ -32,53 +30,28 @@ class Attribute {
 	public:
 		//----------------------------------------------------- Public methods
 		const string& GetId() const;
-		// How to use :
-		//
-		// Precondition :
-		//
+		// How to use : Returns a reference to it's 'id' attribute
 
 		//------------------------------------------------- Operators overloading
-		bool operator<(const Attribute&) const;
-		// How to use :
-		//
-		// Precondition :
-		//
+		bool operator<(const Attribute& toCompareWith) const;
+		// 	How to use : Returns a boolean indicating whether the id of toCompareWith is greather than the
+		//	calling Attribute's one.
 
-		friend ostream& operator<<(std::ostream&, const Attribute&);
-		// How to use :
-		//
-		// Precondition :
-		//
+		friend ostream& operator<<(std::ostream& os, const Attribute& anAttribute);
 
 		//-------------------------------------------- Constructors - destructor
 		Attribute();
-		// How to use :
-		//
-		// Precondition :
-		//
 
-		Attribute(const AttributeData&);
-		// How to use :
-		//
-		// Precondition :
-		//
-
-	//------------------------------------------------------------------ PROTECTED
-	protected:
-		//----------------------------------------------------- Protected Methods
-
-		//----------------------------------------------------- Protected Attributes
+		Attribute(const AttributeData& ad);
+		// How to use : Creates an Attribute by affecting its attributes with the corresponding values in 'ad'
 
 	//------------------------------------------------------------------ PRIVATE
 	private:
-		//----------------------------------------------------- Private Methods
 
 		//----------------------------------------------------- Private Attributes
 		string id;
 		string unit;
 		string description;
 };
-
-//-------------------------------- Other definitions depending on <Attribute>
 
 #endif // Attribute_H

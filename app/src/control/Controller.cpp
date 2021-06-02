@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Controller  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -23,15 +23,11 @@ using namespace std;
 //------------------------------------------------------ Include of local files
 #include "Controller.h"
 
-//------------------------------------------------------------- Constants
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
 
 const Model& Controller::getModel()
-//Algorithm :
-//
 {
 	return model;
 }  //----- End of getModel
@@ -105,9 +101,8 @@ string Controller::analyseAirQualityInCircularArea(float latitude, float longitu
 } //----- End of analyseAirQualityInCircularArea
 
 vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end)
-//Algorithm :
-//
-{
+//	Algorithm : 
+{ 
 	multimap<double, Sensor> map;
 	Sensor target = model.FindSensor(sensorId);
 	set<Sensor> sensors = model.GetSensors();
@@ -125,38 +120,32 @@ vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, cons
 }//----- End of rankingSensorsSimilarity
 
 double Controller::CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const
-//Algorithm :
-//
 {
-	double diff = abs(mean1[0] - mean2[0])
-				+ abs(mean1[1] - mean2[1])
-				+ abs(mean1[2] - mean2[2])
-				+ abs(mean1[3] - mean2[3]);
+	// Knowing the max prevents SegmentationFaults
+	int maxIndex = max(mean1.size(), mean1.size());
+
+	double diff = 0.0;
+
+	for(int i=0; i< maxIndex;i++){
+		diff += abs(mean1[i] - mean2[i]);
+	}
 	return diff;
 }//----- End of CompareMeans
 
-//------------------------------------------------- Operators overloadinf
+//------------------------------------------------- Operators overloading
 
 ostream& operator<<(std::ostream& os, const Controller& c)
-// Algorithm :
-//
 {
 	return os << c.model;
 } //----- End of operator <<
 
-//-------------------------------------------- constructors - destructor
+//-------------------------------------------- Constructors - destructor
 Controller::Controller()
-// Algorithm :
-//
 {
-
 } //----- End of Controller
 
 Controller::~Controller()
-// Algorithm :
-//
 {
-
 } //----- End of ~Controller
 
 //------------------------------------------------------------------ PROTECTED

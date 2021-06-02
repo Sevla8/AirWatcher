@@ -1,10 +1,10 @@
 /*************************************************************************
-						ption
-
-	inning
-	yright						 by $B3204 and B3025 $
-	ail						.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
-							s@insa-lyon.fr / jade.prevot@insa-lyon.fr$
+						   User  -  description
+							 -------------------
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Implementation of <User> (file User.cpp) ------------
@@ -20,17 +20,12 @@ using namespace std;
 #include "User.h"
 #include "../factory/Reader.h"
 
-//------------------------------------------------------------- Constants
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Public Methods
-
-//------------------------------------------------- Operators overloadinf
+//------------------------------------------------- Operators overloading
 
 ostream& operator<<(std::ostream& os, const User& p)
-// Algorithm :
-//
 {
 	return os << ";";
 } //----- End of operator <<
@@ -38,27 +33,14 @@ ostream& operator<<(std::ostream& os, const User& p)
 //-------------------------------------------- constructors - destructor
 
 User::User()
-// Algorithm :
-//
 {
 } //----- End of User
 
 User::User(const UserData& ud)
-// Algorithm :
-//
 {
 } //----- End of User
 
 User::~User()
-// Algorithm :
-//
 {
 } //----- End of ~User
 
-//------------------------------------------------------------------ PROTECTED
-
-//----------------------------------------------------- Protected Methods
-
-//------------------------------------------------------------------ PRIVATE
-
-//----------------------------------------------------- Private Methods

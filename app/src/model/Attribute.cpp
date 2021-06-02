@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Attribute  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -21,56 +21,38 @@ using namespace std;
 #include "Attribute.h"
 #include "../factory/Reader.h"
 
-//------------------------------------------------------------- Constants
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
 
 const string& Attribute::GetId() const
-// Algorithm :
-//
 {
 	return id;
 } //----- End of GetId
 
 //------------------------------------------------- Operators overloading
 
-ostream& operator<<(std::ostream& os, const Attribute& a)
-// Algorithm :
-//
+ostream& operator<<(std::ostream& os, const Attribute& anAttribute)
 {
-	return os << a.id << ";" << a.unit << ";" << a.description << ";";
+	return os << anAttribute.id << ";" << anAttribute.unit << ";" << anAttribute.description << ";";
 } //----- End of operator <<
 
-bool Attribute::operator<(const Attribute& a) const
-// Algorithm :
-//
+bool Attribute::operator<(const Attribute& toCompareWith) const
 {
-	return id < a.id;
+	return id < toCompareWith.id;
 } //----- End of operator <
 
 //-------------------------------------------- constructors - destructor
 
 Attribute::Attribute()
-// Algorithm :
-//
 {
 
 }
 
 Attribute::Attribute(const AttributeData& ad) :
-// Algorithm :
-//
+
 	id(ad.id),
 	unit(ad.unit),
 	description(ad.description) {
-}  //----- End of Attribute
+}  //----- End of Attribute(AttributeData&)
 
-//------------------------------------------------------------------ PROTECTED
-
-//----------------------------------------------------- Protected Methods
-
-//------------------------------------------------------------------ PRIVATE
-
-//----------------------------------------------------- Private Methods

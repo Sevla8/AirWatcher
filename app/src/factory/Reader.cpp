@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Reader  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -21,15 +21,11 @@ using namespace std;
 //------------------------------------------------------ Include of local files
 #include "Reader.h"
 
-//------------------------------------------------------------- Constants
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
 
 set<SensorData> Reader::readSensors(string filename)
-//Algorithm :
-//
 {
 	ifstream is(filename);
 
@@ -47,8 +43,6 @@ set<SensorData> Reader::readSensors(string filename)
 } //----- End of readSensors
 
 set<UserData> Reader::readUsers(string filename)
-//Algorithm :
-//
 {
 	ifstream is(filename);
 
@@ -66,8 +60,6 @@ set<UserData> Reader::readUsers(string filename)
 } //----- End of readUsers
 
 multiset<MeasurementData> Reader::readMeasurements(string filename)
-//Algorithm :
-//
 {
 	ifstream is(filename);
 
@@ -85,8 +77,6 @@ multiset<MeasurementData> Reader::readMeasurements(string filename)
 } //----- End of readMeasurements
 
 set<AttributeData> Reader::readAttributes(string filename)
-//Algorithm :
-//
 {
 	ifstream is(filename);
 
@@ -104,8 +94,6 @@ set<AttributeData> Reader::readAttributes(string filename)
 } //----- End of readAttributes
 
 set<CleanerData> Reader::readCleaners(string filename)
-//Algorithm :
-//
 {
 	ifstream is(filename);
 
@@ -123,8 +111,6 @@ set<CleanerData> Reader::readCleaners(string filename)
 } //----- End of readCleaners
 
 set<ProviderData> Reader::readProviders(string filename)
-//Algorithm :
-//
 {
 	ifstream is(filename);
 
@@ -144,8 +130,6 @@ set<ProviderData> Reader::readProviders(string filename)
 //------------------------------------------------- Operators overloading
 
 istream& operator>>(std::istream& is, SensorData& s)
-//Algorithm :
-//
 {
 	string tmp;
 	stringstream ss;
@@ -161,22 +145,16 @@ istream& operator>>(std::istream& is, SensorData& s)
 }
 
 ostream& operator<<(std::ostream& os, const SensorData& s)
-//Algorithm :
-//
 {
 	return os << s.id << ";" << s.latitude << ";" << s.longitude << ";";
 }
 
 bool SensorData::operator<(const SensorData& s) const
-//Algorithm :
-//
 {
 	return id < s.id;
 }
 
 istream& operator>>(std::istream& is, UserData& pa)
-//Algorithm :
-//
 {
 	string tmp;
 	getline(is, pa.id, ';');
@@ -186,22 +164,16 @@ istream& operator>>(std::istream& is, UserData& pa)
 }
 
 ostream& operator<<(std::ostream& os, const UserData& pa)
-//Algorithm :
-//
 {
 	return os << pa.id << ";" << pa.sensorId << ";";
 }
 
 bool UserData::operator<(const UserData& pu) const
-//Algorithm :
-//
 {
 	return sensorId < pu.sensorId;
 }
 
 istream& operator>>(std::istream& is, MeasurementData& m)
-//Algorithm :
-//
 {
 	string tmp;
 	stringstream ss;
@@ -218,23 +190,17 @@ istream& operator>>(std::istream& is, MeasurementData& m)
 }
 
 ostream& operator<<(std::ostream& os, const MeasurementData& m)
-//Algorithm :
-//
 {
 	return os << m.date << ";" << m.sensorId << ";" <<
 		m.attributeId << ";" << m.value << ";";
 }
 
 bool MeasurementData::operator<(const MeasurementData& m) const
-//Algorithm :
-//
 {
 	return sensorId < m.sensorId;
 }
 
 istream& operator>>(std::istream& is, AttributeData& a)
-//Algorithm :
-//
 {
 	string tmp;
 	getline(is, a.id, ';');
@@ -245,22 +211,16 @@ istream& operator>>(std::istream& is, AttributeData& a)
 }
 
 ostream& operator<<(std::ostream& os, const AttributeData& a)
-//Algorithm :
-//
 {
 	return os << a.id << ";" << a.unit << ";" << a.description << ";";
 }
 
 bool AttributeData::operator<(const AttributeData& a) const
-//Algorithm :
-//
 {
 	return id < a.id;
 }
 
 istream& operator>>(std::istream& is, CleanerData& c)
-//Algorithm :
-//
 {
 	string tmp;
 	stringstream ss;
@@ -282,23 +242,17 @@ istream& operator>>(std::istream& is, CleanerData& c)
 }
 
 ostream& operator<<(std::ostream& os, const CleanerData& c)
-//Algorithm :
-//
 {
 	return os << c.id << ";" << c.latitude << ";" << c.longitude <<
 		";" << c.start << ";" << c.stop << ";";
 }
 
 bool CleanerData::operator<(const CleanerData& c) const
-//Algorithm :
-//
 {
 	return id < c.id;
 }
 
 istream& operator>>(std::istream& is, ProviderData& p)
-//Algorithm :
-//
 {
 	string tmp;
 	getline(is, p.id, ';');
@@ -308,25 +262,12 @@ istream& operator>>(std::istream& is, ProviderData& p)
 }
 
 ostream& operator<<(std::ostream& os, const ProviderData& p)
-//Algorithm :
-//
 {
 	return os << p.id << ";" << p.cleanerId << ";";
 }
 
 bool ProviderData::operator<(const ProviderData& p) const
-//Algorithm :
-//
 {
 	return cleanerId < p.cleanerId;
 }
 
-//-------------------------------------------- constructors - destructor
-
-//------------------------------------------------------------------ PROTECTED
-
-//----------------------------------------------------- Protected Methods
-
-//------------------------------------------------------------------ PRIVATE
-
-//----------------------------------------------------- Private Methods

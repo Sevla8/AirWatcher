@@ -1,9 +1,9 @@
 /*************************************************************************
 						   Sensor  -  description
 							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+	beginning			: 	$07/05/2021$
+	copyright			: 	(C) $2021$ by $B3204 and B3025 $
+	e-mail			   	: 	$adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
 							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
@@ -21,43 +21,31 @@ using namespace std;
 #include "PrivateUser.h"
 #include "../factory/Reader.h"
 
-//------------------------------------------------------------- Constants
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
 
 float Sensor::GetLatitude() const
-// How to use :
-//
 {
 	return latitude;
 } //----- End of GetLatitude
 
 float Sensor::GetLongitude() const
-// How to use :
-//
 {
 	return longitude;
 } //----- End of GetLongitude
 
 string Sensor::GetId() const
-// How to use :
-//
 {
 	return id;
 } //----- End of GetId
 
 vector<Measurement> Sensor::GetMeasurements() const
-// Algorithm :
-//
 {
 	return measurements;
 }
 
 vector<double> Sensor::CalculateMean(const Date& begin, const Date& end) const
-// Algorithm :
-//
 {
 	double sumO3 = 0;
 	double sumSO2 = 0;
@@ -104,8 +92,6 @@ vector<double> Sensor::CalculateMean(const Date& begin, const Date& end) const
 //------------------------------------------------- Operators overloadinf
 
 ostream& operator<<(std::ostream& os, const Sensor& s)
-// Algorithm :
-//
 {
 	os << s.id << ";" << s.latitude << ";" << s.longitude << ";";
 
@@ -122,8 +108,6 @@ ostream& operator<<(std::ostream& os, const Sensor& s)
 } //----- End of operator <<
 
 bool Sensor::operator<(const Sensor& s) const
-// Algorithm :
-//
 {
 	return id < s.id;
 } //----- End of operator <
@@ -131,8 +115,6 @@ bool Sensor::operator<(const Sensor& s) const
 //-------------------------------------------- constructors - destructor
 
 Sensor::Sensor(const SensorData& sd, const vector<MeasurementData>& md, const set<AttributeData>& ad) :
-// Algorithm :
-//
 	id(sd.id),
 	latitude(sd.latitude),
 	longitude(sd.longitude) {
@@ -146,8 +128,6 @@ Sensor::Sensor(const SensorData& sd, const vector<MeasurementData>& md, const se
 } //----- End of Sensor
 
 Sensor::Sensor(const SensorData& sd, const UserData& ud, const vector<MeasurementData>& md, const set<AttributeData>& ad) :
-// Algorithm :
-//
 	id(sd.id),
 	latitude(sd.latitude),
 	longitude(sd.longitude) {
@@ -164,11 +144,3 @@ Sensor::Sensor(const SensorData& sd, const UserData& ud, const vector<Measuremen
 Sensor::Sensor(const string& id) :
 	id(id) {
 } //----- End of Sensor
-
-//------------------------------------------------------------------ PROTECTED
-
-//----------------------------------------------------- Protected Methods
-
-//------------------------------------------------------------------ PRIVATE
-
-//----------------------------------------------------- Private Methods
