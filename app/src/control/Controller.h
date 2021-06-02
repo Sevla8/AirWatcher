@@ -1,10 +1,10 @@
 /*************************************************************************
-						   Controller  -  description
-							 -------------------
-	beginning				: $07/05/2021$
-	copyright			: (C) $2021$ by $B3204 and B3025 $
-	e-mail			   : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
-							brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
+                           Controller  -  description
+                             -------------------
+    beginning                : $07/05/2021$
+    copyright            : (C) $2021$ by $B3204 and B3025 $
+    e-mail               : $adrien.jaillet@insa-lyon.fr / william.jean@insa-lyon.fr / matheus.de-barros-silva@insa-lyon.fr
+                            brandon.da-silva-alves@insa-lyon.fr / jade.prevot@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface of <Controller> (file Controller.h) ----------------
@@ -14,6 +14,7 @@
 //--------------------------------------------------- Used Interfaces
 #include <string>
 #include <vector>
+#include <map>
 #include "../model/Model.h"
 
 //------------------------------------------------------------- Constants
@@ -27,57 +28,86 @@
 //------------------------------------------------------------------------
 
 class Controller {
-	//----------------------------------------------------------------- PUBLIC
+//----------------------------------------------------------------- PUBLIC
 	public:
-		//----------------------------------------------------- Public methods
-		const Model& getModel();
-		// How to use :
-		//
-		// Precondition :
-		//
+	//----------------------------------------------------- Public methods
+    // type Method ( parameters list );
+    // How to use :
+    //
+    // Precondition :
+    //
 
-		string analyseAirQualityInCircularArea(float, float, float, const Date&, const Date&);
-		// How to use :
-		//
+		const Model& getModel();
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+    	// Precondition :
+    	//
+
+		map<string, float> analyseAirQualityInCircularArea(float, float, float, const Date&, const Date&, bool isPeriod);
+		// type Method ( parameters list );
+    	// How to use :
+    	//
 		// Precondition :
-		//
+    	//
 
 		vector<Sensor> rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end);
-		// How to use :
-		//
+		// type Method ( parameters list );
+    	// How to use :
+    	//
 		// Precondition :
-		//
+    	//
 
 		double CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const;
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+		// Precondition :
+    	//
+		
+      	map<string, float> CalculateMeans(const vector<Measurement>& measurements) const;
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+		// Precondition :
+    	//
 
-		//------------------------------------------------- Operators overloading
-		friend ostream& operator<<(std::ostream&, const Controller&);
+		string CalculateAirQualityValue(const map<string, float>& mapMeans) const;
+		// type Method ( parameters list );
+    	// How to use :
+    	//
+		// Precondition :
+    	//
 
-		//-------------------------------------------- Constructors - destructor
+	//------------------------------------------------- Operators overloading
+
+	//-------------------------------------------- Constructors - destructor
 		Controller();
 		// How to use : Constructs a Controller
-		//
-		// Precondition :
-		//
+    	//
+    	// Precondition :
+    	//
 
 		virtual ~Controller();
 		// How to use :
-		//
-		// Precondition :
-		//
+    	//
+    	// Precondition :
+    	//
 
-	//------------------------------------------------------------------ PROTECTED
+	friend ostream& operator<<(std::ostream&, const Controller&);
+
+//------------------------------------------------------------------ PROTECTED
 	protected:
-		//----------------------------------------------------- Protected Methods
+	//----------------------------------------------------- Protected Methods
+	//----------------------------------------------------- Protected Attributes
 
-		//----------------------------------------------------- Protected Attributes
-
-	//------------------------------------------------------------------ PRIVATE
+//------------------------------------------------------------------ PRIVATE
 	private:
-		//----------------------------------------------------- Private Methods
+	//----------------------------------------------------- Private Methods
 
-		//----------------------------------------------------- Private Attributes
-		Model model;
+	//----------------------------------------------------- Private Attributes
+
+	Model model;
 };
 
 //-------------------------------- Other definitions depending on <Controller>

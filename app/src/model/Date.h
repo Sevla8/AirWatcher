@@ -31,7 +31,11 @@ class Date {
 	//----------------------------------------------------------------- PUBLIC
 	public:
 		//----------------------------------------------------- Public methods
-
+		bool equalsDay(const Date&) const;
+		// How to use :
+		//
+		// Precondition :
+		//
 		//------------------------------------------------- Operators overloading
 		bool operator<(const Date&) const;
 		// How to use :

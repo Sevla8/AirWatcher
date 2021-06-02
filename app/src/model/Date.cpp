@@ -25,6 +25,12 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Public Methods
+bool Date::equalsDay(const Date& d) const
+// Algorithm :
+//
+{
+	return year == d.year && month == d.month && day == d.day;
+} //----- End of equalsDay
 
 //------------------------------------------------- Operators overloading
 
