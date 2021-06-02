@@ -167,18 +167,6 @@ Date::Date(int theYear, int theMonth, int theDay, int theHour, int theMinute, in
 {
 } //----- End of Date (parameters constructor)
 
-Date::Date() :
-	year(1970),
-	month(1),
-	day(1),
-	hour(0),
-	minute(0),
-	second(0)
-// Algorithm :
-//
-{
-} //----- End of Date
-
 //------------------------------------------------------------------ PROTECTED
 
 //----------------------------------------------------- Protected Methods
