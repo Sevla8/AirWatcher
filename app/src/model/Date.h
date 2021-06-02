@@ -28,7 +28,11 @@ class Date {
 	//----------------------------------------------------------------- PUBLIC
 	public:
 		//----------------------------------------------------- Public methods
-
+		bool equalsDay(const Date&) const;
+		// How to use :
+		//
+		// Precondition :
+		//
 		//------------------------------------------------- Operators overloading
 		bool operator<(const Date& aDate) const;
 		// How to use : retruns true if aDate is less recent than the calling Date

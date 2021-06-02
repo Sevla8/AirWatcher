@@ -76,6 +76,12 @@ class UserInterface {
 		// Precondition :
 		//
 
+		char doubleChoiceInput(const char, const char) const;
+        // How to use :
+        //
+        // Precondition :
+        //
+
 		//----------------------------------------------------- Private Attributes
 		Controller controller;
 };

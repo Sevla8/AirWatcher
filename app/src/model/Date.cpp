@@ -20,6 +20,13 @@ using namespace std;
 //------------------------------------------------------ Include of local files
 #include "Date.h"
 
+//----------------------------------------------------- Public Methods
+bool Date::equalsDay(const Date& d) const
+// Algorithm :
+//
+{
+	return year == d.year && month == d.month && day == d.day;
+} //----- End of equalsDay
 
 //------------------------------------------------- Operators overloading
 

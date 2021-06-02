@@ -16,7 +16,6 @@
 #include <sstream>
 #include <string>
 #include <cmath>
-#include <map>
 
 using namespace std;
 
@@ -32,9 +31,7 @@ const Model& Controller::getModel()
 	return model;
 }  //----- End of getModel
 
-string Controller::analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end)
-//Algorithm :
-//
+map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end, bool isPeriod)
 {
 	//define airQuality
 	string airQuality="";
@@ -43,7 +40,6 @@ string Controller::analyseAirQualityInCircularArea(float latitude, float longitu
 	float currentLongitude = 0.0;
 	vector<Sensor> sensorsInArea;
 	float conversionRadius = radius; //find the relation
-	Date defaultDate = Date();
 	int nbrMeasurementUsed = 0;
 
 	//search all sensors which are in the area
@@ -51,53 +47,40 @@ string Controller::analyseAirQualityInCircularArea(float latitude, float longitu
 		currentLatitude = currentSensor.GetLatitude();
 		currentLongitude = currentSensor.GetLongitude();
 		float distance = sqrt(pow(currentLatitude - latitude, 2) + pow(currentLongitude - longitude, 2));
+		
 		if (distance <= conversionRadius) {
 			sensorsInArea.push_back(currentSensor);
 		}
 	}
 
-	//to make the difference between time interval and ponctual measurement
-	if (end == defaultDate)	{
-		for (const auto &currentSensor : sensorsInArea) {
-			vector<Measurement> currentMeasurementList = currentSensor.GetMeasurements();
+	map<string, float> result;
+	vector <Measurement> currentMeasurementList;
 
-			for (const auto &currentMeasurement : currentMeasurementList) {
-				if (currentMeasurement.GetDate() == begin) {
-					if (currentMeasurement.GetAttribute().GetId() == "PM10") { //déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
-						indexAir += currentMeasurement.GetValue();
-						++nbrMeasurementUsed;
-					}
+	//to make the difference between time interval and ponctual measurement
+	if (!isPeriod)	{
+		for (const auto &currentSensor : sensorsInArea) {
+			for (const auto &currentMeasurement : currentSensor.GetMeasurements()) {
+				if (currentMeasurement.GetDate().equalsDay(begin)) {
+					currentMeasurementList.push_back(currentMeasurement);
 				}
 			}
-		}
-		if (nbrMeasurementUsed != 0) {
-			indexAir = indexAir / nbrMeasurementUsed;
 		}
 	}
 	else {
 		for (const auto &currentSensor : sensorsInArea) {
-			vector <Measurement> currentMeasurementList = currentSensor.GetMeasurements();
-			for (const auto &currentMeasurement : currentMeasurementList) {
+			for (const auto &currentMeasurement : currentSensor.GetMeasurements()) {
 				if (begin <= currentMeasurement.GetDate() && currentMeasurement.GetDate() <= end) {
-					if (currentMeasurement.GetAttribute().GetId()=="PM10") { //déterminer quel(s) type d'attribut(s) sera(seront) utilisé(s)
-						indexAir += currentMeasurement.GetValue();
-						++nbrMeasurementUsed;
-					}
+					currentMeasurementList.push_back(currentMeasurement);
 				}
 			}
 		}
-		indexAir=indexAir/nbrMeasurementUsed;
 	}
-	if (indexAir <= 27) {
-		airQuality = "Bon";
+	if(currentMeasurementList.empty()){
+		result.insert({"NO DATA", 0.0});
+	} else {
+		result = CalculateMeans(currentMeasurementList);
 	}
-	else if (28 <= indexAir && indexAir <= 49) {
-		airQuality = "Médiocre";
-	}
-	else if (50 <= indexAir) {
-		airQuality = "Mauvais";
-	}
-	return airQuality;
+	return result;
 } //----- End of analyseAirQualityInCircularArea
 
 vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end)
@@ -132,6 +115,74 @@ double Controller::CompareMeans(const vector<double>& mean1, const vector<double
 	return diff;
 }//----- End of CompareMeans
 
+
+map<string, float> Controller::CalculateMeans(const vector<Measurement>& measurements) const
+{
+	double sumO3 = 0;
+	double sumSO2 = 0;
+	double sumNO2 = 0;
+	double sumPM10 = 0;
+	int numberO3 = 0;
+	int numberSO2 = 0;
+	int numberNO2 = 0;
+	int numberPM10 = 0;
+	for (const auto& measurement : measurements) {
+		if (measurement.GetAttribute().GetId() == "O3") {
+			sumO3 += measurement.GetValue();
+			numberO3++;
+		}
+		else if (measurement.GetAttribute().GetId() == "SO2") {
+			sumSO2 += measurement.GetValue();
+			numberSO2++;
+		}
+		else if (measurement.GetAttribute().GetId() == "NO2") {
+			sumNO2 += measurement.GetValue();
+			numberNO2++;
+		}
+		else if (measurement.GetAttribute().GetId() == "PM10") {
+			sumPM10 += measurement.GetValue();
+			numberPM10++;
+		}
+	}
+    map<string, float> result;
+	result.insert({"O3", sumO3 / numberO3});
+	result.insert({"SO2", sumSO2 / numberSO2});
+	result.insert({"NO2", sumNO2 / numberNO2});
+	result.insert({"PM10", sumPM10 / numberPM10});
+	return result;
+}//----- End of calculateMeans
+
+string Controller::CalculateAirQualityValue(const map<string, float>& mapMeans) const
+{
+	float o3;
+	float so2;
+	float no2;
+	float pm10;
+
+	string airQuality;
+
+	for(const auto &value: mapMeans){
+		if(value.first == "O3") o3 = value.second;
+		if(value.first == "SO2") so2 = value.second;
+		if(value.first == "NO2") no2 = value.second;
+		if(value.first == "PM10") pm10 = value.second;
+	}
+	if(o3 > 240 || so2 > 500 || no2 > 400 || pm10 > 80){
+		airQuality = "Extremely bad";
+	} else if (o3 > 180 || so2 > 300 || no2 > 200 || pm10 > 50) {
+		airQuality = "Bad";
+	} else if (o3 > 130 || so2 > 200 || no2 > 135 || pm10 > 35) {
+		airQuality = "Poor";
+	} else if (o3 > 105 || so2 > 160 || no2 > 110 || pm10 > 28) {
+		airQuality = "Moderate";
+	} else if (o3 > 55 || so2 > 80 || no2 > 55 || pm10 > 14) {
+		airQuality = "Good";
+	} else {
+		airQuality = "Very good";
+	}
+	return airQuality;
+} //----- End of CalculateAirQualityValue
+
 //------------------------------------------------- Operators overloading
 
 ostream& operator<<(std::ostream& os, const Controller& c)
@@ -147,12 +198,4 @@ Controller::Controller()
 Controller::~Controller()
 {
 } //----- End of ~Controller
-
-//------------------------------------------------------------------ PROTECTED
-
-//----------------------------------------------------- Protected Methods
-
-//------------------------------------------------------------------ PRIVATE
-
-//----------------------------------------------------- Private Methods
 
