@@ -37,6 +37,8 @@ set(SOURCE_FILES
 set(TEST_FILES
 	test/ReaderTest.cpp
 	test/ReaderTest.h
+	test/AttributeTest.h
+	test/AttributeTest.cpp
 	test/ControllerTest.h
 	test/ControllerTest.cpp
 )

@@ -56,7 +56,7 @@ int UserInterface::displayMenu()
 	return 0;
 }  //----- End of displayMenu
 
-int UserInterface::displayAirQualityArea() 
+int UserInterface::displayAirQualityArea()
 //Algorithm :
 //
 {
@@ -69,7 +69,7 @@ int UserInterface::displayAirQualityArea()
     int month;
     int hour;
     int day;
-    int minutes; 
+    int minutes;
     int seconds;
     map<string, float> result;
     Date begin;
@@ -92,7 +92,7 @@ int UserInterface::displayAirQualityArea()
         cout<<"Choose the month : (1-12)"<<endl;
         cin >> month;
         cout<<"Choose the day : (1-31)"<<endl;
-        cin >> day; 
+        cin >> day;
 
         begin = Date(year, month, day, 12, 0, 0);
         result = controller.analyseAirQualityInCircularArea(longitude, latitude, radius, begin, end, false);
@@ -197,7 +197,6 @@ int UserInterface::displayRankingSensorsSimilarity()
 	return 0;
 }  //----- End of displayRankingSensorsSimilarity
 
-
 char UserInterface::doubleChoiceInput(char a, char b) const
 // Algorithm :
 //
@@ -215,6 +214,7 @@ char UserInterface::doubleChoiceInput(char a, char b) const
     return choice;
 
 } //----- End of doubleChoiceInput
+
 //------------------------------------------------- Operators overloadinf
 
 //-------------------------------------------- constructors - destructor

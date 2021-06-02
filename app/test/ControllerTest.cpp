@@ -1,8 +1,9 @@
 #include "ControllerTest.h"
 
 // Test of the method Controller::analyseAirQualityInCircularArea() method does
+
 TEST_F(ControllerTest, AirQuality) {
-	ASSERT_EQ("Bon", controller.analyseAirQualityInCircularArea(44, -1, 10, debut, fin));
+	ASSERT_EQ("Bon", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44, -1, 10, debut, fin, true)));
 }
 
 // TEST_F(ControllerTest, RankingSensorSimilarities)

@@ -28,60 +28,53 @@
 //------------------------------------------------------------------------
 
 class Controller {
-//----------------------------------------------------------------- PUBLIC
+	//----------------------------------------------------------------- PUBLIC
 	public:
-	//----------------------------------------------------- Public methods
-    // type Method ( parameters list );
-    // How to use :
-    //
-    // Precondition :
-    //
-
+		//----------------------------------------------------- Public methods
 		const Model& getModel();
-		// type Method ( parameters list );
     	// How to use :
     	//
     	// Precondition :
     	//
 
 		map<string, float> analyseAirQualityInCircularArea(float, float, float, const Date&, const Date&, bool isPeriod);
-		// type Method ( parameters list );
     	// How to use :
     	//
 		// Precondition :
     	//
 
 		vector<Sensor> rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end);
-		// type Method ( parameters list );
     	// How to use :
     	//
 		// Precondition :
     	//
 
 		double CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const;
-		// type Method ( parameters list );
     	// How to use :
     	//
 		// Precondition :
     	//
-		
+
       	map<string, float> CalculateMeans(const vector<Measurement>& measurements) const;
-		// type Method ( parameters list );
     	// How to use :
     	//
 		// Precondition :
     	//
 
 		string CalculateAirQualityValue(const map<string, float>& mapMeans) const;
-		// type Method ( parameters list );
     	// How to use :
     	//
 		// Precondition :
     	//
 
-	//------------------------------------------------- Operators overloading
+		//------------------------------------------------- Operators overloading
+		friend ostream& operator<<(std::ostream&, const Controller&);
+    	// How to use :
+    	//
+    	// Precondition :
+    	//
 
-	//-------------------------------------------- Constructors - destructor
+		//-------------------------------------------- Constructors - destructor
 		Controller();
 		// How to use : Constructs a Controller
     	//
@@ -94,20 +87,19 @@ class Controller {
     	// Precondition :
     	//
 
-	friend ostream& operator<<(std::ostream&, const Controller&);
 
-//------------------------------------------------------------------ PROTECTED
+	//------------------------------------------------------------------ PROTECTED
 	protected:
-	//----------------------------------------------------- Protected Methods
-	//----------------------------------------------------- Protected Attributes
+		//----------------------------------------------------- Protected Methods
 
-//------------------------------------------------------------------ PRIVATE
+		//----------------------------------------------------- Protected Attributes
+
+	//------------------------------------------------------------------ PRIVATE
 	private:
-	//----------------------------------------------------- Private Methods
+		//----------------------------------------------------- Private Methods
 
-	//----------------------------------------------------- Private Attributes
-
-	Model model;
+		//----------------------------------------------------- Private Attributes
+		Model model;
 };
 
 //-------------------------------- Other definitions depending on <Controller>

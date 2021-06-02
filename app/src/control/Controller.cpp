@@ -57,7 +57,7 @@ map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, f
 			sensorsInArea.push_back(currentSensor);
 		}
 	}
-	
+
 	map<string, float> result;
 	vector <Measurement> currentMeasurementList;
 
@@ -188,7 +188,7 @@ string Controller::CalculateAirQualityValue(const map<string, float>& mapMeans) 
 		airQuality = "Very good";
 	}
 	return airQuality;
-}//----- End of CalculateAirQualityValue
+} //----- End of CalculateAirQualityValue
 
 //------------------------------------------------- Operators overloadinf
 
@@ -200,18 +200,17 @@ ostream& operator<<(std::ostream& os, const Controller& c)
 } //----- End of operator <<
 
 //-------------------------------------------- constructors - destructor
+
 Controller::Controller()
 // Algorithm :
 //
 {
-
 } //----- End of Controller
 
 Controller::~Controller()
 // Algorithm :
 //
 {
-
 } //----- End of ~Controller
 
 //------------------------------------------------------------------ PROTECTED

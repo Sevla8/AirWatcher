@@ -77,7 +77,6 @@ class UserInterface {
 		//
 
 		char doubleChoiceInput(const char, const char) const;
-        // type Method ( parameters list );
         // How to use :
         //
         // Precondition :
