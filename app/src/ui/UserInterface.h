@@ -65,10 +65,9 @@ class UserInterface {
 	private:
 		//----------------------------------------------------- Private Methods
 		int displayAirQualityArea();
-		// How to use :
+		// How to use : 
 		//
-		// Precondition :
-		//
+
 
 		int displayRankingSensorsSimilarity();
 		// How to use :
@@ -76,12 +75,13 @@ class UserInterface {
 		// Precondition :
 		//
 
-		char doubleChoiceInput(const char, const char) const;
-        // How to use :
-        //
-        // Precondition :
+		char doubleChoiceInput(const char firstOption, const char secondOption) const;
+        // How to use : Returns the char chosen by the user
         //
 
+		Date chooseDate(bool isInterval);
+		
+		
 		//----------------------------------------------------- Private Attributes
 		Controller controller;
 };
