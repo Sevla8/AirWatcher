@@ -180,7 +180,7 @@ int UserInterface::displayRankingSensorsSimilarity()
         cout << "End date must be after begin date." << endl << endl;
     } else {
         cout << "Sensors ranked in function of similarity with "<< sensorId << " : " << endl;
-        for (const auto& sensor : controller.rankingSensorsSimilarity(sensorId, begin, end)) {
+        for (const auto& sensor : controller.RankingSensorsSimilarity(sensorId, begin, end)) {
             cout << sensor.GetId() << endl;
         }
     }
