@@ -193,7 +193,7 @@ char UserInterface::doubleChoiceInput(char a, char b) const
         if(choice == a || choice == b){
             break;
         } else {
-            cout << "\t => Error : Please choose a valid option. [" << a <<' / '<< b <<']' << endl;;
+            cout << "\t => Error : Please choose a valid option. [" << a <<" / "<< b <<']' << endl;;
         }
     }
     return choice;
@@ -203,7 +203,7 @@ char UserInterface::doubleChoiceInput(char a, char b) const
 //------------------------------------------------- Operators overloading
 
 //-------------------------------------------- constructors - destructor
-Date chooseDate(bool isInterval)
+Date UserInterface::chooseDate(bool isInterval)
 {
     int day, month, year, hour, minute, second;
     Date date;
