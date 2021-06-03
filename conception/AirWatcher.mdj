@@ -8984,9 +8984,9 @@
 												"$ref": "AAAAAAF5Itfkt4h7z1E="
 											},
 											"font": "Arial;13;0",
-											"left": 24.72998046875,
+											"left": 22.55908203125,
 											"top": 5,
-											"width": 115.9052734375,
+											"width": 102.791015625,
 											"height": 13,
 											"text": "SequenceDiagram1"
 										},
@@ -8999,7 +8999,7 @@
 											"font": "Arial;13;1",
 											"left": 5,
 											"top": 5,
-											"width": 14.72998046875,
+											"width": 12.55908203125,
 											"height": 13,
 											"text": "sd"
 										}
@@ -9729,9 +9729,9 @@
 												"$ref": "AAAAAAF5LnW2Bpi5m+k="
 											},
 											"font": "Arial;13;0",
-											"left": 515.578125,
+											"left": 514.11181640625,
 											"top": 253,
-											"width": 103.603515625,
+											"width": 89.82275390625,
 											"height": 13,
 											"text": "sensor of sensors"
 										},
@@ -9744,7 +9744,7 @@
 											"font": "Arial;13;1",
 											"left": 485,
 											"top": 253,
-											"width": 25.578125,
+											"width": 24.11181640625,
 											"height": 13,
 											"text": "loop"
 										},
@@ -21441,14 +21441,14 @@
 											"left": 184,
 											"top": 80,
 											"width": 1,
-											"height": 1515
+											"height": 985
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 88,
 									"top": 40,
 									"width": 192.68798828125,
-									"height": 1555,
+									"height": 1025,
 									"nameCompartment": {
 										"$ref": "AAAAAAF5Rw+IZBsD0RY="
 									},
