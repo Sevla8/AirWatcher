@@ -34,7 +34,7 @@ class UserInterface {
 	//----------------------------------------------------------------- PUBLIC
 	public:
 		//----------------------------------------------------- Public methods
-		int displayMenu();
+		int DisplayMenu();
 		// How to use :
 		//
 		// Precondition :
@@ -65,7 +65,7 @@ class UserInterface {
 	private:
 		//----------------------------------------------------- Private Methods
 		int displayAirQualityArea();
-		// How to use : 
+		// How to use :
 		//
 
 
@@ -80,8 +80,8 @@ class UserInterface {
         //
 
 		Date chooseDate(bool isInterval);
-		
-		
+
+
 		//----------------------------------------------------- Private Attributes
 		Controller controller;
 };

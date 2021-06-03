@@ -12,20 +12,30 @@
 class ControllerTest : public ::testing::Test {
 	public:
 		virtual void SetUp() {
-			Model model("../../dataset/sensors.csv",
-						"../../dataset/cleaners.csv",
-						"../../dataset/attributes.csv",
-						"../../dataset/users.csv",
-						"../../dataset/providers.csv",
+			Model model("../../dataset/tests/sensors.csv",
+						"../../dataset/tests/cleaners.csv",
+						"../../dataset/tests/attributes.csv",
+						"../../dataset/tests/users.csv",
+						"../../dataset/tests/providers.csv",
 						"../../dataset/tests/measurements1.csv");
-			controller.setModel(model);
+			controller.SetModel(model);
+
+			Model model2("../../dataset/tests/sensors1.csv",
+						 "../../dataset/tests/cleaners.csv",
+						 "../../dataset/tests/attributes.csv",
+						 "../../dataset/tests/users.csv",
+						 "../../dataset/tests/providers.csv",
+						 "../../dataset/tests/dataToTestSensorRanked.csv");
+			controller2.SetModel(model2);
+
+			sensor = *controller2.GetModel().GetSensors().begin();
 		}
 
-		// virtual void TearDown() {}
-
 		Controller controller;
-		// Sensor sensor = sensorsDataSet[0];
-
+		Controller controller2;
+		Date debut = Date(2019, 1, 1, 1, 0, 0);
+		Date fin = Date(2019, 1, 2, 12, 0, 0);
+		Sensor sensor;
 };
 
 #endif

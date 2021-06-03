@@ -32,23 +32,17 @@ class Controller {
 	//----------------------------------------------------------------- PUBLIC
 	public:
 		//----------------------------------------------------- Public methods
-		const Model& getModel();
+		const Model& GetModel();
 		// 	How to use : Returns a reference to the Controller's attribute model
     	//
     	// Precondition :
 		//
 
-		void setModel(const Model&);
+		void SetModel(const Model&);
 		// 	How to use :
     	//
     	// Precondition :
 		//
-
-		string analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end);
-		// How to use :
-    	//
-		// Precondition :
-    	//
 
 		double CompareMeans(const vector<double>& mean1, const vector<double>& mean2) const;
 		// 	How to use : Returns the sum of the absolute values of the differences between each of the corresponding values contained in mean1
@@ -56,7 +50,7 @@ class Controller {
 		// 	Precondition : Both vectors should have been initialized and contain the same attributes' position.
 		//
 
-		map<string, float> analyseAirQualityInCircularArea(float, float, float, const Date&, const Date&, bool isPeriod);
+		map<string, float> AnalyseAirQualityInCircularArea(float, float, float, const Date&, const Date&, bool isPeriod);
 		// 	How to use : By indicating a geographical position in terms of lagitude and longitude, as well as the radius and the
 		//	interval of time for which the Air Quality is searched, the function returns a Map indicating the level of each parameter measured
 		// 	(mapped by its accronym) and a string indicating whether the quality is Good, Medium, Degraded
@@ -64,7 +58,7 @@ class Controller {
 		//
 
 
-		vector<Sensor> rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end);
+		vector<Sensor> RankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end);
 		// 	How to use : Two sensors are considered to be similar if the sum of the differences between their mesures of each
 		//	parameter is close to zero;
 

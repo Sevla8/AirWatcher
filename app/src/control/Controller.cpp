@@ -26,16 +26,16 @@ using namespace std;
 
 //----------------------------------------------------- Public Methods
 
-const Model& Controller::getModel()
+const Model& Controller::GetModel()
 {
 	return model;
 }  //----- End of getModel
 
-void Controller::setModel(const Model& m) {
+void Controller::SetModel(const Model& m) {
 	model = m;
 }
 
-map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end, bool isPeriod)
+map<string, float> Controller::AnalyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end, bool isPeriod)
 { 	//	O(S+N)
 	//define airQuality
 	string airQuality="";
@@ -103,7 +103,7 @@ map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, f
 	return result;
 } //----- End of analyseAirQualityInCircularArea
 
-vector<Sensor> Controller::rankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end)
+vector<Sensor> Controller::RankingSensorsSimilarity(const string& sensorId, const Date& begin, const Date& end)
 { 	// O(Nlog(N))
 	multimap<double, Sensor> map;
 	Sensor target = model.FindSensor(sensorId);

@@ -13,12 +13,12 @@
 class ReaderTest : public ::testing::Test {
 	protected:
 		virtual void SetUp() {
-			cleanerDataVide = Reader::readCleaners("../../dataset/tests/fichierVide.csv");
-			sensorDataVide = Reader::readSensors("../../dataset/tests/fichierVide.csv");
-			measurementDataVide = Reader::readMeasurements("../../dataset/tests/fichierVide.csv");
-			userDataVide = Reader::readUsers("../../dataset/tests/fichierVide.csv");
-			providerDataVide = Reader::readProviders("../../dataset/tests/fichierVide.csv");
-			attributeDataVide = Reader::readAttributes("../../dataset/tests/fichierVide.csv");
+			cleanerDataEmpty = Reader::readCleaners("../../dataset/tests/fichierVide.csv");
+			sensorDataEmpty = Reader::readSensors("../../dataset/tests/fichierVide.csv");
+			measurementDataEmpty = Reader::readMeasurements("../../dataset/tests/fichierVide.csv");
+			userDataEmpty = Reader::readUsers("../../dataset/tests/fichierVide.csv");
+			providerDataEmpty = Reader::readProviders("../../dataset/tests/fichierVide.csv");
+			attributeDataEmpty = Reader::readAttributes("../../dataset/tests/fichierVide.csv");
 
 			cleanerData = Reader::readCleaners("../../dataset/tests/cleaners.csv");
 			sensorData = Reader::readSensors("../../dataset/tests/sensors.csv");
@@ -28,17 +28,17 @@ class ReaderTest : public ::testing::Test {
 			attributeData = Reader::readAttributes("../../dataset/tests/attributes.csv");
 		}
 
-		set<CleanerData> cleanerDataVide;
+		set<CleanerData> cleanerDataEmpty;
 		set<CleanerData> cleanerData;
-		set<AttributeData> attributeDataVide;
+		set<AttributeData> attributeDataEmpty;
 		set<AttributeData> attributeData;
-		set<SensorData> sensorDataVide;
+		set<SensorData> sensorDataEmpty;
 		set<SensorData> sensorData;
-		multiset<MeasurementData> measurementDataVide;
+		multiset<MeasurementData> measurementDataEmpty;
 		multiset<MeasurementData> measurementData;
-		set<UserData> userDataVide;
+		set<UserData> userDataEmpty;
 		set<UserData> userData;
-		set<ProviderData> providerDataVide;
+		set<ProviderData> providerDataEmpty;
 		set<ProviderData> providerData;
 };
 

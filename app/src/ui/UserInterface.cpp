@@ -25,13 +25,13 @@ using namespace std;
 
 //----------------------------------------------------- Public Methods
 
-int UserInterface::displayMenu()
+int UserInterface::DisplayMenu()
 //Algorithm :
 //
 {
 	cout<<"======== Welcome to Airwatcher ========"<<endl;
 	int choice =0 ;
-	
+
 
 	while (choice !=3)
 	{
@@ -102,11 +102,11 @@ int UserInterface::displayAirQualityArea()
     }
     cout<<endl;
     cout<<"Choose the latitude. (-1 : 5.3)"<<endl;
-    
+
     while(!(cin>>latitude)){
         cout<<"MUST BE A NUMBER "<< endl;
         cin.clear();
-        cin.ignore();        
+        cin.ignore();
         cout<<"Choose the latitude. (-1 : 5.3) : ";
     }
     cout<<endl;
@@ -114,7 +114,7 @@ int UserInterface::displayAirQualityArea()
     while(!(cin>>radius)){
         cout<<"MUST BE A NUMBER "<< endl;
         cin.clear();
-        cin.ignore();        
+        cin.ignore();
         cout<<"Choose the radius : ";
     }
     cout<<endl;
@@ -124,15 +124,15 @@ int UserInterface::displayAirQualityArea()
 
     if(choice == 'd') {
         begin = chooseDate(isInterval);
-        result = controller.analyseAirQualityInCircularArea(longitude, latitude, radius, begin, end, false);
+        result = controller.AnalyseAirQualityInCircularArea(longitude, latitude, radius, begin, end, false);
     } else if (choice == 'p') {
-        isInterval = true;        
+        isInterval = true;
         cout<<"Choose the begin date : "<<endl;
         begin = chooseDate(isInterval);
         cout<<"Choose the end date : "<<endl;
         end = chooseDate(isInterval);
-        
-        result = controller.analyseAirQualityInCircularArea(longitude, latitude, radius, begin, end, true);
+
+        result = controller.AnalyseAirQualityInCircularArea(longitude, latitude, radius, begin, end, true);
         cout << "________________________________________" << endl;
     }
 
@@ -161,12 +161,12 @@ int UserInterface::displayRankingSensorsSimilarity()
     int nthSensor;
 
 	cout << "Choose the number of the reference sensor. (0 : 99)" << endl;
-    while(!(cin>>nthSensor)|| nthSensor){
+    while(!(cin>>nthSensor) && nthSensor){
         cout<<"MUST BE A NUMBER "<< endl;
         cin.clear();
-        cin.ignore();  
+        cin.ignore();
     }
-    sensorId = ("Sensor" + to_string(nthSensor)); 
+    sensorId = ("Sensor" + to_string(nthSensor));
 
 	cout << "Choose the begin date : " << endl;
 
@@ -177,7 +177,7 @@ int UserInterface::displayRankingSensorsSimilarity()
 	Date end = chooseDate(true);
 
 	cout << "Sensors ranked in function of similarity with "<< sensorId << " : " << endl;
-	for (const auto& sensor : controller.rankingSensorsSimilarity(sensorId, begin, end)) {
+	for (const auto& sensor : controller.RankingSensorsSimilarity(sensorId, begin, end)) {
 		cout << sensor.GetId() << endl;
 	}
 
@@ -212,7 +212,7 @@ Date UserInterface::chooseDate(bool isInterval)
         while(!(cin>>year)){
             cout<<"MUST BE AN INTEGER "<< endl;
             cin.clear();
-            cin.ignore();        
+            cin.ignore();
             cout<<"Choose the year : ";
         }
         cout<<endl;
@@ -221,17 +221,17 @@ Date UserInterface::chooseDate(bool isInterval)
         while(!(cin>>month) || month < 1 || month > 12){
             cout<<"MUST BE AN INTEGER BETWEEN 1-12"<< endl;
             cin.clear();
-            cin.ignore();        
+            cin.ignore();
             cout<<"Choose the month : ";
-        }        
+        }
         cout<<endl;
         cout<<"Choose the day : (1-31)"<<endl;
         while(!(cin>>day) || day < 1 || day > 31){
             cout<<"MUST BE AN INTEGER BETWEEN 1-31"<< endl;
             cin.clear();
-            cin.ignore();        
+            cin.ignore();
             cout<<"Choose the day : ";
-        }        
+        }
         cout<<endl;
         if(!isInterval)
         {
@@ -243,7 +243,7 @@ Date UserInterface::chooseDate(bool isInterval)
             while(!(cin>>hour)){
                 cout<<"MUST BE AN INTEGER "<< endl;
                 cin.clear();
-                cin.ignore();        
+                cin.ignore();
                 cout<<"Choose the hour : ";
             }
             cout<<endl;
@@ -252,21 +252,21 @@ Date UserInterface::chooseDate(bool isInterval)
             while(!(cin>>minute)){
                 cout<<"MUST BE AN INTEGER "<< endl;
                 cin.clear();
-                cin.ignore();        
+                cin.ignore();
                 cout<<"Choose the minute : ";
-            }   
+            }
             cout<<endl;
             cout<<"Choose the second : ";
             while(!(cin>>second)){
                 cout<<"MUST BE AN INTEGER "<< endl;
                 cin.clear();
-                cin.ignore();        
+                cin.ignore();
                 cout<<"Choose the second : ";
             }
-            cout<<endl;   
+            cout<<endl;
             date = Date(year, month, day, hour, minute, second);
         }
-        
+
         return date;
 }
 
