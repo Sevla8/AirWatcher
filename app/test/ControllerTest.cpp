@@ -60,20 +60,17 @@ TEST_F(ControllerTest, AirQuality4FourthJanuary) {
 	ASSERT_EQ("Extremely bad", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, 1.8f, 0.1f, debut, fin, true)));
 }
 
-// TEST_F(ControllerTest, AirQuality3) {
-// 	ASSERT_EQ("Very good", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(46.0f, 2.0f, 0.1f, debut, fin, true)));
-// }
-
-// TEST_F(ControllerTest, RankingSensorSimilarities)
-// {
-// 	vector<Sensor> res=controller.rankingSensorsSimilarity(sensor, debut, fin);
-// 	if (sensorsRanked.size()==res.size())
-// 	{
-// 		for (int i=0; i<sensorsRanked.size(); i++)
-// 		{
-// 			ASSERT_EQ(sensorsRanked[i].getId(), res[i].getId());
-// 		}
-// 	} else {
-// 		ASSERT_STREQ("a", "e");
-// 	}
-// }
+TEST_F(ControllerTest, RankingSensorSimilarities)
+{
+	
+    vector<Sensor> res=controller2.rankingSensorsSimilarity(sensor, debut, fin);
+	if (sensorsRanked.size()==res.size())
+	{
+ 		for (int i=0; i<sensorsRanked.size(); i++)
+ 		{
+ 			ASSERT_EQ(sensorsRanked[i].getId(), res[i].getId());
+ 		}
+ 	} else {
+ 		ASSERT_STREQ("a", "e");
+ 	}
+}
