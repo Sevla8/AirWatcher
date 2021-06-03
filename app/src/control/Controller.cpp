@@ -31,6 +31,10 @@ const Model& Controller::getModel()
 	return model;
 }  //----- End of getModel
 
+void Controller::setModel(const Model& m) {
+	model = m;
+}
+
 map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end, bool isPeriod)
 { 	//	O(S+N)
 	//define airQuality
