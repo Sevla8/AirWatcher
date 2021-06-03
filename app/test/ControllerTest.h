@@ -19,12 +19,23 @@ class ControllerTest : public ::testing::Test {
 						"../../dataset/providers.csv",
 						"../../dataset/tests/measurements1.csv");
 			controller.setModel(model);
+			sensorsRanked=Reader::readSensors("../../dataset/tests/sensorsRanked.csv"); 
+			sensor=sensorsRanked[0];
+			controller2.setModel(model2);
+			
 		}
 
 		// virtual void TearDown() {}
 
 		Controller controller;
-		// Sensor sensor = sensorsDataSet[0];
+		Model model2= new Model("../../dataset/sensors.csv", "../../dataset/cleaners.csv", "../../dataset/attributes.csv" , 
+								"../../dataset/users.csv", "../../dataset/providers.csv", "../../dataset/dataToTestSensorRanked.csv");
+		Controller controller2=new Controller();
+		Date debut = Date(2019, 1, 4, 12, 0, 0);
+		Date fin = Date(2019, 1, 8, 12, 0, 0);
+		vector<Sensor> sensorsRanked;
+		Sensor sensor;
+		
 
 };
 
