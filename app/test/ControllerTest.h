@@ -28,13 +28,20 @@ class ControllerTest : public ::testing::Test {
 						 "../../dataset/tests/dataToTestSensorRanked.csv");
 			controller2.SetModel(model2);
 
+			Model model3("../../dataset/tests/sensors.csv",
+						 "../../dataset/tests/cleaners.csv",
+						 "../../dataset/tests/attributes.csv",
+						 "../../dataset/tests/users.csv",
+						 "../../dataset/tests/providers.csv",
+						 "../../dataset/measurements.csv");
+			controller3.SetModel(model3);
+
 			sensor = *controller2.GetModel().GetSensors().begin();
 		}
 
 		Controller controller;
 		Controller controller2;
-		Date debut = Date(2019, 1, 1, 1, 0, 0);
-		Date fin = Date(2019, 1, 2, 12, 0, 0);
+		Controller controller3;
 		Sensor sensor;
 };
 
