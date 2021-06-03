@@ -38,6 +38,12 @@ class Controller {
     	// Precondition :
 		//
 
+		void setModel(const Model&);
+		// 	How to use :
+    	//
+    	// Precondition :
+		//
+
 		string analyseAirQualityInCircularArea(float latitude, float longitude, float radius, const Date& begin, const Date& end);
 		// How to use :
     	//

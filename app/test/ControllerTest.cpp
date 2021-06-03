@@ -6,17 +6,63 @@
     // cin>>longitude;
     // cout<<"Choose the latitude. (-1 : 5.3)"<<endl;
 
-TEST_F(ControllerTest, AirQuality1) {
-	ASSERT_EQ("Bad", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, -1.0f, 10.0f, debut, fin, true)));
+TEST_F(ControllerTest, AirQuality0FisrtJanuary) {
+	Date debut = Date(2019, 1, 1, 12, 0, 0);
+	Date fin = Date(2019, 1, 1, 12, 0, 0);
+	ASSERT_EQ("Very good", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, -1.0f, .1f, debut, fin, true)));
 }
 
-TEST_F(ControllerTest, AirQuality2) {
-	ASSERT_EQ("Poor", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(47.0f, 5.0f, 1.0f, debut, fin, true)));
+TEST_F(ControllerTest, AirQuality1FisrtJanuary) {
+	Date debut = Date(2019, 1, 1, 12, 0, 0);
+	Date fin = Date(2019, 1, 1, 12, 0, 0);
+	ASSERT_EQ("Moderate", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, -0.3f, 0.1f, debut, fin, true)));
 }
 
-TEST_F(ControllerTest, AirQuality3) {
-	ASSERT_EQ("Very good", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(46.0f, 2.0f, 0.1f, debut, fin, true)));
+TEST_F(ControllerTest, AirQuality2FisrtJanuary) {
+	Date debut = Date(2019, 1, 1, 12, 0, 0);
+	Date fin = Date(2019, 1, 1, 12, 0, 0);
+	ASSERT_EQ("Moderate", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, 0.4f, 0.1f, debut, fin, true)));
 }
+
+TEST_F(ControllerTest, AirQuality3FisrtJanuary) {
+	Date debut = Date(2019, 1, 1, 12, 0, 0);
+	Date fin = Date(2019, 1, 1, 12, 0, 0);
+	ASSERT_EQ("Moderate", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, 1.1f, 0.1f, debut, fin, true)));
+}
+
+TEST_F(ControllerTest, AirQuality4FisrtJanuary) {
+	Date debut = Date(2019, 1, 1, 12, 0, 0);
+	Date fin = Date(2019, 1, 1, 12, 0, 0);
+	ASSERT_EQ("Moderate", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, 1.8f, 0.1f, debut, fin, true)));
+}
+
+TEST_F(ControllerTest, AirQuality1FourthJanuary) {
+	Date debut = Date(2019, 1, 4, 12, 0, 0);
+	Date fin = Date(2019, 1, 4, 12, 0, 0);
+	ASSERT_EQ("Extremely bad", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, -0.3f, 0.1f, debut, fin, true)));
+}
+
+TEST_F(ControllerTest, AirQuality2FourthJanuary) {
+	Date debut = Date(2019, 1, 4, 12, 0, 0);
+	Date fin = Date(2019, 1, 4, 12, 0, 0);
+	ASSERT_EQ("Extremely bad", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, 0.4f, 0.1f, debut, fin, true)));
+}
+
+TEST_F(ControllerTest, AirQuality3FourthJanuary) {
+	Date debut = Date(2019, 1, 4, 12, 0, 0);
+	Date fin = Date(2019, 1, 4, 12, 0, 0);
+	ASSERT_EQ("Extremely bad", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, 1.1f, 0.1f, debut, fin, true)));
+}
+
+TEST_F(ControllerTest, AirQuality4FourthJanuary) {
+	Date debut = Date(2019, 1, 4, 12, 0, 0);
+	Date fin = Date(2019, 1, 4, 12, 0, 0);
+	ASSERT_EQ("Extremely bad", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(44.0f, 1.8f, 0.1f, debut, fin, true)));
+}
+
+// TEST_F(ControllerTest, AirQuality3) {
+// 	ASSERT_EQ("Very good", controller.CalculateAirQualityValue(controller.analyseAirQualityInCircularArea(46.0f, 2.0f, 0.1f, debut, fin, true)));
+// }
 
 // TEST_F(ControllerTest, RankingSensorSimilarities)
 // {
