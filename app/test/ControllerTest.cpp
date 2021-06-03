@@ -78,7 +78,6 @@ TEST_F(ControllerTest, AirQuality4FithJanuary) {
 	ASSERT_EQ("Very good", controller.CalculateAirQualityValue(controller.AnalyseAirQualityInCircularArea(44.0f, -0.3f, 0.8f, debut, fin, true)));
 }
 
-
 TEST_F(ControllerTest, AirQualityMultipleSensorsFithJanuary) {
 	Date debut = Date(2019, 1, 5, 12, 0, 0);
 	Date fin = Date(2019, 1, 5, 12, 0, 0);
