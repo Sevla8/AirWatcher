@@ -161,7 +161,7 @@ int UserInterface::displayRankingSensorsSimilarity()
     int nthSensor;
 
 	cout << "Choose the number of the reference sensor. (0 : 99)" << endl;
-    while(!(cin>>nthSensor) && nthSensor){
+    while(!(cin>>nthSensor)){
         cout<<"MUST BE A NUMBER "<< endl;
         cin.clear();
         cin.ignore();
@@ -176,11 +176,14 @@ int UserInterface::displayRankingSensorsSimilarity()
 
 	Date end = chooseDate(true);
 
-	cout << "Sensors ranked in function of similarity with "<< sensorId << " : " << endl;
-	for (const auto& sensor : controller.RankingSensorsSimilarity(sensorId, begin, end)) {
-		cout << sensor.GetId() << endl;
-	}
-
+    if(begin>=end) {
+        cout << "End date must be after begin date." << endl << endl;
+    } else {
+        cout << "Sensors ranked in function of similarity with "<< sensorId << " : " << endl;
+        for (const auto& sensor : controller.rankingSensorsSimilarity(sensorId, begin, end)) {
+            cout << sensor.GetId() << endl;
+        }
+    }
 	return 0;
 }  //----- End of displayRankingSensorsSimilarity
 
