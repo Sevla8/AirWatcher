@@ -11,7 +11,8 @@
 class ControllerTest : public ::testing::Test {
 	public:
 		virtual void SetUp() {
-			//sensorsRanked=Reader::readSensors("../../dataset/tests/sensorsRanked.csv"); sensorsRanked.csv A FAIRE
+			sensorsRanked=Reader::readSensors("../../dataset/tests/sensorsRanked.csv"); 
+			sensor=sensorsRanked[0];
 
 		}
 
@@ -20,6 +21,8 @@ class ControllerTest : public ::testing::Test {
 		Controller controller;
 		Date debut = Date(2019, 1, 4, 12, 0, 0);
 		Date fin = Date(2019, 1, 8, 12, 0, 0);
+		vector<Sensor> sensorsRanked;
+		Sensor sensor;
 		// Sensor sensor = sensorsDataSet[0];
 
 };
