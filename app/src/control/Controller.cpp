@@ -43,14 +43,29 @@ map<string, float> Controller::analyseAirQualityInCircularArea(float latitude, f
 	float currentLatitude = 0.0;
 	float currentLongitude = 0.0;
 	vector<Sensor> sensorsInArea;
-	float conversionRadius = radius; //find the relation
+	// CONVERSION
+
+	float oneDegree = (3.141593) / 180;
+  	float R = 6372.795477598; // Earth's radius
+
+  	latitude *=  oneDegree; //convert to radians
+  	longitude *= oneDegree;
+
+	float conversionRadius = radius; //in km
 	int nbrMeasurementUsed = 0;
 
 	//search all sensors which are in the area
 	for (const auto &currentSensor : model.GetSensors()) {
 		currentLatitude = currentSensor.GetLatitude();
+		currentLatitude *= oneDegree;
+
 		currentLongitude = currentSensor.GetLongitude();
-		float distance = sqrt(pow(currentLatitude - latitude, 2) + pow(currentLongitude - longitude, 2));
+		currentLongitude *= oneDegree;
+		float sinDiffLat = sin((currentLatitude - latitude)/2);
+		float sinDiffLong = sin((currentLongitude - longitude)/2);
+
+
+		float distance = 2 * asin(sqrt((sinDiffLat*sinDiffLat) + cos(latitude)*cos(currentLatitude)*(sinDiffLong*sinDiffLong)));
 
 		if (distance <= conversionRadius) {
 			sensorsInArea.push_back(currentSensor); // O(1)
@@ -119,7 +134,6 @@ double Controller::CompareMeans(const vector<double>& mean1, const vector<double
 	}
 	return diff;
 }//----- End of CompareMeans
-
 
 map<string, float> Controller::CalculateMeans(const vector<Measurement>& measurements) const
 { // O(N)
