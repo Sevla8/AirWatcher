@@ -33,7 +33,7 @@ int UserInterface::displayMenu()
 	int choice =0 ;
 	
 
-	while (choice !='3')
+	while (choice !=3)
 	{
 		cout<<" === Choose one of the options below. === "<<endl;
 		cout<<"1 : Analyse air quality in a circular area"<<endl;

@@ -71,7 +71,7 @@ TEST_F(ControllerTest, AirQuality4FourthJanuary) {
 // 	{
 // 		for (int i=0; i<sensorsRanked.size(); i++)
 // 		{
-// 			ASSERT_EQ(sensorsRanked[i].getId(), sensorsDataSet[i].getId());
+// 			ASSERT_EQ(sensorsRanked[i].getId(), res[i].getId());
 // 		}
 // 	} else {
 // 		ASSERT_STREQ("a", "e");
