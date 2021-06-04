@@ -51,7 +51,7 @@ int UserInterface::DisplayMenu()
         switch(choice)
         {
             case (1) :
-            {    
+            {
                 displayAirQualityArea();
                 break;
             }
@@ -114,12 +114,12 @@ int UserInterface::displayAirQualityArea()
         cout<<"Choose the latitude. (-1 : 5.3) : ";
     }
     cout<<endl;
-    cout<<"Choose the radius."<<endl;
+    cout<<"Choose the radius (in km)."<<endl;
     while(!(cin>>radius)){
         cout<<"MUST BE A NUMBER "<< endl;
         cin.clear();
         cin.ignore();
-        cout<<"Choose the radius : ";
+        cout<<"Choose the radius : (in km)";
     }
     cout<<endl;
 
