@@ -13,8 +13,11 @@
 
 //-------------------------------------------------------- Include of system files
 #include <iostream>
+#include <chrono>
+
 
 using namespace std;
+using namespace std::chrono;
 
 //------------------------------------------------------ Include of local files
 #include "UserInterface.h"
@@ -48,7 +51,7 @@ int UserInterface::DisplayMenu()
         switch(choice)
         {
             case (1) :
-            {
+            {    
                 displayAirQualityArea();
                 break;
             }
@@ -87,6 +90,7 @@ int UserInterface::displayAirQualityArea()
     int day;
     int minutes;
     int seconds;
+
     bool isInterval = false;
     map<string, float> result;
     Date begin;
@@ -122,29 +126,36 @@ int UserInterface::displayAirQualityArea()
     cout<<"Do you want to calculate at a special day (d) or on a period (p)"<<endl;
     choice = doubleChoiceInput('d', 'p');
 
+    auto start = high_resolution_clock::now();
+    auto stop = high_resolution_clock::now();
     if(choice == 'd') {
         begin = chooseDate(isInterval);
+        start = high_resolution_clock::now();
         result = controller.AnalyseAirQualityInCircularArea(longitude, latitude, radius, begin, end, false);
+
     } else if (choice == 'p') {
         isInterval = true;
         cout<<"Choose the begin date : "<<endl;
         begin = chooseDate(isInterval);
         cout<<"Choose the end date : "<<endl;
         end = chooseDate(isInterval);
-
+        start = high_resolution_clock::now();
         result = controller.AnalyseAirQualityInCircularArea(longitude, latitude, radius, begin, end, true);
         cout << "________________________________________" << endl;
     }
-
     if(result.begin()->first == "NO DATA"){
         cout << endl <<"There is no data for these conditions" << endl << endl;
+        stop = high_resolution_clock::now();
     } else {
         cout << endl <<  "Air Quality : " << endl;
         for(const auto &element: result) {
             cout << element.first << " : " << element.second << endl;
         }
         cout << "=== Air Quality Level : " << controller.CalculateAirQualityValue(result) << " ===" << endl << endl;
+        stop = high_resolution_clock::now();
     }
+    int duration = duration_cast<milliseconds>(stop - start).count();
+    cout << "This function tooked " << duration << " milliseconds." << endl << endl;
 
 	return 0;
 }  //----- End of displayAirQualityArea
@@ -180,9 +191,13 @@ int UserInterface::displayRankingSensorsSimilarity()
         cout << "End date must be after begin date." << endl << endl;
     } else {
         cout << "Sensors ranked in function of similarity with "<< sensorId << " : " << endl;
+        auto start = high_resolution_clock::now();
         for (const auto& sensor : controller.RankingSensorsSimilarity(sensorId, begin, end)) {
             cout << sensor.GetId() << endl;
         }
+        auto stop = high_resolution_clock::now();
+        int duration = duration_cast<milliseconds>(stop - start).count();
+        cout << "This function tooked " << duration << " milliseconds." << endl << endl;
     }
 	return 0;
 }  //----- End of displayRankingSensorsSimilarity
