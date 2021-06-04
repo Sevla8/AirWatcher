@@ -230,5 +230,3 @@ TEST_F(ControllerTest, RankingSensorSimilarities1) {
 		++i;
 	}
 }
-
-

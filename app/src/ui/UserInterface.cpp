@@ -243,8 +243,8 @@ Date UserInterface::chooseDate(bool isInterval)
         else
         {
             cout<<"Choose the hour : ";
-            while(!(cin>>hour)){
-                cout<<"MUST BE AN INTEGER "<< endl;
+            while(!(cin>>hour) || hour < 0 || hour > 23){
+                cout<<"MUST BE AN INTEGER BETWEEN 0-23"<< endl;
                 cin.clear();
                 cin.ignore();
                 cout<<"Choose the hour : ";
@@ -252,16 +252,16 @@ Date UserInterface::chooseDate(bool isInterval)
             cout<<endl;
 
             cout<<"Choose the minute : ";
-            while(!(cin>>minute)){
-                cout<<"MUST BE AN INTEGER "<< endl;
+            while(!(cin>>minute) || minute < 0 || minute > 59){
+                cout<<"MUST BE AN INTEGER BETWEEN 0-59"<< endl;
                 cin.clear();
                 cin.ignore();
                 cout<<"Choose the minute : ";
             }
             cout<<endl;
             cout<<"Choose the second : ";
-            while(!(cin>>second)){
-                cout<<"MUST BE AN INTEGER "<< endl;
+            while(!(cin>>second) || second < 0 || second > 59){
+                cout<<"MUST BE AN INTEGER BETWEEN 0-59"<< endl;
                 cin.clear();
                 cin.ignore();
                 cout<<"Choose the second : ";

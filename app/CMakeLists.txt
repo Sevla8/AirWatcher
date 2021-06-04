@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0.0)
-set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Release)
 project(AirWatcher VERSION 0.1.0)
+
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 enable_testing()
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
