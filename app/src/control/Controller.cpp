@@ -56,10 +56,10 @@ map<string, float> Controller::AnalyseAirQualityInCircularArea(float latitude, f
 
 	//search all sensors which are in the area
 	for (const auto &currentSensor : model.GetSensors()) {
-		currentLatitude = currentSensor.GetLatitude();
+		currentLatitude = currentSensor.second.GetLatitude();
 		currentLatitude *= oneDegree;
 
-		currentLongitude = currentSensor.GetLongitude();
+		currentLongitude = currentSensor.second.GetLongitude();
 		currentLongitude *= oneDegree;
 		float sinDiffLat = sin((currentLatitude - latitude)/2);
 		float sinDiffLong = sin((currentLongitude - longitude)/2);
@@ -68,7 +68,7 @@ map<string, float> Controller::AnalyseAirQualityInCircularArea(float latitude, f
 		float distance = 2 * asin(sqrt((sinDiffLat*sinDiffLat) + cos(latitude)*cos(currentLatitude)*(sinDiffLong*sinDiffLong)));
 
 		if (distance <= conversionRadius) {
-			sensorsInArea.push_back(currentSensor); // O(1)
+			sensorsInArea.push_back(currentSensor.second); // O(1)
 		}
 	} // O(S)
 
@@ -107,12 +107,12 @@ vector<Sensor> Controller::RankingSensorsSimilarity(const string& sensorId, cons
 { 	// O(Nlog(N))
 	multimap<double, Sensor> map;
 	Sensor target = model.FindSensor(sensorId);
-	set<Sensor> sensors = model.GetSensors();
+	unordered_map<string, Sensor> sensors = model.GetSensors();
 	vector<double> targetMean = target.CalculateMean(begin, end);
 	for (const auto& sensor : sensors) {
-		vector<double> mean = sensor.CalculateMean(begin, end); // O (N/S) in avg
+		vector<double> mean = sensor.second.CalculateMean(begin, end); // O (N/S) in avg
 		double difference = CompareMeans(targetMean, mean);	// O (1)
-		map.insert({difference, sensor});	// O (Nlog(size+N) )
+		map.insert({difference, sensor.second});	// O (Nlog(size+N) )
 	} // O (S(N/S + Nlog(N)) -> O(Nlog(N))
 
 	vector<Sensor> result;

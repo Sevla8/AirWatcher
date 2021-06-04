@@ -32,21 +32,19 @@ using namespace std;
 
 //----------------------------------------------------- Public Methods
 
-Sensor Model::FindSensor(const string& id) const
+const Sensor& Model::FindSensor(const string& id) const
 {
-	Sensor s(id);
-	set<Sensor>::iterator iter = sensors.find(s);
-	return *iter;
+	return sensors.at(id);
 } //----- End of method FindSensor
 
-const set<Sensor>& Model::GetSensors() const
+const unordered_map<string, Sensor>& Model::GetSensors() const
 // Algorithm :
 //
 {
 	return sensors;
 } //----- End of GetSensors
 
-const set<Cleaner>& Model::GetCleaners() const
+const unordered_map<string, Cleaner>& Model::GetCleaners() const
 // Algorithm :
 //
 {
@@ -58,11 +56,11 @@ const set<Cleaner>& Model::GetCleaners() const
 ostream& operator<<(std::ostream& os, const Model& m)
 {
 	for(const auto &iter: m.sensors) {
-		os << iter << endl;
+		os << iter.second << endl;
 	}
 	os << endl;
 	for(const auto &iter: m.cleaners) {
-		os << iter << endl;
+		os << iter.second << endl;
 	}
 	return os;
 } //----- End of operator <<
@@ -80,25 +78,25 @@ Model::Model(string sensorsPath, string cleanersPath, string attributesPath, str
 
 	for (const auto &iter: cleanerData) {
 		CleanerData cd = iter;
-		ProviderData pd = *providerData.find(ProviderData(iter.id));
-		cleaners.insert(Cleaner(cd, pd));
+		ProviderData pd = *providerData.find(ProviderData(cd.id));
+		cleaners[cd.id] = Cleaner(cd, pd);
 	}
 
 	for (const auto &iter: sensorData) {
 		SensorData sd = iter;
-		bool exist = userData.find(UserData(iter.id)) == userData.end() ? false : true;
+		bool exist = userData.find(UserData(sd.id)) == userData.end() ? false : true;
 		vector<MeasurementData> vector;
 		auto it = measurementData.find(MeasurementData(iter.id));
 		while (it != measurementData.end() && it->sensorId == sd.id) {
 			vector.push_back(*it);
 			++it;
 		}
-		if (exist) sensors.insert(Sensor(sd, *userData.find(UserData(iter.id)), vector, attributeData));
-		else sensors.insert(Sensor(sd, vector, attributeData));
+		if (exist) sensors[sd.id] = Sensor(sd, *userData.find(UserData(iter.id)), vector, attributeData);
+		else sensors[sd.id] = Sensor(sd, vector, attributeData);
 	}
 }  //----- End of Model
 
-Model::Model(const set<Sensor>& sensors, const set<Cleaner>& cleaners) :
+Model::Model(const unordered_map<string, Sensor>& sensors, const unordered_map<string, Cleaner>& cleaners) :
 // Algorithm :
 //
 	sensors(sensors),

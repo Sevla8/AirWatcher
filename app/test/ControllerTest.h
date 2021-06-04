@@ -36,13 +36,13 @@ class ControllerTest : public ::testing::Test {
 						 "../../dataset/measurements.csv");
 			controller3.SetModel(model3);
 
-			sensor = *controller2.GetModel().GetSensors().begin();
+			sensorId = "Sensor0";
 		}
 
 		Controller controller;
 		Controller controller2;
 		Controller controller3;
-		Sensor sensor;
+		string sensorId;
 };
 
 #endif
