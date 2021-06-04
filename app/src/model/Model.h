@@ -13,7 +13,7 @@
 
 //--------------------------------------------------- Used Interfaces
 #include <string>
-#include <set>
+#include <unordered_map>
 #include "Sensor.h"
 #include "Cleaner.h"
 
@@ -29,19 +29,19 @@ class Model {
 	//----------------------------------------------------------------- PUBLIC
 	public:
 		//----------------------------------------------------- Public methods
-		const set<Sensor>& GetSensors() const;
+		const unordered_map<string, Sensor>& GetSensors() const;
 		// How to use :
 		//
 		// Precondition :
 		//
 
-		const set<Cleaner>& GetCleaners() const;
+		const unordered_map<string, Cleaner>& GetCleaners() const;
 		// How to use :
 		//
 		// Precondition :
 		//
 
-		Sensor FindSensor(const string& id) const;
+		const Sensor& FindSensor(const string& id) const;
 		// How to use : Finds a sensor whose id is given by 'id' parameter
 		//
 		// Precondition :
@@ -58,7 +58,7 @@ class Model {
 		// Precondition :
 		//
 
-		Model(const set<Sensor>&, const set<Cleaner>&);
+		Model(const unordered_map<string, Sensor>&, const unordered_map<string, Cleaner>&);
 		// How to use :
 		//
 		// Precondition :
@@ -74,8 +74,8 @@ class Model {
 	private:
 
 		//----------------------------------------------------- Private Attributes
-		set<Sensor> sensors;
-		set<Cleaner> cleaners;
+		unordered_map<string, Sensor> sensors;
+		unordered_map<string, Cleaner> cleaners;
 };
 
 #endif // Model_H
