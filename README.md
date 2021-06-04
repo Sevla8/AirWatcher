@@ -8,7 +8,9 @@ NAME
 SYNOPSIS
 ========
 
-	./airwatcher
+	./AirWatcher
+
+Checkout `app/README.md` for further information.
 
 DESCRIPTION
 ===========
@@ -18,73 +20,121 @@ AirWatcher is an air quality monitor that permits analyse the quality of air.
 Menu
 -------
 
-<!-- * option **1**
-
-	Ne prend pas en compte les fichiers de type images, css et javascript.
-
-* -t heure
-
-	Ne prend en compte que les cibles comprisent dans l'intervalle horaire \[t, t+1\[.
-
-* -g file
-
-	Permet de produire un fichier contenant une description du fichier log en DOT.
-
-* -u addr
-
-	Permet de renseigner l'adresse de base des différentes cibles. Par défaut celle-ci est *http://intranet-if.insa-lyon.fr*. -->
-
-HowTo
------
-
-From the root directory of the application,
-
-to compile :
-
-	make
-
-to run :
-
-	./airwatcher
-
 FILES
 =====
 
-* *airwatcher*
-
-	binary executable
-
-* *specifications/*
-
-	Software requirements specification repository
-
-* *planning/*
-
-	Planning repository
-
-	* *html/*
-
-		HTML output files repository
-
-	* *src/*
-
-		Taskjuggler source files repository
-
-* *app/*
-
-	Application repository
-
-	* *src/*
-
-		C++ source files repository
-
-	* *bin/*
-
-		Binairy files repository
-
-	* *test/*
-
-		Test repository
+```
+📦AirWatcher
+ ┣ 📂app
+ ┃ ┣ 📂src
+ ┃ ┃ ┣ 📂control
+ ┃ ┃ ┃ ┣ 📜Controller.cpp
+ ┃ ┃ ┃ ┗ 📜Controller.h
+ ┃ ┃ ┣ 📂factory
+ ┃ ┃ ┃ ┣ 📜Reader.cpp
+ ┃ ┃ ┃ ┗ 📜Reader.h
+ ┃ ┃ ┣ 📂model
+ ┃ ┃ ┃ ┣ 📜Attribute.cpp
+ ┃ ┃ ┃ ┣ 📜Attribute.h
+ ┃ ┃ ┃ ┣ 📜Cleaner.cpp
+ ┃ ┃ ┃ ┣ 📜Cleaner.h
+ ┃ ┃ ┃ ┣ 📜Date.cpp
+ ┃ ┃ ┃ ┣ 📜Date.h
+ ┃ ┃ ┃ ┣ 📜GovernmentAgency.cpp
+ ┃ ┃ ┃ ┣ 📜GovernmentAgency.h
+ ┃ ┃ ┃ ┣ 📜Measurement.cpp
+ ┃ ┃ ┃ ┣ 📜Measurement.h
+ ┃ ┃ ┃ ┣ 📜Model.cpp
+ ┃ ┃ ┃ ┣ 📜Model.h
+ ┃ ┃ ┃ ┣ 📜PrivateUser.cpp
+ ┃ ┃ ┃ ┣ 📜PrivateUser.h
+ ┃ ┃ ┃ ┣ 📜Provider.cpp
+ ┃ ┃ ┃ ┣ 📜Provider.h
+ ┃ ┃ ┃ ┣ 📜Sensor.cpp
+ ┃ ┃ ┃ ┣ 📜Sensor.h
+ ┃ ┃ ┃ ┣ 📜User.cpp
+ ┃ ┃ ┃ ┗ 📜User.h
+ ┃ ┃ ┣ 📂ui
+ ┃ ┃ ┃ ┣ 📜UserInterface.cpp
+ ┃ ┃ ┃ ┗ 📜UserInterface.h
+ ┃ ┃ ┗ 📜main.cpp
+ ┃ ┣ 📂test
+ ┃ ┃ ┣ 📜AttributeTest.cpp
+ ┃ ┃ ┣ 📜AttributeTest.h
+ ┃ ┃ ┣ 📜CleanerTest.cpp
+ ┃ ┃ ┣ 📜CleanerTest.h
+ ┃ ┃ ┣ 📜ControllerTest.cpp
+ ┃ ┃ ┣ 📜ControllerTest.h
+ ┃ ┃ ┣ 📜DateTest.cpp
+ ┃ ┃ ┣ 📜DateTest.h
+ ┃ ┃ ┣ 📜MeasurementTest.cpp
+ ┃ ┃ ┣ 📜MeasurementTest.h
+ ┃ ┃ ┣ 📜PrivateUserTest.cpp
+ ┃ ┃ ┣ 📜PrivateUserTest.h
+ ┃ ┃ ┣ 📜ProviderTest.cpp
+ ┃ ┃ ┣ 📜ProviderTest.h
+ ┃ ┃ ┣ 📜ReaderTest.cpp
+ ┃ ┃ ┣ 📜ReaderTest.h
+ ┃ ┃ ┣ 📜SensorTest.cpp
+ ┃ ┃ ┣ 📜SensorTest.h
+ ┃ ┃ ┗ 📜main.cpp
+ ┃ ┣ 📜.gitignore
+ ┃ ┣ 📜CMakeLists.txt
+ ┃ ┗ 📜README.md
+ ┣ 📂conception
+ ┃ ┣ 📜AirWatcher.mdj
+ ┃ ┣ 📜ClassDiagram.png
+ ┃ ┣ 📜SequenceDiagram1.png
+ ┃ ┣ 📜SequenceDiagram2.png
+ ┃ ┗ 📜SequenceDiagram3.png
+ ┣ 📂dataset
+ ┃ ┣ 📂tests
+ ┃ ┃ ┣ 📜attributes.csv
+ ┃ ┃ ┣ 📜cleaners.csv
+ ┃ ┃ ┣ 📜dataToTestSensorRanked.csv
+ ┃ ┃ ┣ 📜fichierVide.csv
+ ┃ ┃ ┣ 📜measurements.csv
+ ┃ ┃ ┣ 📜measurements1.csv
+ ┃ ┃ ┣ 📜providers.csv
+ ┃ ┃ ┣ 📜sensorRanked.csv
+ ┃ ┃ ┣ 📜sensors.csv
+ ┃ ┃ ┣ 📜sensors1.csv
+ ┃ ┃ ┗ 📜users.csv
+ ┃ ┣ 📜Description.pdf
+ ┃ ┣ 📜attributes.csv
+ ┃ ┣ 📜cleaners.csv
+ ┃ ┣ 📜measurements.csv
+ ┃ ┣ 📜providers.csv
+ ┃ ┣ 📜sensors.csv
+ ┃ ┗ 📜users.csv
+ ┣ 📂planning
+ ┃ ┣ 📂html
+ ┃ ┣ 📂src
+ ┃ ┃ ┣ 📜account.tji
+ ┃ ┃ ┣ 📜macro.tji
+ ┃ ┃ ┣ 📜main.tjp
+ ┃ ┃ ┣ 📜resource.tji
+ ┃ ┃ ┣ 📜task.tji
+ ┃ ┃ ┗ 📜view.tji
+ ┃ ┣ 📜.gitignore
+ ┃ ┣ 📜Makefile
+ ┃ ┣ 📜README.md
+ ┃ ┣ 📜init.pdf
+ ┃ ┗ 📜init.tex
+ ┣ 📂specifications
+ ┃ ┣ 📜.gitignore
+ ┃ ┣ 📜Project.pdf
+ ┃ ┣ 📜Specification_AirWatcher.pdf
+ ┃ ┣ 📜gui-1.png
+ ┃ ┣ 📜gui-2.png
+ ┃ ┣ 📜gui-3.png
+ ┃ ┣ 📜srs.bib
+ ┃ ┣ 📜srs.tex
+ ┃ ┗ 📜uc.pdf
+ ┣ 📜.editorconfig
+ ┣ 📜.gitignore
+ ┗ 📜README.md
+```
 
 ENVIRONMENT
 ===========
