@@ -7,7 +7,10 @@
 #include "../src/model/Sensor.h"
 #include "../src/factory/Reader.h"
 
+#include <chrono>
 #include <vector>
+
+using namespace std::chrono;
 
 class ControllerTest : public ::testing::Test {
 	public:
@@ -28,12 +31,17 @@ class ControllerTest : public ::testing::Test {
 						 "../../dataset/tests/dataToTestSensorRanked.csv");
 			controller2.SetModel(model2);
 
+			auto start = high_resolution_clock::now();
 			Model model3("../../dataset/tests/sensors.csv",
 						 "../../dataset/tests/cleaners.csv",
 						 "../../dataset/tests/attributes.csv",
 						 "../../dataset/tests/users.csv",
 						 "../../dataset/tests/providers.csv",
 						 "../../dataset/measurements.csv");
+			auto stop = high_resolution_clock::now();
+			int duration = duration_cast<milliseconds>(stop - start).count();
+			cout << "Reading data tooked " << duration << " milliseconds." << endl;
+
 			controller3.SetModel(model3);
 
 			sensorId = "Sensor0";
